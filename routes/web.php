@@ -16,5 +16,5 @@ Route::middleware('jwt.auth')->group(function () {
 });
 
 Route::get('/{any}', function () {
-    return file_get_contents(public_path('index.html'));
+    return file_get_contents(public_path('frontend/src/index.html'));
 })->where('any', '^(?!api).*$')->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
