@@ -1,0 +1,36 @@
+header{
+    text-align: center;
+}
+.product-card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.product-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+.products-container {
+  padding: 2px 16px;
+}
+.product-carousel {
+  display: flex;
+  gap: 16px;
+  position: relative;
+  width: max-content; /* Ensures it wraps properly */
+  animation: scrollProducts 20s linear infinite;
+}
+.product-image img{
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-image {
+  position: relative;
+  height: 200px;
+  background-color: rgb(3, 115, 214);
+}

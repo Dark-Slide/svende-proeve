@@ -1,0 +1,22 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.product-card-details {
+  text-align: center;
+  padding: 16px;
+}
+.product-image img {
+  width: 200px;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+}
+.card-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
