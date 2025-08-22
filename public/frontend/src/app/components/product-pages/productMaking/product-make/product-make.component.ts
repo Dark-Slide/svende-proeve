@@ -11,11 +11,10 @@ import { CategoryService } from 'src/app/Services/category.service';
 
 
 @Component({
-  selector: 'app-product-make',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './product-make.component.html',
-  styleUrls: ['./product-make.component.css']
+    selector: 'app-product-make',
+    imports: [CommonModule, ReactiveFormsModule],
+    templateUrl: './product-make.component.html',
+    styleUrls: ['./product-make.component.css']
 })
 export class ProductMakeComponent {
   productForm: FormGroup;
