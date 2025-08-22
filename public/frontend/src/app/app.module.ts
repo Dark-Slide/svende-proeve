@@ -9,19 +9,27 @@ import { ProductMakeComponent } from './components/product-pages/productMaking/p
 import { ProfileComponent } from './components/profile-pages/profile/profile.component';
 import { ProductDetailComponent } from './components/product-pages/productDetails/product-detail/product-detail.component';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
+//import { LoginComponent } from './components/login-page/login/login.component';
+import { BasketComponent } from './components/basket-page/basket/basket.component';
+import { CheckoutpageComponent } from './components/checkout/checkoutpage/checkoutpage.component';
+import { RegisterComponent } from './components/register-page/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ProductsComponent,
-    ProductMakeComponent,
     ProfileComponent,
-    ProductDetailComponent
+    BasketComponent,
+    CheckoutpageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ProductsComponent,
+    ProductDetailComponent,
+    ProductMakeComponent,
+    //LoginComponent,
+    RegisterComponent,
     NavbarComponent
   ],
   providers: [],

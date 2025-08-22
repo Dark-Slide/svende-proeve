@@ -1,0 +1,35 @@
+import { Injectable } from "@angular/core";
+import { Product } from "../models/product";
+import { Observable } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { map } from "rxjs";
+
+@Injectable({
+  providedIn: "root",
+})
+
+export class ProductService {
+    
+    
+    private readonly apiUrl = 'http://localhost:3000/products'; // Dummy API URL
+    constructor(private http: HttpClient) {}
+
+    public getProducts(): Observable<Product[]> {
+        return this.http.get<Product[]>(this.apiUrl);
+    }
+    public getProductById(id: number): Observable<Product> {
+        return this.http.get<Product>(this.apiUrl + '/'+ id);
+    }
+    public createProduct(product: FormData): Observable<Product> {
+        return this.http.post<Product>(this.apiUrl, product);
+    }
+    public updateProduct(product: Product): Observable<Product> {
+        return this.http.put<Product>(`${this.apiUrl}/${product.id}`, product);
+    }
+    public deleteProduct(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    }
+    
+
+  
+}

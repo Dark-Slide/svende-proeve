@@ -1,1 +1,98 @@
-<p>product-make works!</p>
+<div class="container my-4">
+    <div class="card">
+        <div class="card-header text-center bg-dark text-white">
+            <h4>Make Your Product</h4>
+        </div>
+        
+        <div class="card-body">
+            <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+                <!-- Product Name -->
+                <div class="mb-3">
+                    <label class="form-label">Product Name</label>
+                    <input type="text" formControlName="name" class="form-control" required>
+                    <div class="invalid-feedback">Please enter a product name.</div>
+                </div>
+                <!-- Description -->
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea formControlName="description" class="form-control" rows="3" required></textarea>
+                    <div class="invalid-feedback">Please enter a description.</div>
+                </div>
+                <!-- Category -->
+                <div class="mb-3">
+                    <label class="form-label">Category</label>
+                    <select formControlName="category" class="form-select" required>
+                        <option value="" disabled selected>Select a category</option>
+                        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a category.</div>
+                </div>
+                <!-- Price -->
+                <div class="mb-3">
+                    <label class="form-label">Price</label>
+                    <input type="number" formControlName="price" class="form-control" required>
+                    <div class="invalid-feedback">Please enter a valid price.</div>
+                </div>
+                <!-- Material -->
+                <div class="mb-3">
+                    <label class="form-label">Material</label>
+                    <select formControlName="material" class="form-select" required>
+                        <option value="" disabled selected>Select a material</option>
+                        <option *ngFor="let material of materials" [value]="material">{{ material }}</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a material.</div>
+                </div>
+                <!-- Colour -->
+                <div class="mb-3">
+                    <label class="form-label">Colour</label>
+                    <select formControlName="colour" class="form-select" required>
+                        <option value="" disabled selected>Select a colour</option>
+                        <option *ngFor="let colour of colours" [value]="colour">{{ colour }}</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a colour.</div>
+                </div>
+                <!-- Size -->
+                <div class="mb-3">
+                    <label class="form-label">Size</label>
+                    <select formControlName="size" class="form-select" required>
+                        <option value="" disabled selected>Select a size</option>
+                        <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a size.</div>
+                </div>
+                <!-- Type -->
+                <div class="mb-3">
+                    <label class="form-label">Type</label>
+                    <select formControlName="type" class="form-select" required>
+                        <option value="" disabled selected>Select a type</option>
+                        <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a type.</div>
+                </div>
+                <!-- Image Upload -->
+                <div class="mb-3">
+                    <label class="form-label">Upload Image</label>
+                    <input type="file" (change)="onImageFileSelected($event)" class="form-control" accept="image/*">
+                    <div class="invalid-feedback">Please upload an image.</div>
+                </div>
+                <!--Condition-->
+                <div class="mb-3">
+                    <label class="form-label">Condition</label>
+                    <select formControlName="condition" class="form-select" required>
+                        <option value="" disabled selected>Select a condition</option>
+                        <option *ngFor="let condition of conditions" [value]="condition">{{ condition }}</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a condition.</div>
+                </div>
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Create Product</button>
+                </div>  
+                
+                  
+                </form>
+        </div>
+
+    </div>
+
+</div>

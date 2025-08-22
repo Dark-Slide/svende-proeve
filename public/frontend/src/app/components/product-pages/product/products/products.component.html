@@ -18,57 +18,55 @@
                     <option value="2">Stole</option>
                     <option value="3">Borde</option>
                 </select>
-                <select class="form-select mb-2" aria-label="Filter by material">
-                    <option selected>Vælg Materiale</option>
-                    <option value="1">Læder</option>
-                    <option value="2">Polyester</option>
-                    <option value="3">Stof</option>
-                    <option value="4">Træ</option>
+                <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by price">
+                    <option [ngValue]="SortOrder.None">Vælg pris</option>
+                    <option [ngValue]="SortOrder.PriceAsc">Laveste pris</option>
+                    <option [ngValue]="SortOrder.PriceDesc">Højeste pris</option>
                 </select>
-                <select class="form-select mb-2" aria-label="Filter by colour">
-                    <option selected>Vælg Farver</option>
-                    <option value="1">Grå</option>
-                    <option value="2">Blå</option>
-                    <option value="3">Sort</option>
-                    <option value="4">Hvid</option>
-                    <option value="5">Rød</option>
-                    <option value="6">Grøn</option>
-                    <option value="7">Gul</option>
-                    <option value="8">Brun</option>
-                    <option value="9">Lilla</option>
-                    <option value="10">Orange</option>
-                    <option value="11">Rosa</option>
-                    <option value="12">Turkis</option>
-                    <option value="13">Beige</option>
-                    <option value="14">Guld</option>
-                    <option value="15">Sølv</option>
-                    <option value="16">Metallic</option>
-                    <option value="17">Pastel</option>
-                    <option value="18">Neon</option>
-                    <option value="19">Mønstrede</option>
-                    <option value="20">Andre</option>
+                <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by material">
+                    <option [ngValue]="SortOrder.None">Vælg Materiale</option>
+                    <option [ngValue]="SortOrder.MaterialAsc">Læder</option>
+                    <option [ngValue]="SortOrder.MaterialDesc">Polyester</option>
+                    <option [ngValue]="SortOrder.MaterialDesc">Stof</option>
+                    <option [ngValue]="SortOrder.MaterialDesc">Træ</option>
                 </select>
-                <select class="form-select mb-2" aria-label="Filter by size">
-                    <option selected>Vælg Størrelse</option>
-                    <option value="1">Sofaer</option>
-                    <option value="2">Stole</option>
-                    <option value="3">Borde</option>
+                <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by colour">
+                    <option [ngValue]="SortOrder.None">Vælg Farve</option>
+                    <option [ngValue]="SortOrder.ColourAsc">Sort</option>
+                    <option [ngValue]="SortOrder.ColourDesc">Hvid</option>
+                    <option [ngValue]="SortOrder.ColourDesc">Grå</option>
+                    <option [ngValue]="SortOrder.ColourDesc">Blå</option>
+                    <option [ngValue]="SortOrder.ColourDesc">Rød</option>
+                    <option [ngValue]="SortOrder.ColourDesc">Grøn</option>
+                    <option [ngValue]="SortOrder.ColourDesc">Brun</option>
+                    <option [ngValue]="SortOrder.ColourDesc">Gul</option>
+                    <option [ngValue]="SortOrder.ColourDesc">Orange</option>
+                    <option [ngValue]="SortOrder.ColourDesc">Lilla</option>
                 </select>
-                <select class="form-select mb-2" aria-label="Filter by type">
-                    <option selected>Vælg Type</option>
-                    <option value="1">Hjørne</option>
-                    <option value="2">3-personers</option>
-                    <option value="3">2-personers</option>
-                    <option value="4">Sofa sæt</option>
-                    <option value="5">Chaiselong</option>
-                    <option value="6">Modul sofa</option>
-                    <option value="7">Sofa med opbevaring</option>
-                    <option value="8">Sofa med sovesofa</option>
+                <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by size">
+                    <option [ngValue]="SortOrder.None">Vælg Størrelse</option>
+                    <option [ngValue]="SortOrder.SizeAsc">1-personers</option>
+                    <option [ngValue]="SortOrder.SizeDesc">2-personers</option>
+                    <option [ngValue]="SortOrder.SizeDesc">3-personers</option>
+                    <option [ngValue]="SortOrder.SizeDesc">4-personers</option>
+                    <option [ngValue]="SortOrder.SizeDesc">5-personers</option>
+                    <option [ngValue]="SortOrder.SizeDesc">6-personers</option>
+                    <option [ngValue]="SortOrder.SizeDesc">7-personers</option>
+                    <option [ngValue]="SortOrder.SizeDesc">8-personers</option>
                 </select>
-                <select class="form-select mb-2" aria-label="Filter by condition">
-                    <option selected>Vælg Ny eller brugt</option>
-                    <option value="1">Ny</option>
-                    <option value="2">Brugt</option>
+                <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by type">
+                    <option [ngValue]="SortOrder.None">Vælg Type</option>
+                    <option [ngValue]="SortOrder.TypeAsc">Hjørne</option>
+                    <option [ngValue]="SortOrder.TypeDesc">Chaiselong</option>
+                    <option [ngValue]="SortOrder.TypeDesc">Modulsofa</option>
+                    <option [ngValue]="SortOrder.TypeDesc">Sovesofa</option>
+                    <option [ngValue]="SortOrder.TypeDesc">Lædersofa</option>
+                    <option [ngValue]="SortOrder.TypeDesc">Stofsofa</option>
+                </select>
+                <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by condition">
+                    <option [ngValue]="SortOrder.None">Vælg Tilstand</option>
+                    <option [ngValue]="SortOrder.ConditionAsc">Ny</option>
+                    <option [ngValue]="SortOrder.ConditionDesc">Brugt</option>
                 </select>
             </div>
             <div class="row g-4">

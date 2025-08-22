@@ -5,14 +5,16 @@ import { ProductsComponent } from './components/product-pages/product/products/p
 import { ProductMakeComponent } from './components/product-pages/productMaking/product-make/product-make.component';
 import { ProfileComponent } from './components/profile-pages/profile/profile.component';
 import { ProductDetailComponent } from './components/product-pages/productDetails/product-detail/product-detail.component';
+import { RegisterComponent } from './components/register-page/register/register.component';
+//import { LoginComponent } from './components/login-page/login/login.component';
 
 const routes: Routes = [
   {path: '' , component: HomeComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'productMaking', component: ProductMakeComponent},
   {path: 'productDetail', component: ProductDetailComponent},
-  {path: 'profile', component: ProfileComponent}
-  //{path: 'register', component: RegisterComponent},
+  {path: 'profile', component: ProfileComponent},
+  {path: 'register', component: RegisterComponent},
   //{path: 'login', component: LoginComponent},
 ];
 
