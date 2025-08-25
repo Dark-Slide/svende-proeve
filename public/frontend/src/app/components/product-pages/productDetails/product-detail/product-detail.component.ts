@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr'; // Assuming ToastrService for notifi
 
 @Component({
     selector: 'app-product-detail',
+    standalone: true,
     imports: [CommonModule, RouterModule],
     templateUrl: './product-detail.component.html',
     styleUrls: ['./product-detail.component.css']

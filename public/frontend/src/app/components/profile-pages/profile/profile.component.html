@@ -1,1 +1,32 @@
-<p>profile works!</p>
+<div *ngIf="profile" class="container my-4">
+    <div class="card">
+        <div class="row">
+            <!-- Profile Image Section -->
+            <div class="col-md-4 text-center p-4">
+                <img src="DummyProfile.jpg" alt="Profile Image" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
+            </div>
+        </div>
+        <div class="card-header text-center bg-dark text-white">
+            <h4>Profile</h4>
+        </div>
+        <div class="card-body">
+                <!-- Name -->
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                </div>
+
+           
+                <button onclick="showSalesHistory()" class="btn btn-primary">Show Sales History</button>
+                <div id="salesHistory">
+                    <h5>Din salgs liste</h5>
+                    <ul id="salesList" class="list-group"></ul>
+                </div>
+            
+                <button onclick="showPurchaseHistory()" class="btn btn-secondary ms-2">Show Purchase History</button>
+                <div id="purchaseHistory" class="mt-4">
+                    <h5>Din Købshistorik</h5>
+                    <ul id="historyList" class="list-group"></ul>
+                </div>
+        </div>
+
+</div>
