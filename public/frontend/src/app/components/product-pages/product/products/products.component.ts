@@ -14,11 +14,11 @@ import { SortOrder } from 'src/app/utensils/sort.enum';
 
 
 @Component({
-  selector: 'app-products',
-  standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule],
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+    selector: 'app-products',
+    standalone: true,
+    imports: [CommonModule, RouterLink, FormsModule],
+    templateUrl: './products.component.html',
+    styleUrls: ['./products.component.css']
 })
 
 

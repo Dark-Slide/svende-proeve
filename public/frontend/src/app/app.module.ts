@@ -8,7 +8,7 @@ import { ProductsComponent } from './components/product-pages/product/products/p
 import { ProductMakeComponent } from './components/product-pages/productMaking/product-make/product-make.component';
 import { ProfileComponent } from './components/profile-pages/profile/profile.component';
 import { ProductDetailComponent } from './components/product-pages/productDetails/product-detail/product-detail.component';
-import { NavbarComponent } from './components/navbar/navbar/navbar.component';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
 //import { LoginComponent } from './components/login-page/login/login.component';
 import { BasketComponent } from './components/basket-page/basket/basket.component';
 import { CheckoutpageComponent } from './components/checkout/checkoutpage/checkoutpage.component';
@@ -18,8 +18,6 @@ import { RegisterComponent } from './components/register-page/register/register.
   declarations: [
     AppComponent,
     HomeComponent,
-    ProfileComponent,
-    BasketComponent,
     CheckoutpageComponent,
   ],
   imports: [
@@ -28,8 +26,10 @@ import { RegisterComponent } from './components/register-page/register/register.
     ProductsComponent,
     ProductDetailComponent,
     ProductMakeComponent,
+    BasketComponent,
     //LoginComponent,
     RegisterComponent,
+    ProfileComponent,
     NavbarComponent
   ],
   providers: [],

@@ -9,11 +9,11 @@ import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr'; // Assuming ToastrService for notifications
 
 @Component({
-  selector: 'app-product-detail',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+    selector: 'app-product-detail',
+    standalone: true,
+    imports: [CommonModule, RouterModule],
+    templateUrl: './product-detail.component.html',
+    styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent /*implements OnInit*/ {
   product?: Product ;

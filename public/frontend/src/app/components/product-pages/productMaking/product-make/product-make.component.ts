@@ -11,11 +11,11 @@ import { CategoryService } from 'src/app/Services/category.service';
 
 
 @Component({
-  selector: 'app-product-make',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './product-make.component.html',
-  styleUrls: ['./product-make.component.css']
+    selector: 'app-product-make',
+    standalone: true,
+    imports: [CommonModule, ReactiveFormsModule],
+    templateUrl: './product-make.component.html',
+    styleUrls: ['./product-make.component.css']
 })
 export class ProductMakeComponent {
   productForm: FormGroup;
@@ -69,6 +69,9 @@ export class ProductMakeComponent {
     } else {
       this.toastr.error('Please fill in all required fields and upload at least one image');
     }
+  }
+  onCancel() {
+    this.router.navigate(['/products']);
   }
 
   onImageFileSelected(event: any) {
