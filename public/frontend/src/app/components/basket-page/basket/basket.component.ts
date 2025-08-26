@@ -33,7 +33,7 @@ export class BasketComponent implements OnInit {
     //transformDate(date: any) {
     //    return this.datePipe.transform(date, 'dd/MM/yyyy');
     //}
-
+    /*
     clearBasket(): void {
         const dialogRef = this.dialog.open(DialogComponent, {
             data: {
@@ -68,10 +68,11 @@ export class BasketComponent implements OnInit {
         
 
 
-    }
+    }*/
 
     //Stripe function:
 
     
 
+}
 }
