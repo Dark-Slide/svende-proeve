@@ -6,7 +6,8 @@ import { ProductMakeComponent } from './components/product-pages/productMaking/p
 import { ProfileComponent } from './components/profile-pages/profile/profile.component';
 import { ProductDetailComponent } from './components/product-pages/productDetails/product-detail/product-detail.component';
 import { RegisterComponent } from './components/register-page/register/register.component';
-//import { LoginComponent } from './components/login-page/login/login.component';
+import { BasketComponent } from './components/basket-page/basket/basket.component';
+import { LoginComponent } from './components/login-page/login/login.component';
 
 const routes: Routes = [
   {path: '' , component: HomeComponent},
@@ -14,8 +15,9 @@ const routes: Routes = [
   {path: 'productMaking', component: ProductMakeComponent},
   {path: 'productDetail', component: ProductDetailComponent},
   {path: 'profile', component: ProfileComponent},
+  {path: 'basket', component: BasketComponent},
   {path: 'register', component: RegisterComponent},
-  //{path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent},
 ];
 
 @NgModule({
