@@ -9,7 +9,7 @@ import { ProductMakeComponent } from './components/product-pages/productMaking/p
 import { ProfileComponent } from './components/profile-pages/profile/profile.component';
 import { ProductDetailComponent } from './components/product-pages/productDetails/product-detail/product-detail.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
-//import { LoginComponent } from './components/login-page/login/login.component';
+import { LoginComponent } from './components/login-page/login/login.component';
 import { BasketComponent } from './components/basket-page/basket/basket.component';
 import { CheckoutpageComponent } from './components/checkout/checkoutpage/checkoutpage.component';
 import { RegisterComponent } from './components/register-page/register/register.component';
@@ -17,17 +17,17 @@ import { RegisterComponent } from './components/register-page/register/register.
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     CheckoutpageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HomeComponent,
     ProductsComponent,
     ProductDetailComponent,
     ProductMakeComponent,
     BasketComponent,
-    //LoginComponent,
+    LoginComponent,
     RegisterComponent,
     ProfileComponent,
     NavbarComponent
