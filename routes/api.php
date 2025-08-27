@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rules\Password;
 
-Route::get('/sanctum/csrf-cookie', fn () => response()->noContent()); // Sanctum handles cookie
-
 // Frontpage
 Route::get('/api/frontpage', [GetController::class, 'frontpage'])
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
@@ -27,7 +25,6 @@ Route::post('/api/product/create', [PostController::class, 'create_product'])
     ->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken');
 
 // User
-
 Route::get('/api/user/{id}', [GetController::class, 'user'])
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
