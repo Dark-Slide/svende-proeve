@@ -1,31 +1,33 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable, firstValueFrom } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Profile } from "../models/profile";
 import { User } from "../models/user";
 
 
-/*
 
 
+// Need to be worked on after merge!
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
-  private readonly apiUrl = environment.apiUrl;
-  private userSubject: BehaviorSubject<Profile | null>;
-  private profileSubject: BehaviorSubject<Profile | null>;
+  private readonly apiUrl = environment.apiUrl + 'User';
+  private userSubject= new BehaviorSubject<User | null>(null);
+  private profileSubject = new BehaviorSubject<Profile | null>(null);
 
   constructor(private http: HttpClient) {}
 
-  public get user(): Observable<Profile | null> 
+  public get user(): User | null 
   {
         return this.userSubject.value;
-    }
-  public get profile(): Observable<Profile | null> 
+  }
+
+  public get profile(): Profile | null 
     {
         return this.profileSubject.value;
     }
@@ -37,11 +39,10 @@ export class AuthService {
     isAuthenticated(): boolean {
         return !!this.userSubject.value;    
     }
-
+      //Need to be changed to fit DB
     async loadUser(): Promise<void> {
         try {
-            const user = await this.getUser().toPromise();
-            this.userSubject.next(user);
+            const user = await firstValueFrom(this.http.get<any>(this.apiUrl, {withCredentials: true}));
         }
         catch (error) {
             console.error('Error loading user:', error);
@@ -50,15 +51,28 @@ export class AuthService {
     }
 
 
-  login(credentials: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/auth/login`, credentials);
+    loadProfile(): void{
+      this.http.get<Profile>(this.apiUrl + "/profile", {withCredentials: true}).subscribe
+      (profile => this.profileSubject.next(profile), () => this.profileSubject.next(null));
+    }
+
+
+  login(loginForm: any) {
+    return this.http.post<any>(this.apiUrl + "/login", loginForm, {withCredentials: true})
   }
 
-  getUser(): Observable<Profile> {
-    return this.http.get<Profile>(`${this.apiUrl}/auth/profile`);
+  register(registerForm: any) {
+        return this.http.post<any>(this.apiUrl, "/register", {withCredentials: true})
+    }
+
+  logOut(): void {
+    this.http.get(this.apiUrl + "/logout", {withCredentials: true}).subscribe
+    (() => {this.userSubject.next(null); this.profileSubject.next(null)});
   }
 
-  logout(): Observable<any> {
-    return this.http.post(`${this.apiUrl}/auth/logout`, {});
+  getProfileUser(): Observable<Profile> {
+    return this.http.get<Profile>(this.apiUrl + "/profile", {withCredentials:true});
   }
-}*/
+
+  
+}

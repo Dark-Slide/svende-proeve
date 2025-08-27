@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-//import { AuthService } from '../../../Services/auth.service';
+import { AuthService } from '../../../Services/auth.service';
 import {ToastrService} from 'ngx-toastr';
 
-/*
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -34,7 +34,7 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value).subscribe({
         next: async () => {
 
-          await this.authService.getUser();
+          await this.authService.loadUser();
 
 
           this.toastr.success('Login successful');
@@ -49,4 +49,4 @@ export class LoginComponent {
     }
       );}
   }  
-}*/
+}

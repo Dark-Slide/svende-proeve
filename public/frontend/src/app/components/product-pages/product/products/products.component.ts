@@ -27,17 +27,36 @@ export class ProductsComponent implements OnInit {
 
   constructor(private productService: ProductService, private categoryService: CategoryService) {}
   
-  public SortOrder = SortOrder; // Expose the enum to the template
+  public SortOrder = SortOrder; 
   
   products: Product[] = []
+  filteredProducts: Product[] =[]
   categories: Category[] = []
+  categorySelected: Category | null = null;
   sortSelected: SortOrder = SortOrder.None;
+  searchQuery: string = '';
 
 
   ngOnInit() {
     this.productService.getProducts().subscribe(x => this.products = x);
     this.categoryService.getAllCategories().subscribe(x => this.categories = x);
   }
+
+  searchFilteredProducts(){
+    let filteredByCategory = this.categorySelected ? this.products.filter(product => product.category?.id === this.categorySelected!.id)
+    : [...this.products]
+
+    //Search part
+    filteredByCategory = filteredByCategory.filter(product => product.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
+    (product.description && product.description.toLowerCase().includes(this.searchQuery.toLowerCase())));
+
+
+    this.filteredProducts = filteredByCategory;
+
+    this.sortTheProducts();
+
+  }
+
   
   sortTheProducts() {
     switch (this.sortSelected) {

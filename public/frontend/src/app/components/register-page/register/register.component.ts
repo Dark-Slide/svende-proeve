@@ -6,8 +6,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-//import { AuthService } from '../../../Services/auth.service';
+import { AuthService } from '../../../Services/auth.service';
 
+
+//Maybe do a few changes after merge
 
 @Component({
     selector: 'app-register',
@@ -21,7 +23,7 @@ export class RegisterComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    //private authService: AuthService,
+    private authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService
@@ -35,18 +37,18 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.valid && this.registerForm.touched) {
-      // Call the registration service here
-      // this.authService.register(this.registerForm.value).subscribe({
-      //   next: async () => {
-      //     this.toastr.success('Registration successful');
-      //     let returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
-      //     this.router.navigate([returnUrl]);
-      //   },
-      //   error: (error) => {
-      //     this.toastr.error('Registration failed');
-      //     console.error(error);
-      //   }
-      // });
+       
+       this.authService.register(this.registerForm.value).subscribe({
+         next: async () => {
+           this.toastr.success('Registration successful');
+          let returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
+           this.router.navigate([returnUrl]);
+         },
+         error: (error) => {
+           this.toastr.error('Registration failed');
+           console.error(error);
+         }
+       });
     }
   }
 

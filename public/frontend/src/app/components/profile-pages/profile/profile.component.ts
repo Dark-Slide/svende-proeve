@@ -9,6 +9,8 @@ import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/Services/product.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
+//Work on after merge and thirdparty found
+
 
 @Component({
     selector: 'app-profile',
@@ -87,6 +89,17 @@ export class ProfileComponent implements OnInit {
                 purchaseHistory.style.display = "block";
             } else {
                 purchaseHistory.style.display = "none";
+            }
+        }
+    }
+
+    showYourProducts(){
+        var allYourProducts = document.getElementById("allYourProducts");
+        if(allYourProducts){
+            if(allYourProducts.style.display === "none"){
+                allYourProducts.style.display ="block";
+            } else {
+                allYourProducts.style.display ="none";
             }
         }
     }
