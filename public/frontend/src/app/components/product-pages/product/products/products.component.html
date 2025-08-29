@@ -4,14 +4,13 @@
             <h1>Alle produkter</h1>
         </div>
         <div class="row mb-4">
-            <div class="col-12 mb-2">
-                <input type="text" 
-                class="form-control" 
-                placeholder="Søg efter produkter..." 
-                aria-label="Search"/>
+            <div class="search-bar">
+                <input type="text" class="form-control" placeholder="Søg efter produkter..." aria-label="Search"/>
                 <button class="btn btn-primary">Søg</button>
             </div>
-            <div class="col-md-6 col-lg-4"> <!-- Dummy data skal skiftes ud -->
+            <div class="layout">
+            <div class="filters-sidebar"> <!-- Dummy data skal skiftes ud -->
+            <button>Opret dit produkt</button><!--Change after merge with DB to *ngIf-->
                 <select class="form-select mb-2" aria-label="Filter by category">
                     <option selected>Vælg kategori</option>
                     <option value="1">Sofaer</option>
@@ -69,9 +68,39 @@
                     <option [ngValue]="SortOrder.ConditionDesc">Brugt</option>
                 </select>
             </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4 mb-4"> <!-- Dummy data skal skiftes ud -->
-                    <div class="product-card border border-dark">
+            
+                <div class="products-grid"> <!-- Dummy data skal skiftes ud -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="assets/images/DummySofa.png" alt="Sofa 1" class="w-full h-auto rounded-lg shadow-lg"> 
+                        </div>
+                        <div class="product-card-details">
+                            <div class="product-title">Sofa model</div>
+                            <div>Pris</div>
+                            <div>Beskrivelse: En komfortabel sofa med moderne design.</div>
+                            <div>Materiale: Læder</div>
+                            <div>Farve: Grå</div>
+                            <div>Størrelse: 3-personers</div>
+                            <div>Type: Hjørne</div>
+                            <div>Ny eller brugt: Ny</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="assets/images/DummySofa.png" alt="Sofa 1" class="w-full h-auto rounded-lg shadow-lg"> 
+                        </div>
+                        <div class="product-card-details">
+                            <div class="product-title">Sofa model</div>
+                            <div>Pris</div>
+                            <div>Beskrivelse: En komfortabel sofa med moderne design.</div>
+                            <div>Materiale: Læder</div>
+                            <div>Farve: Grå</div>
+                            <div>Størrelse: 3-personers</div>
+                            <div>Type: Hjørne</div>
+                            <div>Ny eller brugt: Ny</div>
+                        </div>
+                    </div>
+                    <div class="product-card">
                         <div class="product-image">
                             <img src="assets/images/DummySofa.png" alt="Sofa 1" class="w-full h-auto rounded-lg shadow-lg"> 
                         </div>
@@ -87,7 +116,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
         </div>
     </div>
 </div>
+

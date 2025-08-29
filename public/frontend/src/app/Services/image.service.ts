@@ -27,7 +27,7 @@ export class ImageService {
     }
 
     deleteImage(imageId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${imageId}`);
+    return this.http.delete<void>(this.apiUrl + '/' + imageId);
     }
 
      findImageById(imageId: number): Observable<Image> {

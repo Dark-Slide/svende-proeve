@@ -2,28 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Profile } from 'src/app/models/profile';
 import { ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 import { ProfileService } from 'src/app/Services/profile.service';
 import { Form, FormsModule } from '@angular/forms';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/Services/product.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
-//Work on after merge and thirdparty found
+
 
 
 @Component({
     selector: 'app-profile',
-    imports: [CommonModule, FormsModule],    
+    standalone: true,
+    imports: [CommonModule, FormsModule, ReactiveFormsModule],    
     templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.css'],
-    standalone: true
+    styleUrls: ['./profile.component.css']
+    
 })
 export class ProfileComponent implements OnInit {
     profile?: Profile;
     profileProducts: Product[] = [];
     selectedProduct?: Product;
     profileForm: Form | undefined;
+
+    salesHistory: boolean = false;
+    purchaseHistory: boolean = false;
+    allYourProducts: boolean = false;
     
     constructor(
         private profileService: ProfileService,
@@ -62,7 +67,7 @@ export class ProfileComponent implements OnInit {
         if (this.selectedProduct) {
             this.productService.deleteProduct(this.selectedProduct.id).subscribe(() => {
                 this.toastr.success('Product deleted successfully');
-                this.loadProducts(); // Refresh the product list
+                this.loadProducts(); 
             }, error => {
                 this.toastr.error('Failed to delete product');
                 console.error(error);
@@ -72,38 +77,20 @@ export class ProfileComponent implements OnInit {
 
     showSalesHistory()
     {
-        var salesHistory = document.getElementById("salesHistory");
-        if (salesHistory) {
-            if (salesHistory.style.display === "none") {
-                salesHistory.style.display = "block";
-            } else {
-                salesHistory.style.display = "none";
-            }
-        }
+        this.salesHistory = !this.salesHistory;
     }
     showPurchaseHistory()
     {
-        var purchaseHistory = document.getElementById("purchaseHistory");
-        if (purchaseHistory) {
-            if (purchaseHistory.style.display === "none") {
-                purchaseHistory.style.display = "block";
-            } else {
-                purchaseHistory.style.display = "none";
-            }
-        }
+        this.purchaseHistory = !this.purchaseHistory;
     }
 
     showYourProducts(){
-        var allYourProducts = document.getElementById("allYourProducts");
-        if(allYourProducts){
-            if(allYourProducts.style.display === "none"){
-                allYourProducts.style.display ="block";
-            } else {
-                allYourProducts.style.display ="none";
-            }
-        }
+
+        this.allYourProducts = !this.allYourProducts;
+
     }
 
+    
 
 
 }

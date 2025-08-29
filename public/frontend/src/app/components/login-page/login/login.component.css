@@ -1,0 +1,73 @@
+.login-wrapper {
+    height: 100vh;              /* full viewport height */
+    display: flex;
+    justify-content: center;     /* horizontal center */
+    align-items: center;         /* vertical center */
+    background-color: #f0f2f5;  /* subtle background */
+}
+
+/* Container adjustments */
+.container {
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Card styling */
+.card {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    background-color: #fff;
+}
+
+
+/* Card header */
+.card-header {
+    font-weight: bold;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+
+/* Form inputs */
+.form-control {
+    border-radius: 8px;
+    padding: 10px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 8px rgba(13, 110, 253, 0.25);
+}
+
+/* Validation styling */
+.invalid-feedback {
+    display: block;
+    font-size: 0.9rem;
+    color: #dc3545;
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary {
+    border-radius: 8px;
+    padding: 10px 25px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-2px);
+}
+
+.btn-secondary:hover {
+    background-color: #6c757d;
+    transform: translateY(-2px);
+}
+
+/* Card footer */
+.card-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}

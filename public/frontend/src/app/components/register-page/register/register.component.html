@@ -1,4 +1,5 @@
 <!--Change after merge to fit with DB-->
+<div class="register-wrapper">
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -9,22 +10,22 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <!-- Name -->
+                                <!-- Name 
                                 <div class="mb-3">
                                     <label class="form-label">Full Name</label>
                                     <input type="text" formControlName="name" class="form-control">
                                     <div class="invalid-feedback">Please insert correct info!</div>
-                                </div>
+                                </div>-->
     
                                 <!-- Email -->
-                                <div class="mb-3">
+                                <div class="mb-4">
                                     <label class="form-label">Email</label>
                                     <input type="text" formControlName="email" class="form-control">
                                     <div class="invalid-feedback">Please insert correct info!</div>
                                 </div>
     
                                 <!-- Password -->
-                                <div class="mb-3">
+                                <div class="mb-4">
                                     <label class="form-label">Password</label>
                                     <input type="password" formControlName="password" class="form-control">
                                         
@@ -32,7 +33,7 @@
                                 </div>
     
                                 <!-- Confirm Password -->
-                                <div class="mb-3">
+                                <div class="mb-4">
                                     <label class="form-label">Confirm Password</label>
                                     <input type="password" formControlName="confirmPassword" class="form-control">                                    
                                     <div class="invalid-feedback">Please insert correct info!</div>
@@ -48,3 +49,4 @@
         </div>
     </div>
 </form>
+</div>

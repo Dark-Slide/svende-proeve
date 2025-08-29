@@ -1,0 +1,74 @@
+/* Heading */
+h2 {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #343a40;
+}
+
+
+/* Container adjustments */
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Table header styling */
+.table thead th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Table body styling */
+.table tbody td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 12px;
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+/* Buttons inside table */
+.table .btn {
+    padding: 5px 12px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-danger:hover {
+    background-color: #b02a37;
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-2px);
+}
+
+/* Footer row */
+.table tfoot td {
+    font-weight: bold;
+    text-align: center;
+    padding: 12px;
+}

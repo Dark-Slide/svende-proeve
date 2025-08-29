@@ -1,36 +1,63 @@
-header{
-    text-align: center;
-}
-.product-card {
-  /* Add shadows to create the "card" effect */
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
-/* On mouse-over, add a deeper shadow */
-.product-card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+/* Section Title */
+.product-section h2 {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #222;
 }
 
-/* Add some padding inside the card container */
+/* Products Container */
 .products-container {
-  padding: 2px 16px;
-}
-.product-carousel {
-  display: flex;
-  gap: 16px;
-  position: relative;
-  width: max-content; /* Ensures it wraps properly */
-  animation: scrollProducts 20s linear infinite;
-}
-.product-image img{
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
+  padding: 1rem;
 }
 
-.product-image {
-  position: relative;
-  height: 200px;
-  background-color: rgb(3, 115, 214);
+/* Product Carousel (grid layout for now, can be replaced with slider later) */
+.product-carousel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Product Card */
+.product-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  text-align: center;
+  padding: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+/* Product Image */
+.product-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Product Info */
+.product-card h3 {
+  margin: 0.75rem 0 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.product-card p {
+  font-size: 1rem;
+  color: #666;
 }

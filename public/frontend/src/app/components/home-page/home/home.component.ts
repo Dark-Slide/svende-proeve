@@ -7,10 +7,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 @Component({
     selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css'],
     standalone: true,
-    imports: [CommonModule, RouterLink, HttpClientModule]
+    imports: [CommonModule, HttpClientModule], 
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css']
+    
 })
 export class HomeComponent implements OnInit{
     featuredProducts: Product[] = [];

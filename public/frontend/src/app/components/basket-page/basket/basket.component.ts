@@ -15,6 +15,7 @@ import { DialogComponent } from '../../shared/dialog/dialog.component';
     imports: [CommonModule, FormsModule, RouterModule],
     templateUrl: './basket.component.html',
     styleUrls: ['./basket.component.css'],
+    providers: [DatePipe]
 })
 
 
@@ -27,13 +28,13 @@ export class BasketComponent implements OnInit {
     constructor(private basketService: BasketService, private datePipe: DatePipe, private dialog: MatDialog) {}
 
     ngOnInit(): void {
-        this.basketService.currentBasket.subscribe((x) =>(this.basketItems = x)); {
+        this.basketService.currentBasket.subscribe((x) =>(this.basketItems = x)); 
     }
 
-    //transformDate(date: any) {
-    //    return this.datePipe.transform(date, 'dd/MM/yyyy');
-    //}
-    /*
+    transformDate(date: any) {
+       return this.datePipe.transform(date, 'dd/MM/yyyy');
+    }
+    
     clearBasket(): void {
         const dialogRef = this.dialog.open(DialogComponent, {
             data: {
@@ -68,11 +69,11 @@ export class BasketComponent implements OnInit {
         
 
 
-    }*/
+    }
 
     //Stripe function:
 
     
 
 }
-}
+
