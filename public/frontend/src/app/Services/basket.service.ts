@@ -14,7 +14,7 @@ export class BasketService {
     private basketName: string = "YourBasket";
     currentBasketSubejct: BehaviorSubject<BasketItem[]>;
     currentBasket: Observable<BasketItem[]>;
-    public basketLength =0;
+    public basketLength = 0;
     basketTotal:any;
 
 

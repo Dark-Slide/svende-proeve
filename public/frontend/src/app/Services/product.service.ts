@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Product } from "../models/product";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import { map } from "rxjs";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -11,7 +11,7 @@ import { map } from "rxjs";
 export class ProductService {
     
     
-    private readonly apiUrl = 'http://localhost:3000/products'; // Dummy API URL
+    private readonly apiUrl = environment.apiUrl + 'Products'; // Dummy API URL
     constructor(private http: HttpClient) {}
 
     public getProducts(): Observable<Product[]> {
@@ -24,11 +24,12 @@ export class ProductService {
         return this.http.post<Product>(this.apiUrl, product);
     }
     public updateProduct(product: Product): Observable<Product> {
-        return this.http.put<Product>(`${this.apiUrl}/${product.id}`, product);
+        return this.http.put<Product>(this.apiUrl+'/' + product.id, product);
     }
     public deleteProduct(id: number): Observable<void> {
-        return this.http.delete<void>(`${this.apiUrl}/${id}`);
+        return this.http.delete<void>(this.apiUrl+ '/'+ id);
     }
+    
     public getByProfileId(profileId: number): Observable<Product[]> {
         return this.http.get<Product[]>(this.apiUrl + '/profile/' + profileId);
     }

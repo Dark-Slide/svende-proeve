@@ -15,7 +15,7 @@ import { ToastrService } from 'ngx-toastr'; // Assuming ToastrService for notifi
     templateUrl: './product-detail.component.html',
     styleUrls: ['./product-detail.component.css']
 })
-export class ProductDetailComponent /*implements OnInit*/ {
+export class ProductDetailComponent implements OnInit {
   product?: Product ;
   profile!: Profile;
 

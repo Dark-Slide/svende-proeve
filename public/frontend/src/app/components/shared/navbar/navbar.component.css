@@ -1,48 +1,77 @@
-/* Basic Navbar Styling */
+/* Style for the H1 above navbar */
+.page-title {
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Add spacing between H1 and navbar */
+.page-title + .navbar {
+  margin-top: 0.5rem;
+}
+
+/* General Navbar Styling */
 .navbar {
-  padding: 10px 20px;
-  font-family: 'Arial', sans-serif;
+  background-color: #4b4b4b; /* Dark background */
+  border-bottom: 2px solid #5a5a5a;
+  padding: 0.8rem 2rem;
 }
 
-.navbar-brand {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #fff;
-  transition: color 0.3s ease;
+/* Container fix (typo in your HTML: should be container-fluid, not fuIld) */
+.container-fuild {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.navbar-brand:hover {
-  color: #ff6347; /* Slight hover effect */
+/* Navigation List */
+.navbar-nav {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.navbar-nav .nav-item {
-  margin-left: 15px;
-}
-
-.navbar-nav .nav-link {
+/* Links */
+.nav-link {
   font-size: 1rem;
-  padding: 8px 15px;
-  color: #fff;
-  transition: color 0.3s ease;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease, background-color 0.3s ease, border-bottom 0.3s ease;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid transparent;
+  border-radius: 6px; /* smooth edges for active highlight */
 }
 
-.navbar-nav .nav-link:hover {
-  color: #ff6347;
+/* Hover effect */
+.nav-link:hover {
+  color: #007bff; /* Bootstrap primary */
+  border-bottom: 2px solid #007bff;
 }
 
-/* Style for active links */
-.navbar-nav .nav-item.active .nav-link {
-  color: #ff6347 !important; /* Highlight active links */
-  font-weight: bold;
+/* Active page link */
+.nav-link.active {
+  color: #ffffff;
+  background-color: #007bff; /* Highlight background */
+  border-bottom: 2px solid #007bff;
+  font-weight: 600;
 }
 
-/* Navbar collapse behavior */
-.collapse {
-  transition: height 0.4s ease;
+/* Right-aligned Login button */
+.navbar-nav li:last-child {
+  margin-left: auto;
 }
 
-/* For better button visibility */
-.navbar-toggler {
-  border: none;
-  outline: none;
+.navbar-nav li:last-child .nav-link {
+  font-weight: 600;
+  color: #007bff;
+}
+
+.navbar-nav li:last-child .nav-link:hover {
+  color: #0056b3;
+  border-bottom: 2px solid #0056b3;
 }
