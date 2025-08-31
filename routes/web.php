@@ -11,6 +11,9 @@ use Illuminate\Validation\Rules\Password;
 
 Route::get('/sanctum/csrf-cookie', fn () => response()->noContent()); // Sanctum handles cookie
 
+// Send all /api requests to api.php
+Route::prefix('api')->group(base_path('routes/api.php'));
+
 Route::post('/register', function (Request $request) {
     $data = $request->validate([
         'name' => ['required', 'string', 'max:255'],
@@ -59,27 +62,6 @@ Route::post('/logout', function (Request $request) {
     return response()->json(['ok' => true]);
 
 });
-
-// Frontpage
-Route::get('/api/frontpage', [GetController::class, 'frontpage'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
-
-
-// Products
-Route::get('/api/products', [GetController::class, 'products'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
-
-Route::get('/api/product/{id}', [GetController::class, 'product'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
-
-Route::post('/api/product/create', [PostController::class, 'create_product'])
-    ->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken');
-
-// User
-
-Route::get('/api/user/{id}', [GetController::class, 'user'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
-
 
 Route::get('/{any}', function () {
     return file_get_contents(public_path('frontend/dist/frontend/index.html'));
