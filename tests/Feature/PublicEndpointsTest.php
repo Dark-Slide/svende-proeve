@@ -23,13 +23,13 @@ class PublicEndpointsTest extends TestCase
 
     public function test_product_show_is_public_even_if_not_found(): void
     {
-        $res = $this->get('/api/product/999999'); // arbitrary id
+        $res = $this->get('/api/product/999999');
         $this->assertFalse(in_array($res->getStatusCode(), [401, 403], true));
     }
 
     public function test_user_show_is_public_even_if_not_found(): void
     {
-        $res = $this->get('/api/user/999999'); // arbitrary id
+        $res = $this->get('/api/user/999999');
         $this->assertFalse(
             in_array(
                 $res->getStatusCode(), [401, 403], true)
