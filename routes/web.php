@@ -64,5 +64,5 @@ Route::post('/logout', function (Request $request) {
 });
 
 Route::get('/{any}', function () {
-    return file_get_contents(public_path('frontend/dist/frontend/index.html'));
+    return file_get_contents(public_path('frontend/dist/frontend/browser/index.html'));
 })->where('any', '^(?!api).*$')->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
