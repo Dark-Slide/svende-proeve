@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature\Auth;
+namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -14,26 +14,30 @@ class RegisterTest extends TestCase
     public function test_registers_user_logs_in_and_returns_201(): void
     {
 
+        $jane_mail = 'jane@alleelskersofaer.dk';
+
         $payload = [
-            'name' => 'Jane Doe',
-            'email' => 'jane.doe@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'name' => 'Jane Sofaelsker',
+            'email' => $jane_mail,
+            'password' => 'sofa2025!',
+            'password_confirmation' => 'sofa2025!',
         ];
 
         $response = $this->postJson('/register', $payload);
 
         $response->assertCreated()
             ->assertJson(['ok' => true])
-            ->assertJsonPath('user.email', 'jane.doe@example.com');
+            ->assertJsonPath('user.email', $jane_mail);
 
-        $this->assertDatabaseHas('users', ['email' => 'jane.doe@example.com']);
+        $this->assertDatabaseHas('users', ['email' => $jane_mail]);
 
         // Auth assertions
         $this->assertAuthenticated();
 
         $this->assertAuthenticatedAs(
-            User::whereEmail('jane.doe@example.com')->first()
+            User::query()
+                ->where('email', $jane_mail)
+                ->first()
         );
 
     }
