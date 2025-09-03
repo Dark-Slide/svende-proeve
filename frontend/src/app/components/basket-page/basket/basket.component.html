@@ -1,0 +1,35 @@
+<div class="container my-5">
+    <div class="table-responsive">
+          <h2 class="mb-4">Din kurv</h2>
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th>Produkt</th>
+                        <th>Pris</th>
+                        <th>Antal</th>
+                        <th>Subtotal</th>
+                        <th>Handling</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let bask of basketItems">
+                        <td>Name</td>
+                        <td>Pris</td>
+                        <td>Antal</td>
+                        <td>
+                            <button class="btn btn-danger btn-sm">Fjern</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                        <td colspan="2"></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="text-end">
+                <button class="btn btn-primary" >Gå til betaling</button>
+            </div>
+    </div>
+</div>

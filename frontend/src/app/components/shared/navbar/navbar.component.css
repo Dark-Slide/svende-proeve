@@ -1,0 +1,77 @@
+/* Style for the H1 above navbar */
+.page-title {
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Add spacing between H1 and navbar */
+.page-title + .navbar {
+  margin-top: 0.5rem;
+}
+
+/* General Navbar Styling */
+.navbar {
+  background-color: #4b4b4b; /* Dark background */
+  border-bottom: 2px solid #5a5a5a;
+  padding: 0.8rem 2rem;
+}
+
+/* Container fix (typo in your HTML: should be container-fluid, not fuIld) */
+.container-fuild {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Navigation List */
+.navbar-nav {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Links */
+.nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease, background-color 0.3s ease, border-bottom 0.3s ease;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid transparent;
+  border-radius: 6px; /* smooth edges for active highlight */
+}
+
+/* Hover effect */
+.nav-link:hover {
+  color: #007bff; /* Bootstrap primary */
+  border-bottom: 2px solid #007bff;
+}
+
+/* Active page link */
+.nav-link.active {
+  color: #ffffff;
+  background-color: #007bff; /* Highlight background */
+  border-bottom: 2px solid #007bff;
+  font-weight: 600;
+}
+
+/* Right-aligned Login button */
+.navbar-nav li:last-child {
+  margin-left: auto;
+}
+
+.navbar-nav li:last-child .nav-link {
+  font-weight: 600;
+  color: #007bff;
+}
+
+.navbar-nav li:last-child .nav-link:hover {
+  color: #0056b3;
+  border-bottom: 2px solid #0056b3;
+}

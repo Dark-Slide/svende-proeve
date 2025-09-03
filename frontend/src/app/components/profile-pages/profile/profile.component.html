@@ -1,0 +1,51 @@
+<!--*ngIf="profile"-->
+<div  class="container my-4">
+    <div class="card">
+        <div class="row">
+            <!-- Profile Image Section -->
+            <div class="col-md-4 text-center p-4">
+                <img src="DummyProfile.jpg" alt="Profile Image" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
+            </div>
+        </div>
+        <div class="card-header text-center bg-dark text-white">
+            <h4>Profil</h4>
+        </div>
+        <div class="card-body">
+                <!-- Name -->
+                <div class="mb-3">
+                    <label class="form-label">Dummy profil</label>
+                </div>
+
+           
+                <button (click)="showSalesHistory()" >{{salesHistory ? 'Skjul' : 'Vis'}} dine salg</button>
+                <div *ngIf="salesHistory">
+                    <h5>Din salgs liste:</h5>
+                    <ul>
+                        <li>Sofa1</li>
+                        <li>Sofa2</li>
+                        <li>Sofa3</li>
+                    </ul>
+                </div>
+            
+                <button (click)="showPurchaseHistory()" >{{ purchaseHistory ? 'Skjul' : 'Vis'}} dine købskvitteringer</button>
+                <div *ngIf="purchaseHistory">
+                    <h5>Din Købshistorik:</h5>
+                    <ul>
+                        <li>Sofa1</li>
+                        <li>Sofa2</li>
+                        <li>Sofa3</li>
+                    </ul>
+                </div>
+
+                <button (click)="showYourProducts()">{{ allYourProducts ? 'Skjul' : 'Vis'}} dine produkter</button>
+                <div *ngIf="allYourProducts">
+                    <h5>Dine produkter til salg:</h5>
+                    <ul>
+                        <li>Sofa1</li>
+                        <li>Sofa2</li>
+                        <li>Sofa3</li>
+                    </ul>
+                </div>
+        </div>
+
+</div>

@@ -1,0 +1,122 @@
+/* ===== Page Container ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* ===== Page Title ===== */
+.container h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #222;
+}
+
+/* ===== Search Bar ===== */
+.search-bar {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.search-bar .form-control {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-bar .form-control:focus {
+  border-color: #007bff;
+}
+
+.search-bar .btn-primary {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 0 8px 8px 0;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.search-bar .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* ===== Layout (Filters + Products) ===== */
+.layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* Filters Sidebar */
+.filters-sidebar {
+  flex: 0 0 250px; /* fixed width */
+  display: flex;
+  flex-direction: column;
+}
+
+.filters-sidebar .form-select {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.filters-sidebar .form-select:focus {
+  border-color: #007bff;
+}
+
+/* Product Grid (same style as homepage cards) */
+.products-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ===== Product Card ===== */
+.product-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  text-align: center;
+  padding: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.product-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.product-title {
+  margin: 0.75rem 0 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.product-card-details div {
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  color: #555;
+}

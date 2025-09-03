@@ -1,0 +1,79 @@
+/* Profile Card Container */
+.container.my-4 .card {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  background: #fff;
+}
+
+/* Profile Image */
+.container.my-4 .card img {
+  border: 4px solid #f1f1f1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Header */
+.container.my-4 .card-header {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 1rem;
+}
+
+/* Profile Name */
+.container.my-4 .card-body .form-label {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Section Headings */
+.container.my-4 .card-body h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem;
+  color: #444;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.25rem;
+}
+
+/* Toggle Buttons */
+.container.my-4 .card-body button {
+  display: inline-block;
+  margin-top: 0.75rem;
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.container.my-4 .card-body button:hover {
+  background: #0056b3;
+}
+
+
+
+/* Lists */
+.container.my-4 .card-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.container.my-4 .card-body ul li {
+  padding: 0.5rem;
+  border: 1px solid #eaeaea;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  background: #fafafa;
+  transition: background 0.3s ease;
+}
+
+.container.my-4 .card-body ul li:hover {
+  background: #f0f0f0;
+}
