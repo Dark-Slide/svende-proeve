@@ -8,8 +8,10 @@ use Illuminate\Validation\Rules\Password;
 
 Route::get('/sanctum/csrf-cookie', fn () => response()->noContent());
 
-// Send all /api requests to api.php
-Route::prefix('api')->group(base_path('routes/api.php'))
+Route::prefix('api')
+    ->group(base_path('routes/api.php'))
+    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+Route::get('/api/garbage', fn () => response()->noContent())
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
 Route::post('/register', function (Request $request) {
@@ -62,7 +64,7 @@ Route::post('/logout', function (Request $request) {
 
 
 // Reroute all non-api, non-storage, non-asset requests to SPA entry point
-Route::get('/{any}', function () {
-    return file_get_contents(public_path('/index.html'));
-})->where('any', '^(?!api)(?!storage)(?!.*\.(js|css|map|json|txt|png|jpg|jpeg|svg|webp|ico|woff2?|ttf|eot)$).*')
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+//Route::get('/{any}', function () {
+//    return file_get_contents(public_path('/index.html'));
+//})->where('any', '^(?!api)(?!storage)(?!.*\.(js|css|map|json|txt|png|jpg|jpeg|svg|webp|ico|woff2?|ttf|eot)$).*')
+//    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');

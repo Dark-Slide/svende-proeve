@@ -15,12 +15,12 @@ class GetController extends Controller
 
         $products_featured = Product::query()
             ->where('type_id', 1)
-            ->limit(10)
+            ->limit(3)
             ->get();
 
         $products_private = Product::query()
             ->where('type_id', 2)
-            ->limit(10)
+            ->limit(3)
             ->get();
 
         return response()->json([
@@ -33,6 +33,7 @@ class GetController extends Controller
 
     }
 
+    // Products
     function products()
     {
 
@@ -50,7 +51,7 @@ class GetController extends Controller
     function product($id)
     {
 
-        $product = Product::find($id);
+        $product = Product::query()->find($id);
 
         if (!$product) {
             return response()->json(['message' => 'Product not found'], 404);
@@ -88,7 +89,7 @@ class GetController extends Controller
 
     function order( $id )
     {
-        $order = Order::find( $id );
+        $order = Order::query()->find( $id );
 
         if ( ! $order ) {
             return response()->json(['message' => 'Order not found'], 404);
@@ -113,7 +114,7 @@ class GetController extends Controller
     // Order Lines
     function order_lines_by_order( $order_id )
     {
-        $order = Order::find( $order_id );
+        $order = Order::query()->find( $order_id );
 
         if ( ! $order ) {
             return response()->json(['message' => 'Order not found'], 404);
@@ -130,7 +131,7 @@ class GetController extends Controller
     // User
     function user( $id )
     {
-        $user = User::find( $id );
+        $user = User::query()->find( $id );
 
         if ( ! $user ) {
             return response()->json(['message' => 'User not found'], 404);

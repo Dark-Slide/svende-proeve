@@ -45,8 +45,3 @@ Route::get('/api/order_lines/order/{order_id}', [GetController::class, 'order_li
 // User
 Route::get('/api/user/{id}', [GetController::class, 'user'])
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
-
-
-Route::get('/{any}', function () {
-    return file_get_contents(public_path('frontend/dist/frontend/index.html'));
-})->where('any', '^(?!api).*$')->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
