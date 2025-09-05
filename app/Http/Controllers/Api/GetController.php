@@ -224,8 +224,8 @@ class GetController extends Controller
 
             $object = new \stdClass();
 
-            $object->id = $categories->id;
-            $object->name = $categories->name;
+            $object->id = $category->id;
+            $object->name = $category->name;
 
             $collection->push($object);
 
