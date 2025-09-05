@@ -8,7 +8,7 @@ export interface Product {
     description:string;
     price:number;
     colour:string;
-    size:string; //Martin data base
+    size:string; 
     material:string;
     condition:string;
     type:string;
