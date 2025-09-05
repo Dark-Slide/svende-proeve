@@ -37,7 +37,18 @@ class GetController extends Controller
     function products()
     {
 
-        $products = Product::all();
+        $products = Product::query()
+            ->select('id', 'title', 'description', 'price', 'is_used', 'width', 'height', 'depth', 'material_id', 'type_id')
+            ->with('material', function ($query) {
+                $query->select('id', 'name');
+            })
+            ->with('categories', function ($query) {
+                $query->select('categories.id', 'categories.name');
+            })
+            ->with('type', function ($query) {
+                $query->select('id', 'name');
+            })
+            ->get();
 
         return response()->json([
             'message' => 'Products fetched successfully',
