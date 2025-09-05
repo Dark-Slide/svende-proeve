@@ -14,7 +14,7 @@
           "builder": "@angular/build:application",
           "options": {
             "outputPath": {
-              "base": "dist/frontend"
+              "base": "../public/frontend"
             },
             "index": "src/index.html",
             "polyfills": [

@@ -1,20 +1,18 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\PostController;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rules\Password;
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/sanctum/csrf-cookie', fn () => response()->noContent());
 
-Route::post('/login', [AuthController::class, 'login']); // public
+Route::prefix('api')->group(base_path('routes/api.php'));
 
-Route::middleware('jwt.auth')->group(function () {
-    Route::get('/me', [AuthController::class, 'me']);
-    Route::apiResource('posts', PostController::class);
-});
 
+// Reroute all non-api, non-storage, non-asset requests to SPA entry point
 Route::get('/{any}', function () {
-    return file_get_contents(public_path('frontend/dist/frontend/index.html'));
-})->where('any', '^(?!api).*$')->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+    return file_get_contents(public_path('index.html'));
+})->where('any', '^(?!api)(?!storage)(?!.*\.(js|css|map|json|txt|png|jpg|jpeg|svg|webp|ico|woff2?|ttf|eot)$).*')
+    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');

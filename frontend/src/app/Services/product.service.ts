@@ -9,9 +9,9 @@ import { environment } from "src/environments/environment";
 })
 
 export class ProductService {
-    
-    
-    private readonly apiUrl = environment.apiUrl + 'Products'; 
+
+
+    private readonly apiUrl = environment.apiUrl + 'products';
     constructor(private http: HttpClient) {}
 
     public getProducts(): Observable<Product[]> {
@@ -29,11 +29,11 @@ export class ProductService {
     public deleteProduct(id: number): Observable<void> {
         return this.http.delete<void>(this.apiUrl+ '/'+ id);
     }
-    
+
     public getByProfileId(profileId: number): Observable<Product[]> {
         return this.http.get<Product[]>(this.apiUrl + '/profile/' + profileId);
     }
-    
 
-  
+
+
 }

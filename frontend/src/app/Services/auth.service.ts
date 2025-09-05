@@ -13,28 +13,28 @@ import { User } from "../models/user";
 })
 
 export class AuthService {
-  private readonly apiUrl = environment.apiUrl + 'User';
+  private readonly apiUrl = environment.apiUrl + 'user';
   private userSubject= new BehaviorSubject<User | null>(null);
   private profileSubject = new BehaviorSubject<Profile | null>(null);
 
   constructor(private http: HttpClient) {}
 
-  public get user(): User | null 
+  public get user(): User | null
   {
         return this.userSubject.value;
   }
 
-  public get profile(): Profile | null 
+  public get profile(): Profile | null
     {
         return this.profileSubject.value;
     }
 
     get profile$(): Observable<Profile | null> {
-        return this.profileSubject.asObservable();  
+        return this.profileSubject.asObservable();
     }
 
     isAuthenticated(): boolean {
-        return !!this.userSubject.value;    
+        return !!this.userSubject.value;
     }
       
     async loadUser(): Promise<void> {
@@ -71,5 +71,5 @@ export class AuthService {
     return this.http.get<Profile>(this.apiUrl + "/profile", {withCredentials:true});
   }
 
-  
+
 }
