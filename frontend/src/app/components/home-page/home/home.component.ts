@@ -8,13 +8,14 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [CommonModule, HttpClientModule], 
+    imports: [CommonModule, HttpClientModule, RouterLink], 
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
     
 })
 export class HomeComponent implements OnInit{
     featuredProducts: Product[] = [];
+ product: any;
 
     constructor(private productService: ProductService){}
 
