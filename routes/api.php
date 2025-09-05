@@ -24,6 +24,10 @@ Route::get('/product/{id}', [GetController::class, 'product'])
 Route::get('/products/category/{category}', [GetController::class, 'products_by_category'])
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
+// Categories
+Route::get('/categories', [GetController::class, 'categories'])
+    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+
 // Create Product
 Route::post('/product/create', [PostController::class, 'create_product'])
     ->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken');
