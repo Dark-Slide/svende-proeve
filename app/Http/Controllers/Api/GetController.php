@@ -128,6 +128,17 @@ class GetController extends Controller
         ]);
     }
 
+    // Categories
+    function categories()
+    {
+        $categories = \App\Models\Category::all();
+
+        return response()->json([
+            'message' => 'Categories fetched successfully',
+            'data' => $categories->toArray()
+        ]);
+    }
+
     // User
     function user( $id )
     {
