@@ -69,11 +69,7 @@ export class BasketComponent implements OnInit {
         
 
 
-    }
-
-    //Stripe function:
-
-    
+    }    
 
 }
 

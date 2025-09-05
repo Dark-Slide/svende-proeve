@@ -104,7 +104,7 @@ export class BasketService {
       }
     }
 
-    // Get total price of items in the basket
+    
     getBasketTotal(): number{
       return this.currentBasketSubejct.value.reduce((total, item) => total + item.price * item.quantity, 0);
     }

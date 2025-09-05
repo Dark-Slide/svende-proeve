@@ -11,7 +11,7 @@ import { environment } from "src/environments/environment";
 export class ProductService {
     
     
-    private readonly apiUrl = environment.apiUrl + 'Products'; // Dummy API URL
+    private readonly apiUrl = environment.apiUrl + 'Products'; 
     constructor(private http: HttpClient) {}
 
     public getProducts(): Observable<Product[]> {

@@ -8,9 +8,6 @@ import { User } from "../models/user";
 
 
 
-// Need to be worked on after merge!
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -39,7 +36,7 @@ export class AuthService {
     isAuthenticated(): boolean {
         return !!this.userSubject.value;    
     }
-      //Need to be changed to fit DB
+      
     async loadUser(): Promise<void> {
         try {
             const user = await firstValueFrom(this.http.get<any>(this.apiUrl, {withCredentials: true}));

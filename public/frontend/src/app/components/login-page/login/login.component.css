@@ -1,18 +1,16 @@
 .login-wrapper {
-    height: 100vh;              /* full viewport height */
+    height: 100vh;              
     display: flex;
-    justify-content: center;     /* horizontal center */
-    align-items: center;         /* vertical center */
-    background-color: #f0f2f5;  /* subtle background */
+    justify-content: center;     
+    align-items: center;         
+    background-color: #f0f2f5;  
 }
 
-/* Container adjustments */
 .container {
     max-width: 400px;
     width: 100%;
 }
 
-/* Card styling */
 .card {
     border-radius: 12px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
@@ -21,15 +19,12 @@
     background-color: #fff;
 }
 
-
-/* Card header */
 .card-header {
     font-weight: bold;
     font-size: 1.3rem;
     letter-spacing: 1px;
 }
 
-/* Form inputs */
 .form-control {
     border-radius: 8px;
     padding: 10px;
@@ -41,14 +36,12 @@
     box-shadow: 0 0 8px rgba(13, 110, 253, 0.25);
 }
 
-/* Validation styling */
 .invalid-feedback {
     display: block;
     font-size: 0.9rem;
     color: #dc3545;
 }
 
-/* Buttons */
 .btn-primary, .btn-secondary {
     border-radius: 8px;
     padding: 10px 25px;
@@ -66,7 +59,6 @@
     transform: translateY(-2px);
 }
 
-/* Card footer */
 .card-footer {
     background-color: #f8f9fa;
     border-top: 1px solid #dee2e6;
