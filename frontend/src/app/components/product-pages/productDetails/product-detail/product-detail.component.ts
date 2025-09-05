@@ -3,10 +3,10 @@ import { OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { Category } from 'src/app/models/category';
 import { Profile } from 'src/app/models/profile';
-import { ProductService } from 'src/app/Services/product.service'; 
+import { ProductService } from 'src/app/Services/product.service';
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ToastrService } from 'ngx-toastr'; 
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-product-detail',
@@ -20,21 +20,24 @@ export class ProductDetailComponent implements OnInit {
   profile!: Profile;
 
   constructor(
-    private productService: ProductService, 
-    private route: ActivatedRoute, 
-    private toastr: ToastrService, 
-    private router: Router    
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
-    
-    
+
+
     loadProduct(): void {
       this.route.params.subscribe((params) => {
         this.productService.getProductById(params['id']).subscribe((product: Product) => {
-          if(!product) return;
+          if(!product) {
+            console.error('Product not found');
+            return;
+          }
           this.product = product;
-        
+
         });
       })
     }
@@ -42,13 +45,13 @@ export class ProductDetailComponent implements OnInit {
       if (this.product) {
         this.productService.deleteProduct(this.product.id).subscribe(() => {
           this.toastr.success('Product deleted successfully');
-          this.router.navigate(['/products']); 
+          this.router.navigate(['/products']);
         }, error => {
           this.toastr.error('Failed to delete product');
           console.error(error);
         });
       }
     }
-  
+
 
 }
