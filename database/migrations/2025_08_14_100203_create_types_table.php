@@ -17,7 +17,7 @@ return new class extends Migration
 
             $table->string('name');
 
-            $table->softDeletes();
+            $table->timestamps();
 
         });
     }
@@ -27,6 +27,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('types');
+        Schema::enableForeignKeyConstraints();
     }
 };
