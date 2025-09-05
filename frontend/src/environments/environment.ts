@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-    apiUrl: 'https://127.0.0.1/api/' // Dummy api
+    apiUrl: 'https://sofa.haagendrup.dk/api/' // Dummy api
 };
