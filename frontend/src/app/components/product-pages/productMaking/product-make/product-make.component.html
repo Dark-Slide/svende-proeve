@@ -1,101 +1,104 @@
-<div class="container my-4">
-    <div class="card">
-        <div class="card-header text-center bg-dark text-white">
-            <h4>Make Your Product</h4>
+<div class="centered-container">
+    <div class="card centered-card mx-auto">
+        <div class="card-header text-center">
+            <h4>Sæt din sofa til salg</h4>
         </div>
-        
         <div class="card-body">
             <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
                 <!-- Product Name -->
                 <div class="mb-3">
-                    <label class="form-label">Product Name</label>
+                    <label class="form-label">Sofa Navn</label>
                     <input type="text" formControlName="name" class="form-control" required>
-                    <div class="invalid-feedback">Please enter a product name.</div>
+                    <div class="invalid-feedback">Skriv venligst navnet på sofaen</div>
                 </div>
+
                 <!-- Description -->
                 <div class="mb-3">
-                    <label class="form-label">Description</label>
+                    <label class="form-label">Beskrivelse</label>
                     <textarea formControlName="description" class="form-control" rows="3" required></textarea>
-                    <div class="invalid-feedback">Please enter a description.</div>
+                    <div class="invalid-feedback">Skriv en kort beskrivelse af sofaen</div>
                 </div>
-                <!-- Category -->
-                <div class="mb-3">
-                    <label class="form-label">Category</label>
-                    <select formControlName="category" class="form-select" required>
-                        <option value="" disabled selected>Select a category</option>
-                        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
-                    </select>
-                    <div class="invalid-feedback">Please select a category.</div>
+
+                <!-- Category, Price, Material, Colour, Size, Type -->
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Kategori</label>
+                        <select formControlName="category" class="form-select" required>
+                            <option value="" disabled selected>Vælg en kategori</option>
+                            <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+                        </select>
+                        <div class="invalid-feedback">Vælg en kategori</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Pris</label>
+                        <input type="number" formControlName="price" class="form-control" required>
+                        <div class="invalid-feedback">Skriv din pris</div>
+                    </div>
                 </div>
-                <!-- Price -->
-                <div class="mb-3">
-                    <label class="form-label">Price</label>
-                    <input type="number" formControlName="price" class="form-control" required>
-                    <div class="invalid-feedback">Please enter a valid price.</div>
+
+                <div class="row g-3 mt-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Materiale</label>
+                        <select formControlName="material" class="form-select" required>
+                            <option value="" disabled selected>Vælg materiale</option>
+                            <option *ngFor="let material of materials" [value]="material">{{ material }}</option>
+                        </select>
+                        <div class="invalid-feedback">Vælg materiale</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Colour</label>
+                        <select formControlName="colour" class="form-select" required>
+                            <option value="" disabled selected>Vælg farve</option>
+                            <option *ngFor="let colour of colours" [value]="colour">{{ colour }}</option>
+                        </select>
+                        <div class="invalid-feedback">Vælg farve</div>
+                    </div>
                 </div>
-                <!-- Material -->
-                <div class="mb-3">
-                    <label class="form-label">Material</label>
-                    <select formControlName="material" class="form-select" required>
-                        <option value="" disabled selected>Select a material</option>
-                        <option *ngFor="let material of materials" [value]="material">{{ material }}</option>
-                    </select>
-                    <div class="invalid-feedback">Please select a material.</div>
+
+                <div class="row g-3 mt-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Size</label>
+                        <select formControlName="size" class="form-select" required>
+                            <option value="" disabled selected>Vælge Størrelse</option>
+                            <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
+                        </select>
+                        <div class="invalid-feedback">Vælge Størrelse</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Type</label>
+                        <select formControlName="type" class="form-select" required>
+                            <option value="" disabled selected>Vælge type</option>
+                            <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+                        </select>
+                        <div class="invalid-feedback">Vælge type</div>
+                    </div>
                 </div>
-                <!-- Colour -->
-                <div class="mb-3">
-                    <label class="form-label">Colour</label>
-                    <select formControlName="colour" class="form-select" required>
-                        <option value="" disabled selected>Select a colour</option>
-                        <option *ngFor="let colour of colours" [value]="colour">{{ colour }}</option>
-                    </select>
-                    <div class="invalid-feedback">Please select a colour.</div>
-                </div>
-                <!-- Size -->
-                <div class="mb-3">
-                    <label class="form-label">Size</label>
-                    <select formControlName="size" class="form-select" required>
-                        <option value="" disabled selected>Select a size</option>
-                        <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
-                    </select>
-                    <div class="invalid-feedback">Please select a size.</div>
-                </div>
-                <!-- Type -->
-                <div class="mb-3">
-                    <label class="form-label">Type</label>
-                    <select formControlName="type" class="form-select" required>
-                        <option value="" disabled selected>Select a type</option>
-                        <option *ngFor="let type of types" [value]="type">{{ type }}</option>
-                    </select>
-                    <div class="invalid-feedback">Please select a type.</div>
-                </div>
+
                 <!-- Image Upload -->
-                <div class="mb-3">
-                    <label class="form-label">Upload Image</label>
+                <div class="mb-3 mt-3">
+                    <label class="form-label">Tilføj billede</label>
                     <input type="file" (change)="onImageFileSelected($event)" class="form-control" accept="image/*">
-                    <div class="invalid-feedback">Please upload an image.</div>
+                    <div class="invalid-feedback">Tilføj billede</div>
                 </div>
-                <!--Condition-->
+
+                <!-- Condition -->
                 <div class="mb-3">
-                    <label class="form-label">Condition</label>
+                    <label class="form-label">Kondition</label>
                     <select formControlName="condition" class="form-select" required>
-                        <option value="" disabled selected>Select a condition</option>
+                        <option value="" disabled selected>Vælg kondition</option>
                         <option *ngFor="let condition of conditions" [value]="condition">{{ condition }}</option>
                     </select>
-                    <div class="invalid-feedback">Please select a condition.</div>
+                    <div class="invalid-feedback">Vælg venligst kondition</div>
                 </div>
-                <!-- Submit Button -->
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Create Product</button>
+
+                <!-- Buttons -->
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="button" class="btn btn-secondary" (click)="onCancel()">Fortryd</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Sæt sofa til salg</button>
                 </div>
-                <!--Cancel button-->
-                <div class="text-center mt-2">
-                    <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
-                </div>                
-                  
-                </form>
+                
+            </form>
         </div>
-
     </div>
-
 </div>

@@ -7,7 +7,7 @@
                         <!--Image-->
                         <div class="col-md-12 mb-3">
                             <div class="card">
-                                <img src="assets/images/DummySofa.png" class="card-img-top" alt="Sofa">
+                                <img [src]="product?.images" class="card-img-top" alt="Sofa">
                             </div>
 
                         </div>
@@ -19,34 +19,33 @@
             </div>
 
         </div>
-    </div>
     <!--Details-->
     <div class="col p-0">
-        <h3>Title</h3>
+        <h3>{{product?.title}}</h3>
         <h4>Beskrivelse</h4>
-        <p>Beskrivelse Dummy sofa</p>
+        <p>{{product?.description}}</p>
     </div>
     <div class="row">
         <ul>
             <li class="col-md-3 col-6">
-                <strong>Pris:</strong> 5000 kr
+                <strong>Pris:</strong> {{product?.price}} kr
             </li>
             <li class="col-md-3 col-6">
-                <strong>Materiale:</strong> Læder
+                <strong>Materiale:</strong> {{product?.material}} 
             </li>
             <li class="col-md-3 col-6">
-                <strong>Farve:</strong> Grå
+                <strong>Farve:</strong> {{product?.colour}}
             </li>
             <li class="col-md-3 col-6">
-                <strong>Størrelse:</strong> 3-personers
+                <strong>Størrelse:</strong> {{product?.size}}
             </li>
             <li class="col-md-3 col-6">
-                <strong>Type:</strong> Hjørne
+                <strong>Type:</strong> {{product?.type}}
             </li>
             <li class="col-md-3 col-6">
-                <strong>Ny eller brugt:</strong> Ny
+                <strong>Ny eller brugt:</strong> {{product?.condition}}
             </li>
         </ul>
-        <Button class="btn btn-primary">Køb</Button>
+        <Button class="btn btn-primary">Læg i kurv</Button>
     </div>
 </div>
