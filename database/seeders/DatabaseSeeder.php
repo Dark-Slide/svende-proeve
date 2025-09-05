@@ -4,12 +4,14 @@ namespace Database\Seeders;
 
 use AllowDynamicProperties;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Material;
 use App\Models\Product;
 use App\Models\Type;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Collection;
 
 /**
  * @property Material $leather
@@ -24,6 +26,8 @@ use Illuminate\Database\Seeder;
  * @property Category $classic
  * @property Category $minimalist
  * @property Category $bohemian
+ *
+ * @property Color[]|Collection $colors
  */
 #[AllowDynamicProperties] class DatabaseSeeder extends Seeder
 {
@@ -39,6 +43,8 @@ use Illuminate\Database\Seeder;
         $this->create_types();
 
         $this->create_categories();
+
+        $this->create_colors();
 
         $this->create_new_products();
 
@@ -114,6 +120,7 @@ use Illuminate\Database\Seeder;
             'is_used' => false,
             'material_id' => $this->leather->id,
             'type_id' => $this->u_sofa->id,
+            'color_id' => $this->colors->first()->id,
         ]);
 
         $product->categories()->attach([$this->modern->id, $this->minimalist->id]);
@@ -128,6 +135,7 @@ use Illuminate\Database\Seeder;
             'is_used' => false,
             'material_id' => $this->fabric->id,
             'type_id' => $this->l_sofa->id,
+            'color_id' => $this->colors->last()->id,
         ]);
 
         $product->categories()->attach([$this->classic->id, $this->bohemian->id]);
@@ -142,6 +150,7 @@ use Illuminate\Database\Seeder;
             'is_used' => false,
             'material_id' => $this->artificial_leather->id,
             'type_id' => $this->sofa->id,
+            'color_id' => $this->colors->get(4)->id,
         ]);
 
         $product->categories()->attach([$this->modern->id, $this->minimalist->id]);
@@ -156,6 +165,7 @@ use Illuminate\Database\Seeder;
             'is_used' => false,
             'material_id' => $this->leather->id,
             'type_id' => $this->chaiselong->id,
+            'color_id' => $this->colors->get(7)->id,
         ]);
 
         $product->categories()->attach([$this->classic->id, $this->modern->id]);
@@ -174,6 +184,7 @@ use Illuminate\Database\Seeder;
             'is_used' => true,
             'material_id' => $this->fabric->id,
             'type_id' => $this->chaiselong->id,
+            'color_id' => $this->colors->get(2)->id,
         ]);
 
         $product->categories()->attach([$this->rustic->id, $this->bohemian->id]);
@@ -188,6 +199,7 @@ use Illuminate\Database\Seeder;
             'is_used' => true,
             'material_id' => $this->leather->id,
             'type_id' => $this->sofa->id,
+            'color_id' => $this->colors->get(5)->id,
         ]);
 
         $product->categories()->attach([$this->classic->id, $this->rustic->id]);
@@ -202,6 +214,7 @@ use Illuminate\Database\Seeder;
             'is_used' => true,
             'material_id' => $this->artificial_leather->id,
             'type_id' => $this->l_sofa->id,
+            'color_id' => $this->colors->get(8)->id,
         ]);
 
         $product->categories()->attach([$this->modern->id, $this->minimalist->id]);
@@ -216,8 +229,31 @@ use Illuminate\Database\Seeder;
             'is_used' => true,
             'material_id' => $this->fabric->id,
             'type_id' => $this->u_sofa->id,
+            'color_id' => $this->colors->get(3)->id,
         ]);
 
         $product->categories()->attach([$this->bohemian->id, $this->rustic->id]);
+    }
+
+    private function create_colors()
+    {
+        $colors = [
+            ['name' => 'Rød', 'hex_code' => '#FF0000'],
+            ['name' => 'Blå', 'hex_code' => '#0000FF'],
+            ['name' => 'Grøn', 'hex_code' => '#00FF00'],
+            ['name' => 'Gul', 'hex_code' => '#FFFF00'],
+            ['name' => 'Sort', 'hex_code' => '#000000'],
+            ['name' => 'Hvid', 'hex_code' => '#FFFFFF'],
+            ['name' => 'Grå', 'hex_code' => '#808080'],
+            ['name' => 'Brun', 'hex_code' => '#A52A2A'],
+            ['name' => 'Orange', 'hex_code' => '#FFA500'],
+            ['name' => 'Lilla', 'hex_code' => '#800080'],
+        ];
+
+        foreach ($colors as $color) {
+            Color::query()->create($color);
+        }
+
+        $this->colors = Color::all();
     }
 }

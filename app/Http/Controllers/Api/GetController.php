@@ -139,6 +139,28 @@ class GetController extends Controller
         ]);
     }
 
+    // Materials
+    function materials()
+    {
+        $materials = \App\Models\Material::all();
+
+        return response()->json([
+            'message' => 'Materials fetched successfully',
+            'data' => $materials->toArray()
+        ]);
+    }
+
+    // Colors
+    function colors()
+    {
+        $colors = \App\Models\Color::all();
+
+        return response()->json([
+            'message' => 'Colors fetched successfully',
+            'data' => $colors->toArray()
+        ]);
+    }
+
     // User
     function user( $id )
     {
