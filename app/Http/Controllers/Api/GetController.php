@@ -109,7 +109,7 @@ class GetController extends Controller
             ->with('color', function ($query) {
                 $query->select('id', 'name');
             })
-            ->find($id);
+            ->first($id);
 
         if ( ! $product ) {
             return response()->json(['message' => 'Product not found'], 404);
