@@ -28,6 +28,14 @@ Route::get('/products/category/{category}', [GetController::class, 'products_by_
 Route::get('/categories', [GetController::class, 'categories'])
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
+// Materials
+Route::get('/materials', [GetController::class, 'materials'])
+    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+
+// Colors
+Route::get('/colors', [GetController::class, 'colors'])
+    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+
 // Create Product
 Route::post('/product/create', [PostController::class, 'create_product'])
     ->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken');
