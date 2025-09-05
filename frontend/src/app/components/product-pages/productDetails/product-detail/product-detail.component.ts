@@ -36,13 +36,14 @@ export class ProductDetailComponent implements OnInit {
     
     loadProduct(): void {
       this.route.params.subscribe((params) => {
-        this.productService.getProductById(params['id']).subscribe((product: Product) => {
+        this.productService.getProductById(params['productId']).subscribe((product) => {
           if(!product) return;
           this.product = product;
         
         });
       })
     }
+    
     deleteProduct(productId: number | undefined): void {
       if (this.product) {
         this.productService.deleteProduct(this.product.id).subscribe(() => {
