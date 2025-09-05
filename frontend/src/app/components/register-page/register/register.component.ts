@@ -9,8 +9,6 @@ import { NgModule } from '@angular/core';
 import { AuthService } from '../../../Services/auth.service';
 
 
-//Maybe do a few changes after merge
-
 @Component({
     selector: 'app-register',
     standalone: true,

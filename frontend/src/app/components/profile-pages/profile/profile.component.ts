@@ -85,12 +85,8 @@ export class ProfileComponent implements OnInit {
     }
 
     showYourProducts(){
-
         this.allYourProducts = !this.allYourProducts;
 
     }
-
-    
-
 
 }

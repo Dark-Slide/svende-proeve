@@ -15,7 +15,6 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit{
     featuredProducts: Product[] = [];
-    //Make function for the carousel after merge
 
     constructor(private productService: ProductService){}
 

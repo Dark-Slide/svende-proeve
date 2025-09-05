@@ -8,7 +8,7 @@ import { CategoryService } from 'src/app/Services/category.service';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SortOrder } from 'src/app/utensils/sort.enum';
-import { AppRoutingModule } from "src/app/app-routing.module";
+
 
 
 
@@ -17,7 +17,7 @@ import { AppRoutingModule } from "src/app/app-routing.module";
 @Component({
     selector: 'app-products',
     standalone: true,
-    imports: [CommonModule, FormsModule, AppRoutingModule],
+    imports: [CommonModule, FormsModule],
     templateUrl: './products.component.html',
     styleUrls: ['./products.component.css']
 })
