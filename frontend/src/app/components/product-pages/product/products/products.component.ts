@@ -8,6 +8,7 @@ import { CategoryService } from 'src/app/Services/category.service';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SortOrder } from 'src/app/utensils/sort.enum';
+import { AppRoutingModule } from "src/app/app-routing.module";
 
 
 
@@ -17,7 +18,7 @@ import { SortOrder } from 'src/app/utensils/sort.enum';
 @Component({
     selector: 'app-products',
     standalone: true,
-    imports: [CommonModule, FormsModule],
+    imports: [CommonModule, FormsModule, RouterLink],
     templateUrl: './products.component.html',
     styleUrls: ['./products.component.css']
 })
@@ -30,7 +31,7 @@ export class ProductsComponent implements OnInit {
   
   public SortOrder = SortOrder; 
   
-  products: Product[] = []
+  products: Product[] = [];
   filteredProducts: Product[] =[]
   categories: Category[] = []
   categorySelected: Category | null = null;

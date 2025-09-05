@@ -10,7 +10,7 @@
             </div>
             <div class="layout">
             <div class="filters-sidebar"> 
-            <button>Opret dit produkt</button>
+            <button [routerLink]="['/productMaking']">Opret dit produkt</button>
                 <select class="form-select mb-2" aria-label="Filter by category">
                     <option selected>Vælg kategori</option>
                     <option value="1">Sofaer</option>
@@ -68,8 +68,9 @@
                     <option [ngValue]="SortOrder.ConditionDesc">Brugt</option>
                 </select>
             </div>
-                <div class="products-grid"> 
-                    <div class="product-card" *ngFor="let product of products">
+                <div class="products-grid">
+                    <div *ngFor="let product of products">
+                    <div class="product-card" routerLink="productDetails/{{product.id}}">
                         <div class="product-image">
                             <img [src]="product.images || 'assets/images/DummySofa.png'" [alt]="product.title" class="w-full h-auto rounded-lg shadow-lg"> 
                         </div>
@@ -83,6 +84,7 @@
                             <div>Type: {{product.type}}</div>
                             <div>Ny eller brugt: {{product.condition}}</div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
