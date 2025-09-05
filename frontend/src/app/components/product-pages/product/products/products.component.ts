@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
   
   public SortOrder = SortOrder; 
   
-  products: Product[] = []
+  products: Product[] = [];
   filteredProducts: Product[] =[]
   categories: Category[] = []
   categorySelected: Category | null = null;
