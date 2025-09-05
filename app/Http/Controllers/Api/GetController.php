@@ -62,6 +62,7 @@ class GetController extends Controller
 
             $object = new \stdClass();
 
+            $object->id = $product->id;
             $object->title = $product->title;
             $object->description = $product->description;
             $object->price = $product->price;
@@ -116,6 +117,7 @@ class GetController extends Controller
 
         $object = new \stdClass();
 
+        $object->id = $product->id;
         $object->title = $product->title;
         $object->description = $product->description;
         $object->price = $product->price;
