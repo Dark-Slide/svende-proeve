@@ -17,7 +17,7 @@ Route::get('/frontpage', [GetController::class, 'frontpage'])
 Route::get('/products', [GetController::class, 'products'])
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
-Route::get('/product/{id}', [GetController::class, 'product'])
+Route::get('/products/{id}', [GetController::class, 'product'])
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
 // Get Products by category

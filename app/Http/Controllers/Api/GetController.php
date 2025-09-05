@@ -91,14 +91,42 @@ class GetController extends Controller
     function product($id)
     {
 
-        $product = Product::query()->find($id);
+        $product = Product::query()
+            ->select('id', 'title', 'description', 'price', 'is_used', 'width', 'height', 'depth', 'material_id', 'type_id', 'color_id')
+            ->with('material', function ($query) {
+                $query->select('id', 'name');
+            })
+            ->with('categories', function ($query) {
+                $query->select('categories.id', 'categories.name');
+            })
+            ->with('type', function ($query) {
+                $query->select('id', 'name');
+            })
+            ->with('color', function ($query) {
+                $query->select('id', 'name');
+            })
+            ->find($id);
 
-        if (!$product) {
+        if ( ! $product ) {
             return response()->json(['message' => 'Product not found'], 404);
         }
 
+        $object = new \stdClass();
+
+        $object->title = $product->title;
+        $object->description = $product->description;
+        $object->price = $product->price;
+        $object->is_used = $product->is_used;
+        $object->width = $product->width;
+        $object->height = $product->height;
+        $object->depth = $product->depth;
+        $object->material = $product->material->name;
+        $object->type = $product->type->name;
+        $object->colour = $product->color?->name;
+        $object->condition = $product->is_used ? 'Brugt' : 'Ny';
+
         return response()->json(
-            $product->toArray()
+            $object
         );
 
 //        return response()->json([
