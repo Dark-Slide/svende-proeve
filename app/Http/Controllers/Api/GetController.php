@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Color;
+use App\Models\Material;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -211,34 +214,46 @@ class GetController extends Controller
     // Categories
     function categories()
     {
-        $categories = \App\Models\Category::all();
+        $categories = Category::all();
 
-        return response()->json([
-            'message' => 'Categories fetched successfully',
-            'data' => $categories->toArray()
-        ]);
+        return response()->json(
+            $categories->toArray()
+        );
+
+//        return response()->json([
+//            'message' => 'Categories fetched successfully',
+//            'data' => $categories->toArray()
+//        ]);
     }
 
     // Materials
     function materials()
     {
-        $materials = \App\Models\Material::all();
+        $materials = Material::all();
 
-        return response()->json([
-            'message' => 'Materials fetched successfully',
-            'data' => $materials->toArray()
-        ]);
+        return response()->json(
+            $materials->toArray()
+        );
+
+//        return response()->json([
+//            'message' => 'Materials fetched successfully',
+//            'data' => $materials->toArray()
+//        ]);
     }
 
     // Colors
     function colors()
     {
-        $colors = \App\Models\Color::all();
+        $colors = Color::all();
 
-        return response()->json([
-            'message' => 'Colors fetched successfully',
-            'data' => $colors->toArray()
-        ]);
+        return response()->json(
+            $colors->toArray()
+        );
+
+//        return response()->json([
+//            'message' => 'Colors fetched successfully',
+//            'data' => $colors->toArray()
+//        ]);
     }
 
     // User
