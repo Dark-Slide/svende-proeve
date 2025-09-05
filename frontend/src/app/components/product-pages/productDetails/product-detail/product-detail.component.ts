@@ -4,9 +4,11 @@ import { Product } from 'src/app/models/product';
 import { Category } from 'src/app/models/category';
 import { Profile } from 'src/app/models/profile';
 import { ProductService } from 'src/app/Services/product.service'; 
+import { AuthService } from 'src/app/Services/auth.service';
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr'; 
+import { finalize } from 'rxjs';
 
 @Component({
     selector: 'app-product-detail',
@@ -23,10 +25,13 @@ export class ProductDetailComponent implements OnInit {
     private productService: ProductService, 
     private route: ActivatedRoute, 
     private toastr: ToastrService, 
-    private router: Router    
+    private router: Router
+    
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadProduct();
+  }
     
     
     loadProduct(): void {

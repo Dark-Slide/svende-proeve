@@ -13,6 +13,9 @@ import { User } from "../models/user";
 })
 
 export class AuthService {
+  static getProfile() {
+    throw new Error('Method not implemented.');
+  }
   private readonly apiUrl = environment.apiUrl + 'user';
   private userSubject= new BehaviorSubject<User | null>(null);
   private profileSubject = new BehaviorSubject<Profile | null>(null);
