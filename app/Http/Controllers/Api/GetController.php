@@ -216,8 +216,21 @@ class GetController extends Controller
     {
         $categories = Category::all();
 
+        $collection = collect();
+
+        foreach ($categories as $category) {
+
+            $object = new \stdClass();
+
+            $object->id = $categories->id;
+            $object->name = $categories->name;
+
+            $collection->push($object);
+
+        }
+
         return response()->json(
-            $categories->toArray()
+            $collection->toArray()
         );
 
 //        return response()->json([
