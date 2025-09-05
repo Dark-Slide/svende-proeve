@@ -9,7 +9,7 @@ import { Profile } from "../models/profile";
   providedIn: 'root'
 })
 export class ProfileService {
-  private readonly apiUrl = environment.apiUrl + 'Profile';
+  private readonly apiUrl = environment.apiUrl + 'profile';
 
   constructor(private http: HttpClient) {}
 
