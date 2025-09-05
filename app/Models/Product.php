@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property Material $material
  * @property Type $type
+ * @property Color $color
  *
  * @property \Illuminate\Database\Eloquent\Collection|Category[] $categories
  */

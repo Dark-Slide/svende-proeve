@@ -38,7 +38,7 @@ class GetController extends Controller
     {
 
         $products = Product::query()
-            ->select('id', 'title', 'description', 'price', 'is_used', 'width', 'height', 'depth', 'material_id', 'type_id')
+            ->select('id', 'title', 'description', 'price', 'is_used', 'width', 'height', 'depth', 'material_id', 'type_id', 'color_id')
             ->with('material', function ($query) {
                 $query->select('id', 'name');
             })
@@ -48,14 +48,43 @@ class GetController extends Controller
             ->with('type', function ($query) {
                 $query->select('id', 'name');
             })
+            ->with('color', function ($query) {
+                $query->select('id', 'name');
+            })
             ->get();
 
-        return response()->json([
-            'message' => 'Products fetched successfully',
-            'data' => [
-                $products->toArray()
-            ]
-        ]);
+        $collection = collect();
+
+        foreach ($products as $product) {
+
+            $object = new \stdClass();
+
+            $object->title = $product->title;
+            $object->description = $product->description;
+            $object->price = $product->price;
+            $object->is_used = $product->is_used;
+            $object->width = $product->width;
+            $object->height = $product->height;
+            $object->depth = $product->depth;
+            $object->material = $product->material->name;
+            $object->type = $product->type->name;
+            $object->colour = $product->color?->name;
+            $object->condition = $product->is_used ? 'Brugt' : 'Ny';
+
+            $collection->push($object);
+
+        }
+
+        return response()->json(
+            $collection->toArray()
+        );
+
+//        return response()->json([
+//            'message' => 'Products fetched successfully',
+//            'data' => [
+//                $products->toArray()
+//            ]
+//        ]);
 
     }
 
@@ -68,10 +97,14 @@ class GetController extends Controller
             return response()->json(['message' => 'Product not found'], 404);
         }
 
-        return response()->json([
-            'message' => 'Product fetched successfully',
-            'data' => $product->toArray()
-        ]);
+        return response()->json(
+            $product->toArray()
+        );
+
+//        return response()->json([
+//            'message' => 'Product fetched successfully',
+//            'data' => $product->toArray()
+//        ]);
 
     }
 
@@ -81,10 +114,14 @@ class GetController extends Controller
             $query->where('name', $category);
         })->get();
 
-        return response()->json([
-            'message' => 'Products fetched successfully',
-            'data' => $products->toArray()
-        ]);
+        return response()->json(
+            $products->toArray()
+        );
+
+//        return response()->json([
+//            'message' => 'Products fetched successfully',
+//            'data' => $products->toArray()
+//        ]);
     }
 
     // Orders
@@ -92,10 +129,14 @@ class GetController extends Controller
     {
         $orders = Order::all();
 
-        return response()->json([
-            'message' => 'Orders fetched successfully',
-            'data' => $orders->toArray()
-        ]);
+        return response()->json(
+            $orders->toArray()
+        );
+
+//        return response()->json([
+//            'message' => 'Orders fetched successfully',
+//            'data' => $orders->toArray()
+//        ]);
     }
 
     function order( $id )
