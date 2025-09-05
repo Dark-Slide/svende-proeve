@@ -50,7 +50,7 @@ Route::get('/order_lines/order/{order_id}', [GetController::class, 'order_lines_
 Route::get('/user/{id}', [GetController::class, 'user'])
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
-Route::post('/user/register', function (Request $request) {
+Route::post('/register', function (Request $request) {
     $data = $request->validate([
         'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
@@ -58,7 +58,7 @@ Route::post('/user/register', function (Request $request) {
     ]);
 
     $user = User::query()->create([
-        'name' => $data['name'],
+        'name' => $data['name'] ?? 'test',
         'email' => $data['email'],
         'password' => $data['password'],
     ]);
@@ -73,7 +73,7 @@ Route::post('/user/register', function (Request $request) {
 
 });
 
-Route::post('/user/login', function (Request $request) {
+Route::post('/login', function (Request $request) {
 
     $credentials = $request->validate(['email'=>'required|email','password'=>'required']);
 
@@ -86,7 +86,7 @@ Route::post('/user/login', function (Request $request) {
 
 });
 
-Route::post('/user/logout', function (Request $request) {
+Route::post('/logout', function (Request $request) {
 
     Auth::guard('web')->logout();
 
@@ -97,3 +97,7 @@ Route::post('/user/logout', function (Request $request) {
     return response()->json(['ok' => true]);
 
 });
+
+Route::post('/user', function (Request $request) {
+    return 'working';
+})->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
