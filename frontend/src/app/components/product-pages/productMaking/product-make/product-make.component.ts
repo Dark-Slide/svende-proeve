@@ -22,7 +22,7 @@ export class ProductMakeComponent {
   categories: Category[] = [];
   profile?: Profile;
   images: File[] = [];
-  materials: any;
+  materials: Category[] = [];
   colours: any;
   sizes: any;
   types: any;
