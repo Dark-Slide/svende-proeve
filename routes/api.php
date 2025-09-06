@@ -83,7 +83,7 @@ Route::post('/user/login', function (Request $request) {
 
     return response()->json(['ok' => true]);
 
-});
+})->middleware('auth:sanctum');
 
 Route::post('/user/logout', function (Request $request) {
 
@@ -126,7 +126,7 @@ Route::post('/user/register', function (Request $request) {
         'user' => $user,
     ], 201);
 
-});
+})->middleware('auth:sanctum');
 
 Route::get('/user/session', function (Request $request) {
 
