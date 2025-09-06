@@ -96,7 +96,9 @@ Route::post('/login', function (Request $request) {
 
     return response()->json(['ok' => true]);
 
-});
+})
+    ->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken')
+    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
 Route::post('/logout', function (Request $request) {
 
