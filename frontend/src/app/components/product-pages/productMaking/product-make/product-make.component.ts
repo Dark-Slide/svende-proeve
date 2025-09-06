@@ -13,12 +13,6 @@ import { Types } from 'src/app/models/types';
 import { TypeService } from 'src/app/Services/type.service';
 import { Colours } from 'src/app/models/colours';
 import { ColourService } from 'src/app/Services/colour.service';
-import { Height } from 'src/app/models/height';
-import { HeightService } from 'src/app/Services/height.service';
-import { Width } from 'src/app/models/width';
-import { WidthService } from 'src/app/Services/width.service';
-import { Deepth } from 'src/app/models/deepth';
-import { DeepthService } from 'src/app/Services/deepth.service';
 import { Conditions } from 'src/app/models/conditions';
 import { ConditionsService } from 'src/app/Services/condition.service';
 
@@ -42,9 +36,7 @@ export class ProductMakeComponent {
   types: Types[] = [];
   conditions: Conditions[] = [];
   colours: Colours[] = [];
-  height: Height[] = [];
-  width: Width[] = [];
-  deepth: Deepth[] = [];
+
 
   constructor(
     private fb: FormBuilder,
@@ -54,19 +46,13 @@ export class ProductMakeComponent {
     private materialService: MaterialService,
     private typeService: TypeService,
     private conditionService: ConditionsService,
-    private heightService: HeightService,
-    private widthService: WidthService,
-    private deepthService: DeepthService,    
     private router: Router,
     private toastr: ToastrService
   ) {
 
     this.categoryService.getAllCategories().subscribe(categories => this.categories = categories);
     this.materialService.getAllMaterials().subscribe(materials => this.materials = materials);
-    this.typeService.getAllTypes().subscribe(types => this.types = types);
-    this.heightService.getAllHeights().subscribe(height => this.height = height);
-    this.widthService.getAllWidths().subscribe(width => this.width = width);
-    this.deepthService.getAllDeepths().subscribe(deepth => this.deepth = deepth);    
+    this.typeService.getAllTypes().subscribe(types => this.types = types);    
     this.colourService.getAllColours().subscribe(colours => this.colours = colours);
     this.conditionService.getAllConditions().subscribe(conditions => this.conditions = conditions);
     
@@ -77,9 +63,9 @@ export class ProductMakeComponent {
       categoryId: ['', Validators.required],
       materials: ['', Validators.required],
       colours: ['', Validators.required],
-      deepth: ['', Validators.required],
-      height: ['', Validators.required],
-      width: ['', Validators.required],
+      deepth: ['', Validators.required, Validators.min(0)],
+      height: ['', Validators.required, Validators.min(0)],
+      width: ['', Validators.required, Validators.min(0)],
       types: ['', Validators.required],
       conditions: ['', Validators.required],
       imageUrl: ['', Validators.required]
