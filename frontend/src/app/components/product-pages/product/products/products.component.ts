@@ -29,7 +29,7 @@ import { BasketService } from 'src/app/Services/basket.service';
 
 export class ProductsComponent implements OnInit {
 
-  constructor(private productService: ProductService, private categoryService: CategoryService, private basketService: BasketService, toastrService: ToastrService) {}
+  constructor(private productService: ProductService, private categoryService: CategoryService, private basketService: BasketService, toastr: ToastrService) {}
   
   public SortOrder = SortOrder; 
   
