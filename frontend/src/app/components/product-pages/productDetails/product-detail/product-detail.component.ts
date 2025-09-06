@@ -9,6 +9,8 @@ import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr'; 
 import { finalize } from 'rxjs';
+import { BasketService } from 'src/app/Services/basket.service';
+
 
 @Component({
     selector: 'app-product-detail',
@@ -20,12 +22,14 @@ import { finalize } from 'rxjs';
 export class ProductDetailComponent implements OnInit {
   product?: Product ;
   profile!: Profile;
+  products: Product[] = [];
 
   constructor(
     private productService: ProductService, 
     private route: ActivatedRoute, 
     private toastr: ToastrService, 
-    private router: Router
+    private router: Router,
+    private basketService: BasketService
     
   ) {}
 
@@ -55,6 +59,23 @@ export class ProductDetailComponent implements OnInit {
         });
       }
     }
+    addToBasket(productId: number): void {
+    const product = this.products.find(p => p.id === productId);
+    if (!product) {
+      this.toastr.error('Sofaen blev ikke fundet');
+      return;
+    }
+    this.toastr.success('Sofaen er nu tilføjet til kurven');
+    const basketItem = {
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      quantity: 1,
+      productModel: product, 
+      orderId: 0 
+    };
+    this.basketService.addToBasket(basketItem);
+  }
   
 
 }

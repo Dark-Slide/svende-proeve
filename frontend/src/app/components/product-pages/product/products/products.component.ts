@@ -15,6 +15,7 @@ import { AppRoutingModule } from "src/app/app-routing.module";
 
 
 
+
 @Component({
     selector: 'app-products',
     standalone: true,
@@ -59,7 +60,6 @@ export class ProductsComponent implements OnInit {
 
   }
 
-  
   sortTheProducts() {
     switch (this.sortSelected) {
       case SortOrder.PriceAsc:
