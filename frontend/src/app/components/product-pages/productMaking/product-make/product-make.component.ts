@@ -7,6 +7,8 @@ import { Profile } from 'src/app/models/profile';
 import { ProductService } from 'src/app/Services/product.service';
 import { Category } from 'src/app/models/category';
 import { CategoryService } from 'src/app/Services/category.service';
+import { Materials } from 'src/app/models/materials';
+import { MaterialService } from 'src/app/Services/material.service';
 
 
 
@@ -22,7 +24,7 @@ export class ProductMakeComponent {
   categories: Category[] = [];
   profile?: Profile;
   images: File[] = [];
-  materials: Category[] = [];
+  materials: Materials[] = [];
   colours: any;
   sizes: any;
   types: any;
@@ -32,11 +34,18 @@ export class ProductMakeComponent {
     private fb: FormBuilder,
     private productService: ProductService,
     private categoryService: CategoryService,
+    private materialService: MaterialService,
+    
     private router: Router,
     private toastr: ToastrService
   ) {
 
     this.categoryService.getAllCategories().subscribe(categories => this.categories = categories);
+    this.materialService.getAllMaterials().subscribe(materials => this.materials = materials);
+    /*this.materialService.getAllColours().subscribe(colours => this.colours = colours);
+    this.materialService.getAllSizes().subscribe(sizes => this.sizes = sizes);
+    this.materialService.getAllTypes().subscribe(types => this.types = types);
+    this.materialService.getAllConditions().subscribe(conditions => this.conditions = conditions);*/
 
     this.productForm = this.fb.group({
       name: ['', Validators.required],
