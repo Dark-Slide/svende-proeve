@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService, Toast } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { Profile } from 'src/app/models/profile';
 import { ProductService } from 'src/app/Services/product.service';
 import { Category } from 'src/app/models/category';
@@ -23,7 +23,7 @@ import { ConditionsService } from 'src/app/Services/condition.service';
 @Component({
     selector: 'app-product-make',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, Toast],
+    imports: [CommonModule, ReactiveFormsModule],
     templateUrl: './product-make.component.html',
     styleUrls: ['./product-make.component.css']
 })
