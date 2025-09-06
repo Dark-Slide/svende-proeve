@@ -14,15 +14,19 @@ export class ColourService {
     getAllColours(): Observable<Colours[]> {
         return this.http.get<Colours[]>(this.apiUrl);
     }
+    
     findColourById(colourId: number): Observable<Colours> {
         return this.http.get<Colours>(this.apiUrl + '/' + colourId);
     }
+
     createColour(colour: Colours): Observable<Colours> {
         return this.http.post<Colours>(this.apiUrl, colour);
     }
+
     updateColour(colourId: number, colour: Colours): Observable<Colours> {
         return this.http.put<Colours>(this.apiUrl+ '/' +colourId, colour);
     }
+
     deleteColour(colourId: number): Observable<void> {
         return this.http.delete<void>(this.apiUrl + '/' + colourId);
     }

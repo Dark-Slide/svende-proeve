@@ -65,6 +65,22 @@
                         </select>
                         <div class="invalid-feedback">Vælge Højde</div>
                     </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Bredde</label>
+                        <select formControlName="width" class="form-select" required>
+                            <option value="" disabled selected>Vælg Bredde</option>
+                            <option *ngFor="let width of width" [value]="width.id">{{ width.name }}</option>
+                        </select>
+                        <div class="invalid-feedback">Vælge Bredde</div>
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <label class="form-label">Dybde</label>
+                        <select formControlName="deepth" class="form-select" required>
+                            <option value="" disabled selected>Vælg Dybde</option>
+                            <option *ngFor="let deepth of deepth" [value]="deepth.id">{{ deepth.name }}</option>
+                        </select>
+                        <div class="invalid-feedback">Vælge Dybde</div>
+                    </div>
 
                     <div class="col-md-6">
                         <label class="form-label">Type</label>
