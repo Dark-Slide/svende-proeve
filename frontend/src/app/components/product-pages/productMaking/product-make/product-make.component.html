@@ -42,7 +42,7 @@
                         <label class="form-label">Materiale</label>
                         <select formControlName="material" class="form-select" required>
                             <option value="" disabled selected>Vælg materiale</option>
-                            <option *ngFor="let material of materials" [value]="material">{{ material }}</option>
+                            <option *ngFor="let material of materials" [value]="material">{{ material.name }}</option>
                         </select>
                         <div class="invalid-feedback">Vælg materiale</div>
                     </div>
@@ -50,7 +50,7 @@
                         <label class="form-label">Colour</label>
                         <select formControlName="colour" class="form-select" required>
                             <option value="" disabled selected>Vælg farve</option>
-                            <option *ngFor="let colour of colours" [value]="colour">{{ colour }}</option>
+                            <option *ngFor="let colour of colours" [value]="colour">{{ colour.name }}</option>
                         </select>
                         <div class="invalid-feedback">Vælg farve</div>
                     </div>
@@ -61,7 +61,7 @@
                         <label class="form-label">Size</label>
                         <select formControlName="size" class="form-select" required>
                             <option value="" disabled selected>Vælge Størrelse</option>
-                            <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
+                            <option *ngFor="let size of sizes" [value]="size">{{ size.name }}</option>
                         </select>
                         <div class="invalid-feedback">Vælge Størrelse</div>
                     </div>
@@ -69,7 +69,7 @@
                         <label class="form-label">Type</label>
                         <select formControlName="type" class="form-select" required>
                             <option value="" disabled selected>Vælge type</option>
-                            <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+                            <option *ngFor="let type of types" [value]="type">{{ type.name }}</option>
                         </select>
                         <div class="invalid-feedback">Vælge type</div>
                     </div>
@@ -87,7 +87,7 @@
                     <label class="form-label">Kondition</label>
                     <select formControlName="condition" class="form-select" required>
                         <option value="" disabled selected>Vælg kondition</option>
-                        <option *ngFor="let condition of conditions" [value]="condition">{{ condition }}</option>
+                        <option *ngFor="let condition of conditions" [value]="condition">{{ condition.name }}</option>
                     </select>
                     <div class="invalid-feedback">Vælg venligst kondition</div>
                 </div>
