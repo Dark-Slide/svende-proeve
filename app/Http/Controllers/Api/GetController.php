@@ -8,6 +8,7 @@ use App\Models\Color;
 use App\Models\Material;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Type;
 use App\Models\User;
 
 class GetController extends Controller
@@ -281,6 +282,34 @@ class GetController extends Controller
 
             $object->id = $color->id;
             $object->name = $color->name;
+
+            $collection->push($object);
+
+        }
+
+        return response()->json(
+            $collection->toArray()
+        );
+
+//        return response()->json([
+//            'message' => 'Colors fetched successfully',
+//            'data' => $colors->toArray()
+//        ]);
+    }
+
+    // Type
+    function types()
+    {
+        $types = Type::all();
+
+        $collection = collect();
+
+        foreach ($types as $type) {
+
+            $object = new \stdClass();
+
+            $object->id = $type->id;
+            $object->name = $type->name;
 
             $collection->push($object);
 
