@@ -111,5 +111,24 @@ Route::post('/logout', function (Request $request) {
 });
 
 Route::post('/user', function (Request $request) {
-    return 'working';
-})->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+    $data = $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
+        'password' => ['required', 'confirmed', Password::defaults()],
+    ]);
+
+    $user = User::query()->create([
+        'name' => $data['name'] ?? 'test',
+        'email' => $data['email'],
+        'password' => $data['password'],
+    ]);
+
+    Auth::login($user);
+    $request->session()->regenerate();
+
+    return response()->json([
+        'ok' => true,
+        'user' => $user,
+    ], 201);
+
+})->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken');
