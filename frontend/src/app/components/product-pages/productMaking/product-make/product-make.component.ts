@@ -35,6 +35,9 @@ export class ProductMakeComponent {
     private router: Router,
     private toastr: ToastrService
   ) {
+
+    this.categoryService.getAllCategories().subscribe(categories => this.categories = categories);
+
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
