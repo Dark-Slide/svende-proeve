@@ -2,6 +2,6 @@ import { Product } from "./product";
 
 export interface Height {
     id: number;
-    name: string;
+    name: number;
     products: Product[];
 }
