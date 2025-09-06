@@ -245,8 +245,21 @@ class GetController extends Controller
     {
         $materials = Material::all();
 
+        $collection = collect();
+
+        foreach ($materials as $material) {
+
+            $object = new \stdClass();
+
+            $object->id = $material->id;
+            $object->name = $material->name;
+
+            $collection->push($object);
+
+        }
+
         return response()->json(
-            $materials->toArray()
+            $collection->toArray()
         );
 
 //        return response()->json([
@@ -260,8 +273,21 @@ class GetController extends Controller
     {
         $colors = Color::all();
 
+        $collection = collect();
+
+        foreach ($colors as $color) {
+
+            $object = new \stdClass();
+
+            $object->id = $color->id;
+            $object->name = $color->name;
+
+            $collection->push($object);
+
+        }
+
         return response()->json(
-            $colors->toArray()
+            $collection->toArray()
         );
 
 //        return response()->json([
