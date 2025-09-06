@@ -58,13 +58,14 @@
 
                 <div class="row g-3 mt-3">
                     <div class="col-md-6">
-                        <label class="form-label">Size</label>
-                        <select formControlName="sizes" class="form-select" required>
-                            <option value="" disabled selected>Vælge Størrelse</option>
-                            <option *ngFor="let size of sizes" [value]="size.id">{{ size.name }}</option>
+                        <label class="form-label">Højde</label>
+                        <select formControlName="height" class="form-select" required>
+                            <option value="" disabled selected>Vælg Højde</option>
+                            <option *ngFor="let height of height" [value]="height.id">{{ height.name }}</option>
                         </select>
-                        <div class="invalid-feedback">Vælge Størrelse</div>
+                        <div class="invalid-feedback">Vælge Højde</div>
                     </div>
+
                     <div class="col-md-6">
                         <label class="form-label">Type</label>
                         <select formControlName="types" class="form-select" required>
@@ -87,7 +88,7 @@
                     <label class="form-label">Kondition</label>
                     <select formControlName="conditions" class="form-select" required>
                         <option value="" disabled selected>Vælg kondition</option>
-                        <option *ngFor="let condition of conditions" [value]="condition.id">{{ condition.name }}</option>
+                        <option *ngFor="let condition of conditions" [value]="condition">{{ condition }}</option>
                     </select>
                     <div class="invalid-feedback">Vælg venligst kondition</div>
                 </div>

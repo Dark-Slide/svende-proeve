@@ -9,6 +9,18 @@ import { Category } from 'src/app/models/category';
 import { CategoryService } from 'src/app/Services/category.service';
 import { Materials } from 'src/app/models/materials';
 import { MaterialService } from 'src/app/Services/material.service';
+import { Types } from 'src/app/models/types';
+import { TypeService } from 'src/app/Services/type.service';
+import { Colours } from 'src/app/models/colours';
+import { ColourService } from 'src/app/Services/colour.service';
+import { Height } from 'src/app/models/height';
+import { HeightService } from 'src/app/Services/height.service';
+import { Width } from 'src/app/models/width';
+import { WidthService } from 'src/app/Services/width.service';
+import { Deepth } from 'src/app/models/deepth';
+import { DeepthService } from 'src/app/Services/deepth.service';
+
+
 
 
 
@@ -25,27 +37,36 @@ export class ProductMakeComponent {
   profile?: Profile;
   images: File[] = [];
   materials: Materials[] = [];
-  colours: any;
-  sizes: any;
-  types: any;
-  conditions: any;
+  types: Types[] = [];
+  conditions: boolean[] = [];
+  colours: Colours[] = [];
+  height: Height[] = [];
+  width: Width[] = [];
+  deepth: Deepth[] = [];
 
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
     private categoryService: CategoryService,
+    private colourService: ColourService,
     private materialService: MaterialService,
-    
+    private typeService: TypeService,
+    private heightService: HeightService,
+    private widthService: WidthService,
+    private deepthService: DeepthService,    
     private router: Router,
     private toastr: ToastrService
   ) {
 
     this.categoryService.getAllCategories().subscribe(categories => this.categories = categories);
     this.materialService.getAllMaterials().subscribe(materials => this.materials = materials);
-    /*this.materialService.getAllColours().subscribe(colours => this.colours = colours);
-    this.materialService.getAllSizes().subscribe(sizes => this.sizes = sizes);
-    this.materialService.getAllTypes().subscribe(types => this.types = types);
-    this.materialService.getAllConditions().subscribe(conditions => this.conditions = conditions);*/
+    this.typeService.getAllTypes().subscribe(types => this.types = types);
+    this.heightService.getAllHeights().subscribe(height => this.height = height);
+    this.widthService.getAllWidths().subscribe(width => this.width = width);
+    this.deepthService.getAllDeepths().subscribe(deepth => this.deepth = deepth);    
+    this.colourService.getAllColours().subscribe(colours => this.colours = colours);
+    // Assuming conditions are boolean values for simplicity
+    this.conditions = [true, false];
 
     this.productForm = this.fb.group({
       name: ['', Validators.required],
@@ -55,6 +76,7 @@ export class ProductMakeComponent {
       materials: ['', Validators.required],
       colours: ['', Validators.required],
       sizes: ['', Validators.required],
+
       types: ['', Validators.required],
       conditions: ['', Validators.required],
       imageUrl: ['', Validators.required]
