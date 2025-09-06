@@ -62,7 +62,7 @@
                         <input type="number" formControlName="height" class="form-control" required>
                         <div class="invalid-feedback">Vælge Højde</div>
                     </div>
-                    
+
                     <div class="col-md-6">
                         <label class="form-label">Bredde</label>
                         <input type="number" formControlName="width" class="form-control" required>
@@ -105,8 +105,9 @@
                 <!-- Buttons -->
                 <div class="d-flex justify-content-between mt-4">
                     <button type="button" class="btn btn-secondary" (click)="onCancel()">Fortryd</button>
-                    <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Sæt sofa til salg</button>
+                    
                 </div>
+                <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Sæt sofa til salg</button>
                 
             </form>
         </div>
