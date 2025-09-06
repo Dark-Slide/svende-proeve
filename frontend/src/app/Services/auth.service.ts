@@ -62,8 +62,8 @@ export class AuthService {
   }
 
   register(registerForm: any) {
-        return this.http.post<any>(this.apiUrl + "/register", registerForm, {withCredentials: true})
-    }
+      return this.http.post<any>(this.apiUrl, registerForm, {withCredentials: true})
+  }
 
   logOut(): void {
     this.http.get(this.apiUrl + "/logout", {withCredentials: true}).subscribe
