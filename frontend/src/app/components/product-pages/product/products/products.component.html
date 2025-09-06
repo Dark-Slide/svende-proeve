@@ -12,7 +12,7 @@
             <div class="filters-sidebar"> 
             <button [routerLink]="['/productMaking']">Opret dit produkt</button>
                 <select class="form-select mb-2" aria-label="Filter by category">
-                    <option selected>Vælg kategori</option>
+                    <option>Vælg kategori</option>
                     <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
                 </select>
                 <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by price">
@@ -21,25 +21,19 @@
                     <option [ngValue]="SortOrder.PriceDesc">Højeste pris</option>
                 </select>
                 <select [(ngModel)]="selectedMaterialId" (change)="filterProducts()" class="form-select mb-2" aria-label="Filter by material">
-                    <option value="" disabled selected>Vælg Materiale</option>
+                    <option value="" disabled >Vælg Materiale</option>
                     <option *ngFor="let material of materials" [value]="material.id">{{material.name}}</option>
                 </select>
                 <select [(ngModel)]="selectedColourId" (change)="filterProducts()" class="form-select mb-2" aria-label="Filter by colour">
-                    <option value="" disabled selected>Vælg Farve</option>
+                    <option value="" disabled >Vælg Farve</option>
                     <option *ngFor="let colour of colours" [value]="colour.id">{{colour.name}}</option>
-
-                </select>
-                <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by size">
-                    <option [ngValue]="SortOrder.None">Vælg Størrelse</option>
-                    <option [ngValue]="SortOrder.SizeAsc">1-personers</option>
-                    <option [ngValue]="SortOrder.SizeDesc">2-personers</option>
                 </select>
                 <select [(ngModel)]="selectedTypeId" (change)="filterProducts()" class="form-select mb-2" aria-label="Filter by type">
-                    <option value="" disabled selected>Vælg Type</option>
+                    <option value="" disabled >Vælg Type</option>
                     <option *ngFor="let type of types" [value]="type.id">{{type.name}}</option>
                 </select>
                 <select [(ngModel)]="selectedConditionId" (change)="filterProducts()" class="form-select mb-2" aria-label="Filter by condition">
-                    <option value="" disabled selected>Vælg Tilstand</option>
+                    <option value="" disabled>Vælg Tilstand</option>
                     <option *ngFor="let condition of conditions" [value]="condition.id">{{condition.name}}</option>
                 </select>
             </div>
