@@ -35,7 +35,7 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.valid && this.registerForm.touched) {
-       
+
        this.authService.register(this.registerForm.value).subscribe({
          next: async () => {
            this.toastr.success('Registration successful');

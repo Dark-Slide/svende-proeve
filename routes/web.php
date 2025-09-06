@@ -11,6 +11,7 @@ Route::get('/sanctum/csrf-cookie', fn () => response()->noContent());
 Route::prefix('api')
     //Without csrf
     ->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken')
+    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate')
     ->group(base_path('routes/api.php'));
 
 
