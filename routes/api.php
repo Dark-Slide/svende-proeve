@@ -118,10 +118,10 @@ Route::post('/user/register', function (Request $request) {
     $data = $request->validate([
         'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
         'password' => ['required', Password::defaults()],
-        'confirm_password' => ['required', Password::defaults()],
+        'confirmPassword' => ['required', Password::defaults()],
     ]);
 
-    if ($data['password'] !== $data['confirm_password']) {
+    if ($data['password'] !== $data['confirmPassword']) {
         return response()->json(['message' => 'Passwords do not match'], 422);
     }
 
