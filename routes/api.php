@@ -61,32 +61,13 @@ Route::post('/order/create', [PostController::class, 'create_order'])
 Route::get('/order_lines/order/{order_id}', [GetController::class, 'order_lines_by_order'])
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
+// User CSRF
+Route::get('/user/sanctum/csrf-cookie', fn () => response()->noContent());
+
 // User
+Route::get('/user', fn (Request $r) => $r->user())->middleware('auth:sanctum');
+
 Route::get('/user/{id}', [GetController::class, 'user'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
-
-Route::post('/register', function (Request $request) {
-    $data = $request->validate([
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
-        'password' => ['required', 'confirmed', Password::defaults()],
-    ]);
-
-    $user = User::query()->create([
-        'name' => $data['name'] ?? 'test',
-        'email' => $data['email'],
-        'password' => $data['password'],
-    ]);
-
-    Auth::login($user);
-    $request->session()->regenerate();
-
-    return response()->json([
-        'ok' => true,
-        'user' => $user,
-    ], 201);
-
-})->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken')
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
 Route::post('/user/login', function (Request $request) {
@@ -95,6 +76,8 @@ Route::post('/user/login', function (Request $request) {
 
     if (! Auth::attempt($credentials))
         return response()->json(['message' => 'Invalid credentials'], 422);
+
+    $user = Auth::guard('web')->user();
 
     $request->session()->regenerate();
 
@@ -114,7 +97,9 @@ Route::post('/user/logout', function (Request $request) {
 
     return response()->json(['ok' => true]);
 
-});
+})
+    ->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken')
+    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');;
 
 Route::post('/user/register', function (Request $request) {
 
@@ -146,4 +131,20 @@ Route::post('/user/register', function (Request $request) {
     ], 201);
 
 })->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken')
+    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+
+Route::get('/user/session', function (Request $request) {
+
+    $user = Auth::guard('web')->user();
+
+    if (! $user ) {
+        return response()->json(['user' => null]);
+    }
+
+    return response()->json(['user' => $user]);
+
+})->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+
+// Profile
+Route::get('/profile/{id}', [GetController::class, 'profile'])
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
