@@ -64,8 +64,8 @@
                 </select>
                 <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by condition">
                     <option [ngValue]="SortOrder.None">Vælg Tilstand</option>
-                    <option [ngValue]="SortOrder.ConditionAsc">Ny</option>
-                    <option [ngValue]="SortOrder.ConditionDesc">Brugt</option>
+                    <option [ngValue]="SortOrder.ConditionAsc">Brugt</option>
+                    <option [ngValue]="SortOrder.ConditionDesc">Ny</option>
                 </select>
             </div>
                 <div class="products-grid">

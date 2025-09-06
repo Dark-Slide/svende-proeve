@@ -9,8 +9,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SortOrder } from 'src/app/utensils/sort.enum';
 import { AppRoutingModule } from "src/app/app-routing.module";
-import { ToastrService } from 'ngx-toastr';
-import { BasketService } from 'src/app/Services/basket.service';
+
 
 
 
@@ -29,7 +28,7 @@ import { BasketService } from 'src/app/Services/basket.service';
 
 export class ProductsComponent implements OnInit {
 
-  constructor(private productService: ProductService, private categoryService: CategoryService, private basketService: BasketService, toastr: ToastrService) {}
+  constructor(private productService: ProductService, private categoryService: CategoryService) {}
   
   public SortOrder = SortOrder; 
   
@@ -61,25 +60,6 @@ export class ProductsComponent implements OnInit {
 
   }
 
-  addToBasket(productId: number): void {
-    const product = this.products.find(p => p.id === productId);
-    if (!product) {
-      this.toastr.error('Sofaen blev ikke fundet');
-      return;
-    }
-    this.toastr.success('Sofaen er nu tilføjet til kurven');
-    const basketItem = {
-      id: product.id,
-      name: product.title,
-      price: product.price,
-      quantity: 1,
-      productModel: product, 
-      orderId: 0 
-    };
-    this.basketService.addToBasket(basketItem);
-  }
-
-  
   sortTheProducts() {
     switch (this.sortSelected) {
       case SortOrder.PriceAsc:

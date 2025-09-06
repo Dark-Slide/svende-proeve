@@ -47,6 +47,6 @@
                 <strong>Ny eller brugt:</strong> {{product?.condition}}
             </li>
         </ul>
-        <Button class="btn btn-primary">Læg i kurv</Button>
+        <button class="btn btn-primary" [disabled]="!product?.id" (click)="addToBasket(product!.id)">Læg i kurv</button>
     </div>
 </div>
