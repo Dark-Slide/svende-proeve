@@ -66,7 +66,6 @@ class GetController extends Controller
             $object->title = $product->title;
             $object->description = $product->description;
             $object->price = $product->price;
-            $object->is_used = $product->is_used;
             $object->width = $product->width;
             $object->height = $product->height;
             $object->depth = $product->depth;
@@ -122,7 +121,6 @@ class GetController extends Controller
         $object->title = $product->title;
         $object->description = $product->description;
         $object->price = $product->price;
-        $object->is_used = $product->is_used;
         $object->width = $product->width;
         $object->height = $product->height;
         $object->depth = $product->depth;

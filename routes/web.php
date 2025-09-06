@@ -8,7 +8,10 @@ use Illuminate\Validation\Rules\Password;
 
 Route::get('/sanctum/csrf-cookie', fn () => response()->noContent());
 
-Route::prefix('api')->group(base_path('routes/api.php'));
+Route::prefix('api')
+    //Without csrf
+    ->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken')
+    ->group(base_path('routes/api.php'));
 
 
 // Reroute all non-api, non-storage, non-asset requests to SPA entry point
