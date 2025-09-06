@@ -55,7 +55,7 @@ class GetController extends Controller
             ->with('color', function ($query) {
                 $query->select('id', 'name');
             })
-            ->limit(27)
+            ->limit(270)
             ->get();
 
         $collection = collect();
