@@ -86,7 +86,7 @@ Route::post('/register', function (Request $request) {
 })->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken')
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
-Route::post('/login', function (Request $request) {
+Route::post('/user/login', function (Request $request) {
 
     $credentials = $request->validate(['email'=>'required|email','password'=>'required']);
 
@@ -101,7 +101,7 @@ Route::post('/login', function (Request $request) {
     ->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken')
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
-Route::post('/logout', function (Request $request) {
+Route::post('/user/logout', function (Request $request) {
 
     Auth::guard('web')->logout();
 
@@ -134,7 +134,7 @@ Route::post('/user/register', function (Request $request) {
         'password' => $data['password'],
     ]);
 
-    Auth::login($user);
+    Auth::guard('web')->login($user);
     $request->session()->regenerate();
 
     return response()->json([
