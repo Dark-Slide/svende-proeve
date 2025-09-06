@@ -43,6 +43,11 @@ export class ProductMakeComponent {
       description: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(0)]],
       categoryId: ['', Validators.required],
+      Materials: ['', Validators.required],
+      Colours: ['', Validators.required],
+      Sizes: ['', Validators.required],
+      Types: ['', Validators.required],
+      Conditions: ['', Validators.required],
       imageUrl: ['', Validators.required]
     });
 
