@@ -112,6 +112,10 @@ Route::post('/logout', function (Request $request) {
 
 Route::post('/user', function (Request $request) {
 
+    return response()->json([
+        'user' => $request->user(),
+    ]);
+
     $data = $request->validate([
         'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
