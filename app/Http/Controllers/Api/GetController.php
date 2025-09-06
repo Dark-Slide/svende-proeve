@@ -341,4 +341,20 @@ class GetController extends Controller
         ]);
     }
 
+    // Profile
+    function profile($id)
+    {
+        return 'Gert' . $id;
+        $user = auth()->user();
+
+        if ( ! $user ) {
+            return response()->json(['message' => 'User not authenticated'], 401);
+        }
+
+        return response()->json([
+            'message' => 'User profile fetched successfully',
+            'data' => $user->toArray()
+        ]);
+    }
+
 }

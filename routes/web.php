@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rules\Password;
 
-Route::get('/sanctum/csrf-cookie', fn () => response()->noContent());
-
 Route::prefix('api')
     //Without csrf
     ->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken')

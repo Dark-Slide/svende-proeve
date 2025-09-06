@@ -16,6 +16,8 @@ return Application::configure(basePath: dirname(__DIR__))
         // Ensure CORS runs globally *before* auth (good for preflights)
         $middleware->append(\Illuminate\Http\Middleware\HandleCors::class);
 
+        $middleware->statefulApi();
+
         // Register route middleware alias (NOT global)
         $middleware->alias([
             'jwt.auth' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,

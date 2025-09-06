@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, firstValueFrom } from "rxjs";
+import {BehaviorSubject, Observable, firstValueFrom, switchMap, finalize} from "rxjs";
 import { environment } from "src/environments/environment";
 import { Profile } from "../models/profile";
 import { User } from "../models/user";
@@ -13,12 +13,16 @@ import { User } from "../models/user";
 })
 
 export class AuthService {
-  
+
   private readonly apiUrl = environment.apiUrl + 'user';
   private userSubject= new BehaviorSubject<User | null>(null);
   private profileSubject = new BehaviorSubject<Profile | null>(null);
 
   constructor(private http: HttpClient) {}
+
+  csrf() {
+    return this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true });
+  }
 
   public get user(): User | null
   {
@@ -27,6 +31,7 @@ export class AuthService {
 
   public get profile(): Profile | null
     {
+        console.log(this.userSubject.value);
         return this.profileSubject.value;
     }
 
@@ -39,14 +44,23 @@ export class AuthService {
     }
 
     async loadUser(): Promise<void> {
-    console.error('loadUser called');
-        try {
-            const user = await firstValueFrom(this.http.get<any>(this.apiUrl, {withCredentials: true}));
-        }
-        catch (error) {
-            console.error('Error loading user:', error);
-            this.userSubject.next(null);
-        }
+      console.error('loadUser called');
+
+      try {
+        // 1) XSRF-TOKEN
+        await firstValueFrom(
+          this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true })
+        );
+
+        const user = await firstValueFrom(
+          this.http.get<any>(this.apiUrl, { withCredentials: true }) // this.apiUrl -> e.g. https://api.example.com/api/user
+        );
+
+        this.userSubject.next(user ?? null);
+      } catch (error) {
+        console.error('Error loading user:', error);
+        this.userSubject.next(null);
+      }
     }
 
 
@@ -57,16 +71,29 @@ export class AuthService {
 
 
   login(loginForm: any) {
-    return this.http.post<any>(this.apiUrl + "/login", loginForm, {withCredentials: true})
+    return this.csrf().pipe(
+      switchMap(() =>
+        this.http.post<any>(this.apiUrl + "/login", loginForm, {withCredentials: true})
+      )
+    );
   }
 
   register(registerForm: any) {
-      return this.http.post<any>(this.apiUrl + '/register', registerForm, {withCredentials: true})
+    return this.csrf().pipe(
+      switchMap(() =>
+        this.http.post<any>(this.apiUrl + '/register', registerForm, {withCredentials: true})
+      )
+    );
   }
 
   logOut(): void {
-    this.http.get(this.apiUrl + "/logout", {withCredentials: true}).subscribe
-    (() => {this.userSubject.next(null); this.profileSubject.next(null)});
+    this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true }).pipe(
+      switchMap(() => this.http.post(`${this.apiUrl}/logout`, this.userSubject, { withCredentials: true })),
+      finalize(() => {
+        this.userSubject.next(null);
+        this.profileSubject.next(null);
+      })
+    ).subscribe({ error: err => console.error('Logout error:', err) });
   }
 
   getProfileUser(): Observable<Profile> {
