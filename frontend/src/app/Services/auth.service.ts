@@ -41,6 +41,7 @@ export class AuthService {
     }
 
     async loadUser(): Promise<void> {
+    console.error('loadUser called');
         try {
             const user = await firstValueFrom(this.http.get<any>(this.apiUrl, {withCredentials: true}));
         }
@@ -62,7 +63,7 @@ export class AuthService {
   }
 
   register(registerForm: any) {
-      return this.http.post<any>(this.apiUrl, registerForm, {withCredentials: true})
+      return this.http.post<any>(this.apiUrl + '/register', registerForm, {withCredentials: true})
   }
 
   logOut(): void {
