@@ -59,6 +59,7 @@ export class ProductDetailComponent implements OnInit {
         });
       }
     }
+    
     addToBasket(productId: number): void {
     const product = this.products.find(p => p.id === productId);
     if (!product) {
@@ -71,7 +72,7 @@ export class ProductDetailComponent implements OnInit {
       name: product.title,
       price: product.price,
       quantity: 1,
-      productModel: product, 
+      productModel: product,
       orderId: 0 
     };
     this.basketService.addToBasket(basketItem);
