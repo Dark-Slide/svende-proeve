@@ -19,6 +19,8 @@ import { Width } from 'src/app/models/width';
 import { WidthService } from 'src/app/Services/width.service';
 import { Deepth } from 'src/app/models/deepth';
 import { DeepthService } from 'src/app/Services/deepth.service';
+import { Conditions } from 'src/app/models/conditions';
+import { ConditionsService } from 'src/app/Services/condition.service';
 
 
 
@@ -38,7 +40,7 @@ export class ProductMakeComponent {
   images: File[] = [];
   materials: Materials[] = [];
   types: Types[] = [];
-  conditions: boolean[] = [];
+  conditions: Conditions[] = [];
   colours: Colours[] = [];
   height: Height[] = [];
   width: Width[] = [];
@@ -51,6 +53,7 @@ export class ProductMakeComponent {
     private colourService: ColourService,
     private materialService: MaterialService,
     private typeService: TypeService,
+    private conditionService: ConditionsService,
     private heightService: HeightService,
     private widthService: WidthService,
     private deepthService: DeepthService,    
@@ -65,9 +68,8 @@ export class ProductMakeComponent {
     this.widthService.getAllWidths().subscribe(width => this.width = width);
     this.deepthService.getAllDeepths().subscribe(deepth => this.deepth = deepth);    
     this.colourService.getAllColours().subscribe(colours => this.colours = colours);
-    // Assuming conditions are boolean values for simplicity
-    this.conditions = [true, false];
-
+    this.conditionService.getAllConditions().subscribe(conditions => this.conditions = conditions);
+    
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -75,8 +77,9 @@ export class ProductMakeComponent {
       categoryId: ['', Validators.required],
       materials: ['', Validators.required],
       colours: ['', Validators.required],
-      sizes: ['', Validators.required],
-
+      deepth: ['', Validators.required],
+      height: ['', Validators.required],
+      width: ['', Validators.required],
       types: ['', Validators.required],
       conditions: ['', Validators.required],
       imageUrl: ['', Validators.required]
@@ -93,7 +96,9 @@ export class ProductMakeComponent {
       formData.append('categoryId', this.productForm.get('categoryId')?.value);
       formData.append('Materials', this.productForm.get('Materials')?.value);
       formData.append('Colours', this.productForm.get('Colours')?.value);
-      formData.append('Sizes', this.productForm.get('Sizes')?.value);
+      formData.append('Height', this.productForm.get('Height')?.value);
+      formData.append('Width', this.productForm.get('Width')?.value);
+      formData.append('Deepth', this.productForm.get('Deepth')?.value);
       formData.append('Types', this.productForm.get('Types')?.value);
       formData.append('Conditions', this.productForm.get('Conditions')?.value);
       formData.append('imageUrl', this.productForm.get('imageUrl')?.value);
