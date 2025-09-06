@@ -43,7 +43,7 @@
                         <select formControlName="materials" class="form-select" required>
                             <option value="" disabled selected>Vælg materiale</option>
                             <option *ngFor="let material of materials" [value]="material.id">{{ material.name }}</option>
-                        </select>
+                        </select>                        
                         <div class="invalid-feedback">Vælg materiale</div>
                     </div>
                     <div class="col-md-6">
@@ -59,26 +59,19 @@
                 <div class="row g-3 mt-3">
                     <div class="col-md-6">
                         <label class="form-label">Højde</label>
-                        <select formControlName="height" class="form-select" required>
-                            <option value="" disabled selected>Vælg Højde</option>
-                            <option *ngFor="let height of height" [value]="height.id">{{ height.name }}</option>
-                        </select>
+                        <input type="number" formControlName="height" class="form-control" required>
                         <div class="invalid-feedback">Vælge Højde</div>
                     </div>
+                    
                     <div class="col-md-6">
                         <label class="form-label">Bredde</label>
-                        <select formControlName="width" class="form-select" required>
-                            <option value="" disabled selected>Vælg Bredde</option>
-                            <option *ngFor="let width of width" [value]="width.id">{{ width.name }}</option>
-                        </select>
+                        <input type="number" formControlName="width" class="form-control" required>
                         <div class="invalid-feedback">Vælge Bredde</div>
                     </div>
+
                     <div class="col-md-6 mt-3">
                         <label class="form-label">Dybde</label>
-                        <select formControlName="deepth" class="form-select" required>
-                            <option value="" disabled selected>Vælg Dybde</option>
-                            <option *ngFor="let deepth of deepth" [value]="deepth.id">{{ deepth.name }}</option>
-                        </select>
+                        <input type="number" formControlName="deepth" class="form-control" required>
                         <div class="invalid-feedback">Vælge Dybde</div>
                     </div>
 
@@ -101,12 +94,12 @@
 
                 <!-- Condition -->
                 <div class="mb-3">
-                    <label class="form-label">Kondition</label>
+                    <label class="form-label">Tilstand</label>
                     <select formControlName="conditions" class="form-select" required>
-                        <option value="" disabled selected>Vælg kondition</option>
+                        <option value="" disabled selected>Vælg tilstand</option>
                         <option *ngFor="let condition of conditions" [value]="condition.id">{{ condition.name }}</option>
                     </select>
-                    <div class="invalid-feedback">Vælg venligst kondition</div>
+                    <div class="invalid-feedback">Vælg venligst tilstanden</div>
                 </div>
 
                 <!-- Buttons -->
