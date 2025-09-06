@@ -77,15 +77,11 @@ use Illuminate\Support\Facades\DB;
             ['name' => 'Loveseat'],
             ['name' => 'Reclinersofa'],
             ['name' => 'Elektrisk reclinersofa'],
-            ['name' => 'Biografsofa'],
-            ['name' => 'Buet sofa'],
             ['name' => 'Rund sofa'],
             ['name' => 'Divansofa'],
             ['name' => 'Daybed'],
             ['name' => 'Futonsofa'],
             ['name' => 'Havesofa'],
-            ['name' => 'Pallesofa'],
-            ['name' => 'XL-sofa'],
             ['name' => 'Sofa med opbevaring']
         ];
 
