@@ -104,7 +104,7 @@
                     <label class="form-label">Kondition</label>
                     <select formControlName="conditions" class="form-select" required>
                         <option value="" disabled selected>Vælg kondition</option>
-                        <option *ngFor="let condition of conditions" [value]="condition">{{ condition }}</option>
+                        <option *ngFor="let condition of conditions" [value]="condition.id">{{ condition.name }}</option>
                     </select>
                     <div class="invalid-feedback">Vælg venligst kondition</div>
                 </div>

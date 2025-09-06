@@ -2,7 +2,6 @@ import { Product } from "./product";
 
 export interface Conditions {
     id: number;
-    Ny:  true;
-    Brugt: false;
+    name: string;
     products: Product[];
 }
