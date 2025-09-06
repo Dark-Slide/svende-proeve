@@ -9,6 +9,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SortOrder } from 'src/app/utensils/sort.enum';
 import { AppRoutingModule } from "src/app/app-routing.module";
+import { Colours } from 'src/app/models/colours';
+import { Materials } from 'src/app/models/materials';
+import { Types } from 'src/app/models/types';
+import { Conditions } from 'src/app/models/conditions';
+
+
+
 
 
 
@@ -35,6 +42,10 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] =[]
   categories: Category[] = []
+  materials: Materials[] = []
+  colours: Colours[] = []
+  types: Types[] = []
+  conditions: Conditions[] = []
   categorySelected: Category | null = null;
   sortSelected: SortOrder = SortOrder.None;
   searchQuery: string = '';

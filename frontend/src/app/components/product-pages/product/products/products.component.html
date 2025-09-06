@@ -23,49 +23,26 @@
                     <option [ngValue]="SortOrder.PriceDesc">Højeste pris</option>
                 </select>
                 <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by material">
-                    <option [ngValue]="SortOrder.None">Vælg Materiale</option>
-                    <option [ngValue]="SortOrder.MaterialAsc">Læder</option>
-                    <option [ngValue]="SortOrder.MaterialDesc">Polyester</option>
-                    <option [ngValue]="SortOrder.MaterialDesc">Stof</option>
-                    <option [ngValue]="SortOrder.MaterialDesc">Træ</option>
+                    <option value="" disabled selected>Vælg Materiale</option>
+                    <option *ngFor="let material of materials" [value]="material.id">{{material.name}}</option>
                 </select>
                 <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by colour">
-                    <option [ngValue]="SortOrder.None">Vælg Farve</option>
-                    <option [ngValue]="SortOrder.ColourAsc">Sort</option>
-                    <option [ngValue]="SortOrder.ColourDesc">Hvid</option>
-                    <option [ngValue]="SortOrder.ColourDesc">Grå</option>
-                    <option [ngValue]="SortOrder.ColourDesc">Blå</option>
-                    <option [ngValue]="SortOrder.ColourDesc">Rød</option>
-                    <option [ngValue]="SortOrder.ColourDesc">Grøn</option>
-                    <option [ngValue]="SortOrder.ColourDesc">Brun</option>
-                    <option [ngValue]="SortOrder.ColourDesc">Gul</option>
-                    <option [ngValue]="SortOrder.ColourDesc">Orange</option>
-                    <option [ngValue]="SortOrder.ColourDesc">Lilla</option>
+                    <option value="" disabled selected>Vælg Farve</option>
+                    <option *ngFor="let colour of colours" [value]="colour.id">{{colour.name}}</option>
+
                 </select>
                 <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by size">
                     <option [ngValue]="SortOrder.None">Vælg Størrelse</option>
                     <option [ngValue]="SortOrder.SizeAsc">1-personers</option>
                     <option [ngValue]="SortOrder.SizeDesc">2-personers</option>
-                    <option [ngValue]="SortOrder.SizeDesc">3-personers</option>
-                    <option [ngValue]="SortOrder.SizeDesc">4-personers</option>
-                    <option [ngValue]="SortOrder.SizeDesc">5-personers</option>
-                    <option [ngValue]="SortOrder.SizeDesc">6-personers</option>
-                    <option [ngValue]="SortOrder.SizeDesc">7-personers</option>
-                    <option [ngValue]="SortOrder.SizeDesc">8-personers</option>
                 </select>
                 <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by type">
-                    <option [ngValue]="SortOrder.None">Vælg Type</option>
-                    <option [ngValue]="SortOrder.TypeAsc">Hjørne</option>
-                    <option [ngValue]="SortOrder.TypeDesc">Chaiselong</option>
-                    <option [ngValue]="SortOrder.TypeDesc">Modulsofa</option>
-                    <option [ngValue]="SortOrder.TypeDesc">Sovesofa</option>
-                    <option [ngValue]="SortOrder.TypeDesc">Lædersofa</option>
-                    <option [ngValue]="SortOrder.TypeDesc">Stofsofa</option>
+                    <option value="" disabled selected>Vælg Type</option>
+                    <option *ngFor="let type of types" [value]="type.id">{{type.name}}</option>
                 </select>
                 <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by condition">
-                    <option [ngValue]="SortOrder.None">Vælg Tilstand</option>
-                    <option [ngValue]="SortOrder.ConditionAsc">Brugt</option>
-                    <option [ngValue]="SortOrder.ConditionDesc">Ny</option>
+                    <option value="" disabled selected>Vælg Tilstand</option>
+                    <option *ngFor="let condition of conditions" [value]="condition.id">{{condition.name}}</option>
                 </select>
             </div>
                 <div class="products-grid">
