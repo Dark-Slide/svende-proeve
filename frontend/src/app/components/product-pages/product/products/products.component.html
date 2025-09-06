@@ -24,7 +24,7 @@
                 </select>
                 <select [(ngModel)]="selectedMaterialId" (change)="filterProducts()" class="form-select mb-2" aria-label="Filter by material">
                     <option value="" disabled selected>Vælg Materiale</option>
-                    <option *ngFor="let material of materials" [value]="material.id">{{material.name}}</option>
+                    <option *ngFor="let material of materials" [ngValue]="material.id">{{material.name}}</option>
                 </select>
                 <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by colour">
                     <option value="" disabled selected>Vælg Farve</option>
