@@ -115,15 +115,18 @@ Route::post('/logout', function (Request $request) {
 
 Route::post('/user/register', function (Request $request) {
 
-    return response()->json([
-        'user' => $request->all(),
-    ]);
-
     $data = $request->validate([
-        'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
         'password' => ['required', 'confirmed', Password::defaults()],
+        'confirm_password' => ['required', 'confirmed', Password::defaults()],
     ]);
+
+    if ($data['password'] !== $data['confirm_password']) {
+        return response()->json(['message' => 'Passwords do not match'], 422);
+    }
+
+    // Hash password
+    $data['password'] = bcrypt($data['password']);
 
     $user = User::query()->create([
         'name' => $data['name'] ?? 'test',
