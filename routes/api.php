@@ -110,10 +110,10 @@ Route::post('/logout', function (Request $request) {
 
 });
 
-Route::post('/user', function (Request $request) {
+Route::post('/user/register', function (Request $request) {
 
     return response()->json([
-        'user' => $request->user(),
+        'user' => $request->all(),
     ]);
 
     $data = $request->validate([
