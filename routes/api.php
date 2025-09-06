@@ -36,6 +36,9 @@ Route::get('/materials', [GetController::class, 'materials'])
 Route::get('/colors', [GetController::class, 'colors'])
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
+// Types
+Route::get('/types', [GetController::class, 'types']);
+
 // Create Product
 Route::post('/product/create', [PostController::class, 'create_product'])
     ->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken');
