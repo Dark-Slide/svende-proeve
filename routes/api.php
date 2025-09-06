@@ -33,7 +33,7 @@ Route::get('/materials', [GetController::class, 'materials'])
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
 // Colors
-Route::get('/colors', [GetController::class, 'colors'])
+Route::get('/colours', [GetController::class, 'colors'])
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
 // Types
