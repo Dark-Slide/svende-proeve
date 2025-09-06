@@ -111,11 +111,9 @@ Route::post('/logout', function (Request $request) {
 });
 
 Route::post('/user', function (Request $request) {
-    $data = $request->validate([
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
-        'password' => ['required', 'confirmed', Password::defaults()],
-    ]);
+
+    dd($request->all());
+    $data = $request->get('user');
 
     $user = User::query()->create([
         'name' => $data['name'] ?? 'test',
