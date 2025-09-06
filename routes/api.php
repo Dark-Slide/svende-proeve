@@ -83,7 +83,8 @@ Route::post('/register', function (Request $request) {
         'user' => $user,
     ], 201);
 
-});
+})->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken')
+    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
 Route::post('/login', function (Request $request) {
 
@@ -112,7 +113,7 @@ Route::post('/logout', function (Request $request) {
 
 });
 
-Route::post('/user', function (Request $request) {
+Route::post('/user/register', function (Request $request) {
 
     return response()->json([
         'user' => $request->all(),
@@ -138,4 +139,5 @@ Route::post('/user', function (Request $request) {
         'user' => $user,
     ], 201);
 
-})->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken');
+})->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken')
+    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
