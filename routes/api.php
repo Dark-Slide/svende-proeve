@@ -4,7 +4,7 @@ use App\Http\Controllers\Api\GetController;
 use App\Http\Controllers\Api\PostController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rules\Password;
 
@@ -112,8 +112,11 @@ Route::post('/logout', function (Request $request) {
 
 Route::post('/user', function (Request $request) {
 
-    dd($request->all());
-    $data = $request->get('user');
+    $data = $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
+        'password' => ['required', 'confirmed', Password::defaults()],
+    ]);
 
     $user = User::query()->create([
         'name' => $data['name'] ?? 'test',
