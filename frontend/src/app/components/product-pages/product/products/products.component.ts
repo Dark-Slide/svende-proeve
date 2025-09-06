@@ -95,36 +95,6 @@ export class ProductsComponent implements OnInit {
       case SortOrder.PriceDesc:
         this.products.sort((a, b) => b.price - a.price);
         break;
-      case SortOrder.ColourAsc:
-        this.products.sort((a, b) => this.getColourName(a.colour).localeCompare(this.getColourName(b.colour)));
-        break;
-      case SortOrder.ColourDesc:
-        this.products.sort((a, b) => b.colour.localeCompare(a.colour));
-        break;
-      case SortOrder.MaterialAsc:
-        this.products.sort((a, b) => a.material.localeCompare(b.material));
-        break;
-      case SortOrder.MaterialDesc:
-        this.products.sort((a, b) => b.material.localeCompare(a.material));
-        break;
-      case SortOrder.TypeAsc:
-        this.products.sort((a, b) => a.type.localeCompare(b.type));
-        break;
-      case SortOrder.TypeDesc:
-        this.products.sort((a, b) => b.type.localeCompare(a.type));
-        break;
-      case SortOrder.SizeAsc:
-        this.products.sort((a, b) => a.size.localeCompare(b.size));
-        break;
-      case SortOrder.SizeDesc:
-        this.products.sort((a, b) => b.size.localeCompare(a.size));
-        break;
-      case SortOrder.ConditionAsc:
-        this.products.sort((a, b) => a.condition.localeCompare(b.condition));
-        break;
-      case SortOrder.ConditionDesc:
-        this.products.sort((a, b) => b.condition.localeCompare(a.condition));
-        break;
       default:
         break;
   }
@@ -134,8 +104,20 @@ selectedMaterialId: number | null = null;
 selectedColourId: number | null = null;
 selectedTypeId: number | null = null;
 selectedConditionId: number | null = null;
+
 filterProducts() {
   let filtered = [...this.products];
+
+  if (this.searchQuery) {
+    filtered = filtered.filter(product => 
+      product.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
+      (product.description && product.description.toLowerCase().includes(this.searchQuery.toLowerCase()))
+    );
+  }
+
+  if (this.categorySelected) {
+    filtered = filtered.filter(product => product.category?.id === this.categorySelected!.id);
+  }
 
   if (this.selectedMaterialId) {
     filtered = filtered.filter(product => String(product.material) === String(this.selectedMaterialId));
