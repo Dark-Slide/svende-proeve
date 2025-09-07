@@ -50,7 +50,8 @@ export class ProductsComponent implements OnInit {
   colours: Colours[] = []
   types: Types[] = []
   conditions: Conditions[] = []
-  categorySelected: Category | null = null;
+  //categorySelected: Category | null = null;
+  productSelected: Product | null = null;
   sortSelected: SortOrder = SortOrder.None;
   searchQuery: string = '';
 
@@ -72,14 +73,14 @@ export class ProductsComponent implements OnInit {
   }
 
   searchFilteredProducts(){
-    let filteredByCategory = this.categorySelected ? this.products.filter(product => product.category?.id === this.categorySelected!.id)
+    let filteredByProduct = this.productSelected ? this.products.filter(product => product?.id === this.productSelected!.id)
     : [...this.products]
 
     //Search part
-    filteredByCategory = filteredByCategory.filter(product => this.normalizeString(product.title).includes(this.normalizeString(this.searchQuery)));
+    filteredByProduct = filteredByProduct.filter(product => this.normalizeString(product.title).includes(this.normalizeString(this.searchQuery)));
 
 
-    this.filteredProducts = filteredByCategory;
+    this.filteredProducts = filteredByProduct;
 
 
     this.sortTheProducts();
@@ -159,3 +160,5 @@ materialFilter() {
 
 
 }
+
+
