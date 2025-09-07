@@ -57,13 +57,13 @@ export class ProductsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(x => this.products = x);
+    this.productService.getProducts().subscribe(sofa => {this.products = sofa; this.searchFilteredProducts();});
     this.categoryService.getAllCategories().subscribe(x => this.categories = x);
     this.materialService.getAllMaterials().subscribe(x => this.materials = x);
     this.colourService.getAllColours().subscribe(x => this.colours = x);
     this.typeService.getAllTypes().subscribe(x => this.types = x);
     this.conditionService.getAllConditions().subscribe(x => this.conditions = x);
-    this.filteredProducts = this.products;
+    //this.filteredProducts = this.products;
   }
 
   searchFilteredProducts(){
