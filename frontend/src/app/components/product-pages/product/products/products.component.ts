@@ -81,7 +81,7 @@ export class ProductsComponent implements OnInit {
     this.filteredProducts = filteredByCategory;
 
 
-    //this.sortTheProducts();
+    this.sortTheProducts();
 
   }
 
@@ -91,10 +91,10 @@ export class ProductsComponent implements OnInit {
   sortTheProducts() {
     switch (this.sortSelected) {
       case SortOrder.PriceAsc:
-        this.products.sort((a, b) => a.price - b.price);
+        this.filteredProducts.sort((a, b) => a.price - b.price);
         break;
       case SortOrder.PriceDesc:
-        this.products.sort((a, b) => b.price - a.price);
+        this.filteredProducts.sort((a, b) => b.price - a.price);
         break;
       default:
         break;
@@ -131,6 +131,8 @@ filterProducts() {
   }
 
   this.filteredProducts = filtered; 
+
+  this.sortTheProducts();
 }
 
 
