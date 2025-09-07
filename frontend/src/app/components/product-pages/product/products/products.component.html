@@ -5,7 +5,7 @@
         </div>
         <div class="row mb-4">
             <div class="search-bar">
-                <input type="text" class="form-control" placeholder="Søg efter produkter..." aria-label="Search"/>
+                <input type="text" class="form-control" placeholder="Søg efter produkter..." [(ngModel)]="searchQuery" (input)="searchFilteredProducts()" aria-label="Search"/>
                 <button class="btn btn-primary">Søg</button>
             </div>
             <div class="layout">
@@ -21,24 +21,24 @@
                     <option [ngValue]="SortOrder.PriceDesc">Højeste pris</option>
                 </select>
                 <select [(ngModel)]="selectedMaterialId" (change)="filterProducts()" class="form-select mb-2" aria-label="Filter by material">
-                    <option value="" disabled >Vælg Materiale</option>
+                    <option value="">Vælg Materiale</option>
                     <option *ngFor="let material of materials" [value]="material.id">{{material.name}}</option>
                 </select>
                 <select [(ngModel)]="selectedColourId" (change)="filterProducts()" class="form-select mb-2" aria-label="Filter by colour">
-                    <option value="" disabled >Vælg Farve</option>
+                    <option value="">Vælg Farve</option>
                     <option *ngFor="let colour of colours" [value]="colour.id">{{colour.name}}</option>
                 </select>
                 <select [(ngModel)]="selectedTypeId" (change)="filterProducts()" class="form-select mb-2" aria-label="Filter by type">
-                    <option value="" disabled >Vælg Type</option>
+                    <option value="">Vælg Type</option>
                     <option *ngFor="let type of types" [value]="type.id">{{type.name}}</option>
                 </select>
                 <select [(ngModel)]="selectedConditionId" (change)="filterProducts()" class="form-select mb-2" aria-label="Filter by condition">
-                    <option value="" disabled>Vælg Tilstand</option>
+                    <option value="">Vælg Tilstand</option>
                     <option *ngFor="let condition of conditions" [value]="condition.id">{{condition.name}}</option>
                 </select>
             </div>
                 <div class="products-grid">
-                    <div *ngFor="let product of products">
+                    <div *ngFor="let product of filteredProducts">
                     <div class="product-card" [routerLink]="['/productDetail', product.id]">
                         <div class="product-image">
                             <img [src]="product.images || 'assets/images/DummySofa.png'" [alt]="product.title" class="w-full h-auto rounded-lg shadow-lg"> 

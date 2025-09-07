@@ -57,13 +57,17 @@ export class ProductsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(x => this.products = x);
+    this.productService.getProducts().subscribe(sofa => {this.products = sofa; this.searchFilteredProducts();});
     this.categoryService.getAllCategories().subscribe(x => this.categories = x);
     this.materialService.getAllMaterials().subscribe(x => this.materials = x);
     this.colourService.getAllColours().subscribe(x => this.colours = x);
     this.typeService.getAllTypes().subscribe(x => this.types = x);
     this.conditionService.getAllConditions().subscribe(x => this.conditions = x);
-    this.filteredProducts = this.products;
+    //this.filteredProducts = this.products;
+  }
+
+  normalizeString(str: string): string {
+    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[-_  --]/g, " ");
   }
 
   searchFilteredProducts(){
@@ -71,21 +75,18 @@ export class ProductsComponent implements OnInit {
     : [...this.products]
 
     //Search part
-    filteredByCategory = filteredByCategory.filter(product => product.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
-    (product.description && product.description.toLowerCase().includes(this.searchQuery.toLowerCase())));
+    filteredByCategory = filteredByCategory.filter(product => this.normalizeString(product.title).includes(this.normalizeString(this.searchQuery)));
 
 
     this.filteredProducts = filteredByCategory;
 
-    this.sortTheProducts();
+
+    //this.sortTheProducts();
 
   }
 
 
-  getColourName(colourId: string | undefined): string {
-    const colour = this.colours.find(c => c.id === Number(colourId));
-    return colour ? colour.name : 'Ukendt farve';
-  }
+  
 
   sortTheProducts() {
     switch (this.sortSelected) {
@@ -108,15 +109,9 @@ selectedConditionId: number | null = null;
 filterProducts() {
   let filtered = [...this.products];
 
-  if (this.searchQuery) {
-    filtered = filtered.filter(product => 
-      product.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
-      (product.description && product.description.toLowerCase().includes(this.searchQuery.toLowerCase()))
-    );
-  }
-
   if (this.categorySelected) {
     filtered = filtered.filter(product => product.category?.id === this.categorySelected!.id);
+    
   }
 
   if (this.selectedMaterialId) {
