@@ -58,6 +58,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.productService.getProducts().subscribe(sofa => {this.products = sofa; this.searchFilteredProducts();});
+    console.log("Product Materials", this.products.map(p => p.material));
     this.categoryService.getAllCategories().subscribe(cat => this.categories = cat);
     this.materialService.getAllMaterials().subscribe(mat => this.materials = mat);
     this.colourService.getAllColours().subscribe(col => this.colours = col);
