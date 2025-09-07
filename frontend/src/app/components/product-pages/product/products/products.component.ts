@@ -140,6 +140,14 @@ filterProducts() {
 
   this.sortTheProducts();
 }
+materialFilter() { 
+  let filteredByMaterial = this.selectedMaterialId ?
+  this.products.filter(product => product.material?.id === this.selectedMaterialId!.id) : [...this.products];
+
+  this.filteredProducts = filteredByMaterial;
+
+  this.sortTheProducts();
+}
 
 
 
