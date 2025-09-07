@@ -77,6 +77,8 @@ export class ProductsComponent implements OnInit {
 
     this.filteredProducts = filteredByCategory;
 
+    this.filterProducts();
+
     this.sortTheProducts();
 
   }
