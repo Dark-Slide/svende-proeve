@@ -71,8 +71,7 @@ export class ProductsComponent implements OnInit {
     : [...this.products]
 
     //Search part
-    filteredByCategory = filteredByCategory.filter(product => product.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
-    (product.description && product.description.toLowerCase().includes(this.searchQuery.toLowerCase())));
+    filteredByCategory = filteredByCategory.filter(product => product.title.toLowerCase().normalize("NFD").includes(this.searchQuery.toLowerCase().normalize("NFD")));
 
 
     this.filteredProducts = filteredByCategory;
