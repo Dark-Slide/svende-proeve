@@ -21,19 +21,19 @@
                     <option [ngValue]="SortOrder.PriceDesc">Højeste pris</option>
                 </select>
                 <select [(ngModel)]="selectedMaterialId" (change)="filterProducts()" class="form-select mb-2" aria-label="Filter by material">
-                    <option value="">Vælg Materiale</option>
+                    <option>Vælg Materiale</option>
                     <option *ngFor="let material of materials" [value]="material.id">{{material.name}}</option>
                 </select>
                 <select [(ngModel)]="selectedColourId" (change)="filterProducts()" class="form-select mb-2" aria-label="Filter by colour">
-                    <option value="">Vælg Farve</option>
+                    <option>Vælg Farve</option>
                     <option *ngFor="let colour of colours" [value]="colour.id">{{colour.name}}</option>
                 </select>
                 <select [(ngModel)]="selectedTypeId" (change)="filterProducts()" class="form-select mb-2" aria-label="Filter by type">
-                    <option value="">Vælg Type</option>
+                    <option>Vælg Type</option>
                     <option *ngFor="let type of types" [value]="type.id">{{type.name}}</option>
                 </select>
                 <select [(ngModel)]="selectedConditionId" (change)="filterProducts()" class="form-select mb-2" aria-label="Filter by condition">
-                    <option value="">Vælg Tilstand</option>
+                    <option>Vælg Tilstand</option>
                     <option *ngFor="let condition of conditions" [value]="condition.id">{{condition.name}}</option>
                 </select>
             </div>
@@ -49,7 +49,9 @@
                             <div>Beskrivelse: {{product.description}}</div>
                             <div>Materiale: {{product.material}}</div>
                             <div>Farve: {{product.colour}}</div>
-                            <div>Størrelse: {{product.size}}</div>
+                            <div>Dypde:{{product.depth}}</div>
+                            <div>Højde: {{product.height}}</div>
+                            <div>Bredde: {{product.width}}</div>
                             <div>Type: {{product.type}}</div>
                             <div>Ny eller brugt: {{product.condition}}</div>
                         </div>

@@ -39,7 +39,6 @@ export class ProductsComponent implements OnInit {
     private colourService: ColourService,
     private typeService: TypeService,
     private conditionService: ConditionsService,
-    private router: Router
   ) {}
   
   public SortOrder = SortOrder; 
@@ -56,18 +55,19 @@ export class ProductsComponent implements OnInit {
   searchQuery: string = '';
 
 
+
   ngOnInit() {
     this.productService.getProducts().subscribe(sofa => {this.products = sofa; this.searchFilteredProducts();});
-    this.categoryService.getAllCategories().subscribe(x => this.categories = x);
-    this.materialService.getAllMaterials().subscribe(x => this.materials = x);
-    this.colourService.getAllColours().subscribe(x => this.colours = x);
-    this.typeService.getAllTypes().subscribe(x => this.types = x);
-    this.conditionService.getAllConditions().subscribe(x => this.conditions = x);
-    //this.filteredProducts = this.products;
+    this.categoryService.getAllCategories().subscribe(cat => this.categories = cat);
+    this.materialService.getAllMaterials().subscribe(mat => this.materials = mat);
+    this.colourService.getAllColours().subscribe(col => this.colours = col);
+    this.typeService.getAllTypes().subscribe(typ => this.types = typ);
+    this.conditionService.getAllConditions().subscribe(con => this.conditions = con);
+    
   }
 
   normalizeString(str: string): string {
-    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[-_  --]/g, " ");
+    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[-_ ]/g, " ");
   }
 
   searchFilteredProducts(){
@@ -101,23 +101,29 @@ export class ProductsComponent implements OnInit {
   }
   
 }
-selectedMaterialId: number | null = null;
+selectedMaterialId: Materials | null = null;
 selectedColourId: number | null = null;
 selectedTypeId: number | null = null;
 selectedConditionId: number | null = null;
 
 filterProducts() {
-  let filtered = [...this.products];
-
+  //let filtered = [...this.products];
+  /*
   if (this.categorySelected) {
     filtered = filtered.filter(product => product.category?.id === this.categorySelected!.id);
     
-  }
+  }*/
 
-  if (this.selectedMaterialId) {
-    filtered = filtered.filter(product => String(product.material) === String(this.selectedMaterialId));
-  }
+  let filteredByMaterial = this.selectedMaterialId ? 
+  this.products.filter(product => product.material?.id === this.selectedMaterialId!.id) : [...this.products];
+  
+  this.filteredProducts = filteredByMaterial;
 
+  
+
+
+
+ /*
   if (this.selectedColourId) {
     filtered = filtered.filter(product => String(product.colour) === String(this.selectedColourId));
   }
@@ -128,12 +134,13 @@ filterProducts() {
 
   if (this.selectedConditionId) {
     filtered = filtered.filter(product => String(product.condition) === String(this.selectedConditionId));
-  }
+  }*/
 
-  this.filteredProducts = filtered; 
+  
 
   this.sortTheProducts();
 }
+
 
 
 }
