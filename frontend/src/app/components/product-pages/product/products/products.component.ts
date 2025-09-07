@@ -108,13 +108,6 @@ selectedConditionId: number | null = null;
 filterProducts() {
   let filtered = [...this.products];
 
-  if (this.searchQuery) {
-    filtered = filtered.filter(product => 
-      product.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
-      (product.description && product.description.toLowerCase().includes(this.searchQuery.toLowerCase()))
-    );
-  }
-
   if (this.categorySelected) {
     filtered = filtered.filter(product => product.category?.id === this.categorySelected!.id);
   }
