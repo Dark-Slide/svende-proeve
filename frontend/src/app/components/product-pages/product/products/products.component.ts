@@ -71,19 +71,25 @@ export class ProductsComponent implements OnInit {
   }
 
   searchFilteredProducts(){
-    this.filteredProducts = this.products.filter(product => {
-      const matchesMaterial = this.selectedMaterialId ? (typeof product.material === 'object' ? product.material?.id === this.selectedMaterialId : product.material === this.selectedMaterialId) : true;
+    let filtered = [...this.products];
+
+    //Category part
     let filteredByCategory = this.categorySelected ? this.products.filter(product => product.category?.id === this.categorySelected!.id)
     : [...this.products]
 
     //Search part
-    filteredByCategory = filteredByCategory.filter(product => this.normalizeString(product.title).includes(this.normalizeString(this.searchQuery)));
+    filtered = filtered.filter(product => this.normalizeString(product.title).includes(this.normalizeString(this.searchQuery)));
 
-
-    this.filteredProducts = filteredByCategory;
-    return matchesMaterial;
+    //Material part
     
-    });
+
+
+    this.filteredProducts = filtered;
+
+    this.typeFilter();
+    this.colourFilter();
+    this.materialFilter();
+    this.conditionFilter();
 
     this.sortTheProducts();
 
@@ -141,16 +147,15 @@ colourFilter() {
   this.products.filter(product => { 
     const colourId = typeof product.colour === 'object' ? product.colour?.id : product.colour;
     return String(colourId) === String(this.selectedColourId)}) : [...this.products];
-
+    
   this.filteredProducts = filteredByColour;
-
   this.sortTheProducts();
 }
 
 
 materialFilter() { 
   let filteredByMaterial = this.selectedMaterialId ?
-  this.products.filter(product => { 
+  this.filteredProducts.filter(product => { 
     const materialId = typeof product.material === 'object' ? product.material?.id : product.material;
     return String(materialId) === String(this.selectedMaterialId)}) : [...this.products];
 
