@@ -5,7 +5,7 @@
         </div>
         <div class="row mb-4">
             <div class="search-bar">
-                <input type="text" class="form-control" placeholder="Søg efter produkter..." aria-label="Search"/>
+                <input type="text" class="form-control" placeholder="Søg efter produkter..." [(ngModel)]="searchQuery" (input)="searchFilteredProducts()" aria-label="Search"/>
                 <button class="btn btn-primary">Søg</button>
             </div>
             <div class="layout">
