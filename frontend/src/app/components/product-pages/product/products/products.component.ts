@@ -66,12 +66,16 @@ export class ProductsComponent implements OnInit {
     //this.filteredProducts = this.products;
   }
 
+  normalizeString(str: string): string {
+    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[-_ ]/g, " ");
+  }
+
   searchFilteredProducts(){
     let filteredByCategory = this.categorySelected ? this.products.filter(product => product.category?.id === this.categorySelected!.id)
     : [...this.products]
 
     //Search part
-    filteredByCategory = filteredByCategory.filter(product => product.title.toLowerCase().normalize("NFD").includes(this.searchQuery.toLowerCase().normalize("NFD")));
+    filteredByCategory = filteredByCategory.filter(product => this.normalizeString(product.title).includes(this.normalizeString(this.searchQuery)));
 
 
     this.filteredProducts = filteredByCategory;
@@ -82,10 +86,7 @@ export class ProductsComponent implements OnInit {
   }
 
 
-  getColourName(colourId: string | undefined): string {
-    const colour = this.colours.find(c => c.id === Number(colourId));
-    return colour ? colour.name : 'Ukendt farve';
-  }
+  
 
   sortTheProducts() {
     switch (this.sortSelected) {
