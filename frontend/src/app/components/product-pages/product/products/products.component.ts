@@ -71,21 +71,17 @@ export class ProductsComponent implements OnInit {
   }
 
   searchFilteredProducts(){
-    let filtered = [...this.products];
 
+    
     //Category part
-    /*
     let filteredByCategory = this.categorySelected ? this.products.filter(product => product.category?.id === this.categorySelected!.id)
-    : [...this.products]*/
+    : [...this.products]
 
     //Search part
-    filtered = filtered.filter(product => this.normalizeString(product.title).includes(this.normalizeString(this.searchQuery)));
-
-    //Material part
-    
+    filteredByCategory = filteredByCategory.filter(product => this.normalizeString(product.title).includes(this.normalizeString(this.searchQuery)));
 
 
-    this.filteredProducts = filtered;
+    this.filteredProducts = filteredByCategory;
 
     this.typeFilter();
     this.colourFilter();
