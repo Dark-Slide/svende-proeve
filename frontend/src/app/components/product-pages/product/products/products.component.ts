@@ -71,9 +71,6 @@ export class ProductsComponent implements OnInit {
   }
 
   searchFilteredProducts(){
-
-    
-    //Category part
     let filteredByCategory = this.categorySelected ? this.products.filter(product => product.category?.id === this.categorySelected!.id)
     : [...this.products]
 
@@ -83,10 +80,6 @@ export class ProductsComponent implements OnInit {
 
     this.filteredProducts = filteredByCategory;
 
-    this.typeFilter();
-    this.colourFilter();
-    this.materialFilter();
-    this.conditionFilter();
 
     this.sortTheProducts();
 
@@ -152,7 +145,7 @@ colourFilter() {
 
 materialFilter() { 
   let filteredByMaterial = this.selectedMaterialId ?
-  this.filteredProducts.filter(product => { 
+  this.products.filter(product => { 
     const materialId = typeof product.material === 'object' ? product.material?.id : product.material;
     return String(materialId) === String(this.selectedMaterialId)}) : [...this.products];
 
