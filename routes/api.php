@@ -65,7 +65,8 @@ Route::get('/order_lines/order/{order_id}', [GetController::class, 'order_lines_
 Route::get('/user/sanctum/csrf-cookie', fn () => response()->noContent());
 
 // User
-Route::get('/user', fn (Request $r) => $r->user())->middleware('auth:sanctum');
+Route::get('/user', fn (Request $r) => $r->user())->middleware('auth:sanctum')
+    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
 Route::get('/user/{id}', [GetController::class, 'user'])
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
@@ -83,7 +84,7 @@ Route::post('/user/login', function (Request $request) {
 
     return response()->json(['ok' => true]);
 
-})->middleware('auth:sanctum');
+});
 
 Route::post('/user/logout', function (Request $request) {
 
@@ -118,7 +119,7 @@ Route::post('/user/register', function (Request $request) {
         'password' => $data['password'],
     ]);
 
-    Auth::guard('web')->login($user);
+    Auth::login($user);
     $request->session()->regenerate();
 
     return response()->json([
@@ -126,7 +127,7 @@ Route::post('/user/register', function (Request $request) {
         'user' => $user,
     ], 201);
 
-})->middleware('auth:sanctum');
+})->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');;
 
 Route::get('/user/session', function (Request $request) {
 
