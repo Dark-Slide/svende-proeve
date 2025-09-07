@@ -71,6 +71,8 @@ export class ProductsComponent implements OnInit {
   }
 
   searchFilteredProducts(){
+    this.filteredProducts = this.products.filter(product => {
+      const matchesMaterial = this.selectedMaterialId ? (typeof product.material === 'object' ? product.material?.id === this.selectedMaterialId : product.material === this.selectedMaterialId) : true;
     let filteredByCategory = this.categorySelected ? this.products.filter(product => product.category?.id === this.categorySelected!.id)
     : [...this.products]
 
@@ -79,7 +81,9 @@ export class ProductsComponent implements OnInit {
 
 
     this.filteredProducts = filteredByCategory;
-
+    return matchesMaterial;
+    
+    });
 
     this.sortTheProducts();
 
