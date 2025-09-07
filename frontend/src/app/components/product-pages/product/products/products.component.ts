@@ -140,7 +140,9 @@ filterProducts() {
 selectedMaterialId: number | null = null;
 materialFilter() { 
   let filteredByMaterial = this.selectedMaterialId ?
-  this.products.filter(product => product.material?.id === this.selectedMaterialId) : [...this.products];
+  this.products.filter(product => { 
+    const materialId = typeof product.material === 'object' ? product.material?.id : product.material;
+    return String(materialId) === String(this.selectedMaterialId)}) : [...this.products];
 
   this.filteredProducts = filteredByMaterial;
 
