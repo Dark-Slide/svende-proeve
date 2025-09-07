@@ -14,7 +14,7 @@ export interface Product {
     width:number;
     height:number;
     depth:number;
-
+    
 
     typeId: number;
     type: Types;
