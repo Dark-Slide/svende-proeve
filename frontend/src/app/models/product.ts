@@ -2,20 +2,28 @@ import { Image } from "./image";
 import { Category } from "./category";
 import { Profile } from "./profile";
 import { Materials } from "./materials";
+import { Colours } from "./colours";
+import { Types } from "./types";
+import { Conditions } from "./conditions";
 
 export interface Product {
     id:number;
     title:string;
     description:string;
     price:number;
-    colour:string;
     width:number;
     height:number;
     depth:number;
 
 
-    condition:string;
-    type:string;
+    typeId: number;
+    type: Types;
+    
+    conditionId: number;
+    condition: Conditions;
+
+    colourId: number;
+    colour: Colours;
 
     
     materialId: number;

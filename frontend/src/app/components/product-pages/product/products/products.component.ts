@@ -57,7 +57,7 @@ export class ProductsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(sofa => {this.products = sofa; console.log("Products loaded:", this.products); console.log("Product Materials", this.products.map(p => p.material)); this.searchFilteredProducts();});
+    this.productService.getProducts().subscribe(sofa => {this.products = sofa; this.searchFilteredProducts();});
     this.categoryService.getAllCategories().subscribe(cat => this.categories = cat);
     this.materialService.getAllMaterials().subscribe(mat => this.materials = mat);
     this.colourService.getAllColours().subscribe(col => this.colours = col);
@@ -102,42 +102,48 @@ export class ProductsComponent implements OnInit {
   
 }
 
+
+
+//Filtering part
 selectedColourId: number | null = null;
 selectedTypeId: number | null = null;
 selectedConditionId: number | null = null;
+selectedMaterialId: number | null = null;
 
-filterProducts() {
-  //let filtered = [...this.products];
-  /*
-  if (this.categorySelected) {
-    filtered = filtered.filter(product => product.category?.id === this.categorySelected!.id);
-    
-  }*/
+conditionFilter() { 
+  let filteredByCondition = this.selectedConditionId ?
+  this.products.filter(product => { 
+    const conditionId = typeof product.condition === 'object' ? product.condition?.id : product.condition;
+    return String(conditionId) === String(this.selectedConditionId)}) : [...this.products];
 
-  
-
-  
-
-
- /*
-  if (this.selectedColourId) {
-    filtered = filtered.filter(product => String(product.colour) === String(this.selectedColourId));
-  }
-
-  if (this.selectedTypeId) {
-    filtered = filtered.filter(product => String(product.type) === String(this.selectedTypeId));
-  }
-
-  if (this.selectedConditionId) {
-    filtered = filtered.filter(product => String(product.condition) === String(this.selectedConditionId));
-  }*/
-
-  
+  this.filteredProducts = filteredByCondition;
 
   this.sortTheProducts();
 }
 
-selectedMaterialId: number | null = null;
+typeFilter() { 
+  let filteredByType = this.selectedTypeId ?
+  this.products.filter(product => { 
+    const typeId = typeof product.type === 'object' ? product.type?.id : product.type;
+    return String(typeId) === String(this.selectedTypeId)}) : [...this.products];
+
+  this.filteredProducts = filteredByType;
+
+  this.sortTheProducts();
+}
+
+colourFilter() { 
+  let filteredByColour = this.selectedColourId ?
+  this.products.filter(product => { 
+    const colourId = typeof product.colour === 'object' ? product.colour?.id : product.colour;
+    return String(colourId) === String(this.selectedColourId)}) : [...this.products];
+
+  this.filteredProducts = filteredByColour;
+
+  this.sortTheProducts();
+}
+
+
 materialFilter() { 
   let filteredByMaterial = this.selectedMaterialId ?
   this.products.filter(product => { 

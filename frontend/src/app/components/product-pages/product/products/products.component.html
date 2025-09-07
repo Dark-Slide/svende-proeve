@@ -24,15 +24,15 @@
                     <option>Vælg Materiale</option>
                     <option *ngFor="let material of materials" [value]="material.id">{{material.name}}</option>
                 </select>
-                <select [(ngModel)]="selectedColourId" (change)="filterProducts()" class="form-select mb-2" aria-label="Filter by colour">
+                <select [(ngModel)]="selectedColourId" (change)="colourFilter()" class="form-select mb-2" aria-label="Filter by colour">
                     <option>Vælg Farve</option>
                     <option *ngFor="let colour of colours" [value]="colour.id">{{colour.name}}</option>
                 </select>
-                <select [(ngModel)]="selectedTypeId" (change)="filterProducts()" class="form-select mb-2" aria-label="Filter by type">
+                <select [(ngModel)]="selectedTypeId" (change)="typeFilter()" class="form-select mb-2" aria-label="Filter by type">
                     <option>Vælg Type</option>
                     <option *ngFor="let type of types" [value]="type.id">{{type.name}}</option>
                 </select>
-                <select [(ngModel)]="selectedConditionId" (change)="filterProducts()" class="form-select mb-2" aria-label="Filter by condition">
+                <select [(ngModel)]="selectedConditionId" (change)="conditionFilter()" class="form-select mb-2" aria-label="Filter by condition">
                     <option>Vælg Tilstand</option>
                     <option *ngFor="let condition of conditions" [value]="condition.id">{{condition.name}}</option>
                 </select>
