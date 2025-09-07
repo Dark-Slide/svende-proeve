@@ -67,7 +67,7 @@ export class ProductsComponent implements OnInit {
   }
 
   normalizeString(str: string): string {
-    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[-_ ]/g, " ");
+    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[-_  --]/g, " ");
   }
 
   searchFilteredProducts(){
