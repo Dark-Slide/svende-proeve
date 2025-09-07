@@ -64,6 +64,7 @@ export class ProductsComponent implements OnInit {
     this.typeService.getAllTypes().subscribe(typ => this.types = typ);
     this.conditionService.getAllConditions().subscribe(con => this.conditions = con);
     
+    
   }
 
   normalizeString(str: string): string {
@@ -101,6 +102,7 @@ export class ProductsComponent implements OnInit {
   }
   
 }
+filterHolder(){}
 
 
 
