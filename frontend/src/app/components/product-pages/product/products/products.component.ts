@@ -81,7 +81,7 @@ export class ProductsComponent implements OnInit {
     this.filteredProducts = filteredByCategory;
 
 
-    this.sortTheProducts();
+    //this.sortTheProducts();
 
   }
 
@@ -111,6 +111,7 @@ filterProducts() {
 
   if (this.categorySelected) {
     filtered = filtered.filter(product => product.category?.id === this.categorySelected!.id);
+    
   }
 
   if (this.selectedMaterialId) {
