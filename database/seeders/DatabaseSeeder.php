@@ -257,7 +257,7 @@ use Illuminate\Support\Facades\DB;
 
     private function buildProductName(string $type, string $material, string $color): string
     {
-        return sprintf('%s – %s – %s', $type, mb_strtolower($material), mb_strtolower($color));
+        return sprintf('%s - %s - %s', $type, mb_strtolower($material), mb_strtolower($color));
     }
 
     private function buildDescription(string $type, string $material, string $color): string
@@ -265,21 +265,21 @@ use Illuminate\Support\Facades\DB;
         $tpl = $this->pick($this->descTemplates);
 
         $adjective = $this->pick($this->adjectives);
-        $useCase   = $this->pick($this->useCases);
+        $useCase = $this->pick($this->useCases);
 
         $featureList = $this->pickMany($this->features, random_int(1, 3));
         $featureSentence = $this->featuresToSentence($featureList);
 
-        $cta = random_int(0, 1) ? $this->pick($this->ctas) : ''; // CTA er valgfri
+        $cta = random_int(0, 1) ? $this->pick($this->ctas) : '';
 
         $replacements = [
-            '{type}'             => mb_strtolower($type),
-            '{material}'         => mb_strtolower($material),
-            '{color}'            => mb_strtolower($color),
-            '{adjective}'        => $adjective,
-            '{use_case}'         => $useCase,
+            '{type}' => mb_strtolower($type),
+            '{material}' => mb_strtolower($material),
+            '{color}' => mb_strtolower($color),
+            '{adjective}' => $adjective,
+            '{use_case}' => $useCase,
             '{feature_sentence}' => $featureSentence,
-            '{cta}'              => $cta,
+            '{cta}' => $cta,
         ];
 
         $text = trim(preg_replace('/\s+/', ' ', strtr($tpl, $replacements)));
@@ -317,7 +317,7 @@ use Illuminate\Support\Facades\DB;
     private array $descTemplates = [
         // Brug {type}, {material}, {color}, {adjective}, {use_case}, {feature_sentence}, {cta}
         'Elegant {type} i {material}. {feature_sentence} Passer godt til {use_case}.',
-        'Skabt til hverdagen — {type} i {material}. Farve: {color}. {feature_sentence} {cta}',
+        'Skabt til hverdagen - {type} i {material}. Farve: {color}. {feature_sentence} {cta}',
         'Tidløst valg: {type} i {material}, {adjective} og robust. Vist her i {color}. {feature_sentence}',
         '{type} i {material} med fokus på komfort. {feature_sentence} Ideel til {use_case}.',
         'Fleksibelt design: {type} i {material}. {feature_sentence} Farve: {color}. {cta}',
