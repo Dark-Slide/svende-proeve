@@ -101,7 +101,7 @@ export class ProductsComponent implements OnInit {
   }
   
 }
-selectedMaterialId: Materials | null = null;
+
 selectedColourId: number | null = null;
 selectedTypeId: number | null = null;
 selectedConditionId: number | null = null;
@@ -114,13 +114,9 @@ filterProducts() {
     
   }*/
 
-  let filteredByMaterial = this.selectedMaterialId ? 
-  this.products.filter(product => product.material?.id === this.selectedMaterialId!.id) : [...this.products];
-  
-  this.filteredProducts = filteredByMaterial;
-
   
 
+  
 
 
  /*
@@ -140,9 +136,11 @@ filterProducts() {
 
   this.sortTheProducts();
 }
+
+selectedMaterialId: number | null = null;
 materialFilter() { 
   let filteredByMaterial = this.selectedMaterialId ?
-  this.products.filter(product => product.material?.id === this.selectedMaterialId!.id) : [...this.products];
+  this.products.filter(product => product.material?.id === this.selectedMaterialId) : [...this.products];
 
   this.filteredProducts = filteredByMaterial;
 
