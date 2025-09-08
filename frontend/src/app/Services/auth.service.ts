@@ -113,7 +113,7 @@ export class AuthService {
   }
 
   getProfileUser(): Observable<Profile> {
-    return this.http.get<Profile>(this.apiUrl + "/profile", {withCredentials:true});
+    return this.http.get<Profile>(this.apiUrl, {withCredentials:true});
   }
 
 
