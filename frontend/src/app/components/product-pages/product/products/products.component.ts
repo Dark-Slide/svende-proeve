@@ -79,6 +79,11 @@ export class ProductsComponent implements OnInit {
     //Search part
     filteredByProduct = filteredByProduct.filter(product => this.normalizeString(product.title).includes(this.normalizeString(this.searchQuery)));
 
+    //Material part
+    filteredByProduct = this.selectedMaterialId ?
+    filteredByProduct.filter(product => { 
+      const materialId = typeof product.material === 'object' ? product.material?.id : product.material;
+      return String(materialId) === String(this.selectedMaterialId)}) : filteredByProduct;
 
     this.filteredProducts = filteredByProduct;
 
