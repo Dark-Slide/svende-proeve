@@ -43,6 +43,7 @@ export class ProductDetailComponent implements OnInit {
         this.productService.getProductById(params['productId']).subscribe((product) => {
           if(!product) return;
           this.product = product;
+          
         
         });
       })
