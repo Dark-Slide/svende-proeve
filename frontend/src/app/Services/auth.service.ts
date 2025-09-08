@@ -59,6 +59,9 @@ export class AuthService {
         console.error('Error loading user:', error);
         this.userSubject.next(null);
       }
+
+      this.loadProfile();
+
     }
 
 
