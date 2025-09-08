@@ -384,8 +384,8 @@ use Illuminate\Support\Facades\DB;
     {
 
         $media = [
-            ['path' => public_path('assets/images/DummySofa.png')],
-            ['path' => public_path('assets/images/DummyProfile.png')],
+            ['path' => 'assets/images/DummySofa.png'],
+            ['path' => 'assets/images/DummyProfile.png'],
         ];
 
         foreach ($media as $item) {
