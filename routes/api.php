@@ -130,7 +130,7 @@ Route::get('/user/session', function (Request $request) {
 });
 
 // Profile
-Route::get('/user/profile', function () {
+Route::get('/profile', function () {
 
     return 'here';
 
@@ -152,8 +152,8 @@ Route::get('/user/profile', function () {
     ->withoutMiddleware('Illuminate\Session\Middleware\AuthenticateSession')
     ->withoutMiddleware('App\Http\Middleware\VerifyCsrfToken');
 
-Route::get('/user/profile/{id}/orders', [GetController::class, 'orders_by_profile'])->middleware('auth:sanctum');
+Route::get('/profile/{id}/orders', [GetController::class, 'orders_by_profile'])->middleware('auth:sanctum');
 
-Route::get('/user/profile/{id}/products', [GetController::class, 'products_by_profile'])->middleware('auth:sanctum');
+Route::get('/profile/{id}/products', [GetController::class, 'products_by_profile'])->middleware('auth:sanctum');
 
-Route::get('/user/profile/{id}/sales', [GetController::class, 'sales_by_profile'])->middleware('auth:sanctum');
+Route::get('/profile/{id}/sales', [GetController::class, 'sales_by_profile'])->middleware('auth:sanctum');
