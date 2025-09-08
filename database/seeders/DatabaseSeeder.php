@@ -9,7 +9,6 @@ use App\Models\Material;
 use App\Models\Product;
 use App\Models\Type;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;

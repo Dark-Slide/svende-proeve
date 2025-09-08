@@ -9,67 +9,51 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rules\Password;
 
 // Frontpage
-Route::get('/frontpage', [GetController::class, 'frontpage'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
-
+Route::get('/frontpage', [GetController::class, 'frontpage']);
 
 // Products
-Route::get('/products', [GetController::class, 'products'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+Route::get('/products', [GetController::class, 'products']);
 
-Route::get('/products/{id}', [GetController::class, 'product'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+Route::get('/products/{id}', [GetController::class, 'product']);
 
 // Get Products by category
-Route::get('/products/category/{category}', [GetController::class, 'products_by_category'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+Route::get('/products/category/{category}', [GetController::class, 'products_by_category']);
 
 // Categories
-Route::get('/categories', [GetController::class, 'categories'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+Route::get('/categories', [GetController::class, 'categories']);
 
 // Materials
-Route::get('/materials', [GetController::class, 'materials'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+Route::get('/materials', [GetController::class, 'materials']);
 
 // Colors
-Route::get('/colours', [GetController::class, 'colors'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+Route::get('/colours', [GetController::class, 'colors']);
 
 // Types
 Route::get('/types', [GetController::class, 'types']);
 
 // Create Product
-Route::post('/product/create', [PostController::class, 'create_product'])
-    ->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken');
+Route::post('/product/create', [PostController::class, 'create_product']);
 
 // Orders
-Route::get('/orders', [GetController::class, 'orders'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+Route::get('/orders', [GetController::class, 'orders']);
 
-Route::get('/order/{id}', [GetController::class, 'order'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+Route::get('/order/{id}', [GetController::class, 'order']);
 
-Route::get('/orders/user/{user_id}', [GetController::class, 'orders_by_user'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+Route::get('/orders/user/{user_id}', [GetController::class, 'orders_by_user']);
 
 // Create Order
-Route::post('/order/create', [PostController::class, 'create_order'])
-    ->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken');
+Route::post('/order/create', [PostController::class, 'create_order']);
 
 // Order Lines
-Route::get('/order_lines/order/{order_id}', [GetController::class, 'order_lines_by_order'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+Route::get('/order_lines/order/{order_id}', [GetController::class, 'order_lines_by_order']);
 
 // User CSRF
 Route::get('/user/sanctum/csrf-cookie', fn () => response()->noContent());
 
 // User
-Route::get('/user', fn (Request $r) => $r->user())->middleware('auth:sanctum')
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+Route::get('/user', fn (Request $r) => $r->user())->middleware('auth:sanctum');
 
-Route::get('/user/{id}', [GetController::class, 'user'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+Route::get('/user/{id}', [GetController::class, 'user']);
 
 Route::post('/user/login', function (Request $request) {
 
@@ -127,7 +111,7 @@ Route::post('/user/register', function (Request $request) {
         'user' => $user,
     ], 201);
 
-})->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');;
+});
 
 Route::get('/user/session', function (Request $request) {
 
@@ -139,8 +123,9 @@ Route::get('/user/session', function (Request $request) {
 
     return response()->json(['user' => $user]);
 
-})->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+});
 
 // Profile
-Route::get('/profile/{id}', [GetController::class, 'profile'])
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+Route::get('/profile/{id}', [GetController::class, 'profile']);
+
+Route::get('/profile/{id}/orders', [GetController::class, 'profile_by_user']);
