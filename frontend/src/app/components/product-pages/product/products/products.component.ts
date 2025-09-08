@@ -39,7 +39,6 @@ export class ProductsComponent implements OnInit {
     private colourService: ColourService,
     private typeService: TypeService,
     private conditionService: ConditionsService,
-    private router: Router
   ) {}
   
   public SortOrder = SortOrder; 
@@ -51,37 +50,46 @@ export class ProductsComponent implements OnInit {
   colours: Colours[] = []
   types: Types[] = []
   conditions: Conditions[] = []
-  categorySelected: Category | null = null;
+  //categorySelected: Category | null = null;
+  productSelected: Product | null = null;
+  materialSelected: Materials | null = null;
   sortSelected: SortOrder = SortOrder.None;
   searchQuery: string = '';
 
 
+
   ngOnInit() {
     this.productService.getProducts().subscribe(sofa => {this.products = sofa; this.searchFilteredProducts();});
-    this.categoryService.getAllCategories().subscribe(x => this.categories = x);
-    this.materialService.getAllMaterials().subscribe(x => this.materials = x);
-    this.colourService.getAllColours().subscribe(x => this.colours = x);
-    this.typeService.getAllTypes().subscribe(x => this.types = x);
-    this.conditionService.getAllConditions().subscribe(x => this.conditions = x);
-    //this.filteredProducts = this.products;
+    this.categoryService.getAllCategories().subscribe(cat => this.categories = cat);
+    this.materialService.getAllMaterials().subscribe(mat => this.materials = mat);
+    this.colourService.getAllColours().subscribe(col => this.colours = col);
+    this.typeService.getAllTypes().subscribe(typ => this.types = typ);
+    this.conditionService.getAllConditions().subscribe(con => this.conditions = con);
+    
+    
   }
 
   normalizeString(str: string): string {
-    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[-_  --]/g, " ");
+    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[-_ ]/g, " ");
   }
 
   searchFilteredProducts(){
-    let filteredByCategory = this.categorySelected ? this.products.filter(product => product.category?.id === this.categorySelected!.id)
+    let filteredByProduct = this.productSelected ? this.products.filter(product => product?.id === this.productSelected!.id)
     : [...this.products]
 
     //Search part
-    filteredByCategory = filteredByCategory.filter(product => this.normalizeString(product.title).includes(this.normalizeString(this.searchQuery)));
+    filteredByProduct = filteredByProduct.filter(product => this.normalizeString(product.title).includes(this.normalizeString(this.searchQuery)));
+
+    //Material part
+    let filteredByMaterial = this.materialSelected ? this.filteredProducts.filter(product => product?.materialId === this.materialSelected!.id) : filteredByProduct;
+
+    
+    this.materialSelected ? this.filteredProducts = filteredByMaterial :
+
+    this.filteredProducts = filteredByProduct;
 
 
-    this.filteredProducts = filteredByCategory;
-
-
-    //this.sortTheProducts();
+    this.sortTheProducts();
 
   }
 
@@ -91,47 +99,72 @@ export class ProductsComponent implements OnInit {
   sortTheProducts() {
     switch (this.sortSelected) {
       case SortOrder.PriceAsc:
-        this.products.sort((a, b) => a.price - b.price);
+        this.filteredProducts.sort((a, b) => a.price - b.price);
         break;
       case SortOrder.PriceDesc:
-        this.products.sort((a, b) => b.price - a.price);
+        this.filteredProducts.sort((a, b) => b.price - a.price);
         break;
       default:
         break;
   }
   
 }
-selectedMaterialId: number | null = null;
+filterHolder(){}
+
+
+
+//Filtering part
 selectedColourId: number | null = null;
 selectedTypeId: number | null = null;
 selectedConditionId: number | null = null;
+selectedMaterialId: number | null = null;
 
-filterProducts() {
-  let filtered = [...this.products];
+conditionFilter() { 
+  let filteredByCondition = this.selectedConditionId ?
+  this.products.filter(product => { 
+    const conditionId = typeof product.condition === 'object' ? product.condition?.id : product.condition;
+    return String(conditionId) === String(this.selectedConditionId)}) : [...this.products];
 
-  if (this.categorySelected) {
-    filtered = filtered.filter(product => product.category?.id === this.categorySelected!.id);
+  this.filteredProducts = filteredByCondition;
+
+  this.sortTheProducts();
+}
+
+typeFilter() { 
+  let filteredByType = this.selectedTypeId ?
+  this.products.filter(product => { 
+    const typeId = typeof product.type === 'object' ? product.type?.id : product.type;
+    return String(typeId) === String(this.selectedTypeId)}) : [...this.products];
+
+  this.filteredProducts = filteredByType;
+
+  this.sortTheProducts();
+}
+
+colourFilter() { 
+  let filteredByColour = this.selectedColourId ?
+  this.products.filter(product => { 
+    const colourId = typeof product.colour === 'object' ? product.colour?.id : product.colour;
+    return String(colourId) === String(this.selectedColourId)}) : [...this.products];
     
-  }
-
-  if (this.selectedMaterialId) {
-    filtered = filtered.filter(product => String(product.material) === String(this.selectedMaterialId));
-  }
-
-  if (this.selectedColourId) {
-    filtered = filtered.filter(product => String(product.colour) === String(this.selectedColourId));
-  }
-
-  if (this.selectedTypeId) {
-    filtered = filtered.filter(product => String(product.type) === String(this.selectedTypeId));
-  }
-
-  if (this.selectedConditionId) {
-    filtered = filtered.filter(product => String(product.condition) === String(this.selectedConditionId));
-  }
-
-  this.filteredProducts = filtered; 
+  this.filteredProducts = filteredByColour;
+  this.sortTheProducts();
 }
 
 
+materialFilter() { 
+  let filteredByMaterial = this.selectedMaterialId ?
+  this.products.filter(product => { 
+    const materialId = typeof product.material === 'object' ? product.material?.id : product.material;
+    return String(materialId) === String(this.selectedMaterialId)}) : [...this.products];
+
+  this.filteredProducts = filteredByMaterial;
+
+  this.sortTheProducts();
 }
+
+
+
+}
+
+
