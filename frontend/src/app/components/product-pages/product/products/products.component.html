@@ -41,7 +41,7 @@
                     <div *ngFor="let product of filteredProducts">
                     <div class="product-card" [routerLink]="['/productDetail', product.id]">
                         <div class="product-image">
-                            <img [src]="product.images " [alt]="product.title" class="w-full h-auto rounded-lg shadow-lg"> 
+                            <img [src]="product.images?.length ? product.images[0].imageUrl : 'assets/images/DummySofa.png' " [alt]="product.title" class="w-full h-auto rounded-lg shadow-lg"> 
                         </div>
                         <div class="product-card-details">
                             <div class="product-title">{{product.title}}</div>
