@@ -287,54 +287,54 @@ class GetController extends Controller
     // Profile
     function profile($id)
     {
-
-        $user = auth()->user();
-
-        if ( ! $user ) {
-            return response()->json(['message' => 'User not authenticated'], 401);
-        }
-
-        return response()->json([
-            $this->transform_user_to_object( $user )
-        ]);
+//
+//        $user = auth()->user();
+//
+//        if ( ! $user ) {
+//            return response()->json(['message' => 'User not authenticated'], 401);
+//        }
+//
+//        return response()->json([
+//            $this->transform_user_to_object( $user )
+//        ]);
 
     }
 
     function products_by_profile($id)
     {
-
-        // Use authenticated user
-        $auth = auth()->user();
-        if ( ! $auth ) {
-            return response()->json(['message' => 'User not authenticated'], 401);
-        }
-
-        $user = User::query()->find( $id );
-
-        $products = Product::query()->where('user_id', $user->id)->get();
-
-        return response()->json([
-            $this->transform_products_to_collection_of_objects($products)->toArray()
-        ]);
+//
+//        // Use authenticated user
+//        $auth = auth()->user();
+//        if ( ! $auth ) {
+//            return response()->json(['message' => 'User not authenticated'], 401);
+//        }
+//
+//        $user = User::query()->find( $id );
+//
+//        $products = Product::query()->where('user_id', $user->id)->get();
+//
+//        return response()->json([
+//            $this->transform_products_to_collection_of_objects($products)->toArray()
+//        ]);
 
     }
 
     function orders_by_profile()
     {
-
-        // Use authenticated user
-        $auth = auth()->user();
-        if ( ! $auth ) {
-            return response()->json(['message' => 'User not authenticated'], 401);
-        }
-
-        $user = User::query()->find( $auth->id );
-
-        $orders = Order::query()->where('user_id', $user->id)->get();
-
-        return response()->json([
-            //$this->transform_products_to_collection_of_objects($orders)->toArray()
-        ]);
+//
+//        // Use authenticated user
+//        $auth = auth()->user();
+//        if ( ! $auth ) {
+//            return response()->json(['message' => 'User not authenticated'], 401);
+//        }
+//
+//        $user = User::query()->find( $auth->id );
+//
+//        $orders = Order::query()->where('user_id', $user->id)->get();
+//
+//        return response()->json([
+//            //$this->transform_products_to_collection_of_objects($orders)->toArray()
+//        ]);
 
     }
 
