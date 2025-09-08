@@ -113,7 +113,12 @@ export class AuthService {
   }
 
   getProfileUser(): Observable<Profile> {
-    return this.http.get<Profile>(this.apiUrl, {withCredentials:true});
+    return this.http.get<Profile>(this.apiUrl + "/profile", {withCredentials:true});
+  }
+
+  loadProfileAlone(): void {
+    this.http.get<Profile>(this.apiUrlProfile , {withCredentials: true}).subscribe
+    (profile => this.profileSubject.next(profile), () => this.profileSubject.next(null));
   }
 
 
