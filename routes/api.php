@@ -130,7 +130,9 @@ Route::get('/user/session', function (Request $request) {
 });
 
 // Profile
-Route::get('/user/profile', function ($id) {
+Route::get('/user/profile', function () {
+
+    return 'here';
 
     $user = Auth::guard('web')->user();
 
