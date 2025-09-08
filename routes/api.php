@@ -147,7 +147,10 @@ Route::get('/user/profile', function () {
         'email' => $user->email,
     ]);
 
-});
+})->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate')
+    ->withoutMiddleware('auth:sanctum')
+    ->withoutMiddleware('Illuminate\Session\Middleware\AuthenticateSession')
+    ->withoutMiddleware('App\Http\Middleware\VerifyCsrfToken');
 
 Route::get('/user/profile/{id}/orders', [GetController::class, 'orders_by_profile'])->middleware('auth:sanctum');
 
