@@ -40,7 +40,6 @@ use Illuminate\Support\Facades\DB;
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
         $this->create_materials();
 
