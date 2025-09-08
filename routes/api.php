@@ -127,7 +127,20 @@ Route::get('/user/session', function (Request $request) {
 });
 
 // Profile
-Route::get('/user/profile/{id}', [GetController::class, 'profile'])->middleware('auth:sanctum');
+Route::get('/user/profile/{id}', function ($id) {
+
+    $user = User::query()->find($id);
+
+    if (! $user)
+        return response()->json(['message' => 'User not found'], 404);
+
+    return response()->json([
+        'id' => $user->id,
+        'name' => $user->name,
+        'email' => $user->email,
+    ]);
+
+})->middleware('auth:sanctum');
 
 Route::get('/user/profile/{id}/orders', [GetController::class, 'orders_by_profile'])->middleware('auth:sanctum');
 
