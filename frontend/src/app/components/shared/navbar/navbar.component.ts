@@ -20,6 +20,7 @@ import { Profile } from 'src/app/models/profile';
 export class NavbarComponent {
     constructor(private authService: AuthService, private toastr: ToastrService, private router: Router) {}
     user: User | null = this.authService.user;
+
     profile?: Profile| null;
 
     
