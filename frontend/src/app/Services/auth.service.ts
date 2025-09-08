@@ -55,12 +55,16 @@ export class AuthService {
         );
 
         this.userSubject.next(user ?? null);
+
+        // Load profile after user is loaded
+        this.loadProfile();
+
       } catch (error) {
         console.error('Error loading user:', error);
         this.userSubject.next(null);
       }
 
-      this.loadProfile();
+      
 
     }
 
