@@ -38,5 +38,5 @@ export interface Product {
 
 
     
-    images: Image[];
+    image_url: string;
 }
