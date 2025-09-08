@@ -87,7 +87,7 @@ export class ProductsComponent implements OnInit {
     
     this.filteredProducts = filteredByMaterial;
 
-    this.filteredProducts = filteredByProduct;
+    //this.filteredProducts = filteredByProduct;
 
 
     this.sortTheProducts();
