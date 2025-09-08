@@ -382,11 +382,11 @@ use Illuminate\Support\Facades\DB;
 
         $media = [
             ['path' => 'assets/images/DummySofa.png'],
-            ['path' => 'assets/images/generated_image_1.png'],
-            ['path' => 'assets/images/generated_image_2.png'],
-            ['path' => 'assets/images/generated_image_3.png'],
-            ['path' => 'assets/images/generated_image_4.png'],
-            ['path' => 'assets/images/generated_image_5.png'],
+            ['path' => 'assets/images/generated_image_1.jpeg'],
+            ['path' => 'assets/images/generated_image_2.jpeg'],
+            ['path' => 'assets/images/generated_image_3.jpeg'],
+            ['path' => 'assets/images/generated_image_4.jpeg'],
+            ['path' => 'assets/images/generated_image_5.jpeg'],
         ];
 
         foreach ($media as $item) {
