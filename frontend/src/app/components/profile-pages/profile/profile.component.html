@@ -38,6 +38,8 @@
                     <ul>
                         <li>{{product.title}}</li>
                         <li>{{product.price}}</li>
+                        <button (click)="deleteProduct(product.id)" *ngIf="isOwner" (click)="deleteProduct(product.id)">Slet produkt</button>
+                        
                     </ul>
                 </div>
         </div>

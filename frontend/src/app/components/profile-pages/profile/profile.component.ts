@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
     profileProducts: Product[] = [];
     selectedProduct?: Product;
     profileForm: Form | undefined;
+    isOwner: boolean = false;
 
     loggedInProfile: Profile | null = null;
 
@@ -66,6 +67,15 @@ export class ProfileComponent implements OnInit {
             this.toastr.success('Product deleted successfully');
         });
     }
+
+    loadProducts(): void { 
+        this.activatedRoute.params.subscribe(params => { 
+            this.productService.getByProfileId(params['profileId']).subscribe(products => { 
+                this.profileProducts = products; }, error => { this.toastr.error('Failed to load products for this profile'); console.error(error); 
+
+                }); 
+            }); 
+        }
           
     
 
@@ -80,6 +90,7 @@ export class ProfileComponent implements OnInit {
 
     showYourProducts(){
         this.allYourProducts = !this.allYourProducts;
+        this.loadProducts();
 
     }
 

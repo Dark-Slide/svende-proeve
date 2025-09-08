@@ -18,18 +18,20 @@ import { Profile } from 'src/app/models/profile';
     imports: [RouterModule, CommonModule, AppRoutingModule]
 })
 export class NavbarComponent {
-    constructor(private authSercive: AuthService, private toastr: ToastrService, private router: Router) {}
-    user: User | null = this.authSercive.user;
+    constructor(public authService: AuthService, private toastr: ToastrService, private router: Router) {}
+    user: User | null = this.authService.user;
     profile?: Profile| null;
+
+    
 
 
     logout() {
-        this.authSercive.logOut();
+        this.authService.logOut();
         this.toastr.success('Du er nu logget ud');
         this.router.navigate(['/']);
     }
 
     isAuthenticated(){
-        return this.authSercive.isAuthenticated();
+        return this.authService.isAuthenticated();
     }
 }
