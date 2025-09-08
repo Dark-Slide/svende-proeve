@@ -6,7 +6,9 @@ export interface Image {
   productId: number;
   product: Product;
 
-  url: string;
+  imageUrl: string;
 
 
 }
+
+//image_id, image_url
