@@ -72,7 +72,7 @@ export class AuthService {
 
 
     loadProfile(): void{
-      this.http.get<Profile>(this.apiUrlProfile + "/profile", {withCredentials: true}).subscribe
+      this.http.get<Profile>(this.apiUrlProfile , {withCredentials: true}).subscribe
       (profile => this.profileSubject.next(profile), () => this.profileSubject.next(null));
     }
 
