@@ -16,6 +16,9 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="basket" routerLinkActive="active">Kurv</a>
                 </li>
+                <li class="nav-item">
+                    <a>{{profile}}</a>
+                </li>
                 <li style="float: right;" *ngIf="!isAuthenticated()">
                     <a class="nav-link" routerLink="login" routerLinkActive="active">Login</a>
                 </li>
