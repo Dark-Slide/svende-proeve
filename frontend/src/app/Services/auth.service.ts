@@ -13,6 +13,7 @@ import { User } from "../models/user";
 export class AuthService {
 
   private readonly apiUrl = environment.apiUrl + 'user';
+  private readonly apiUrlProfile = environment.apiUrl + 'profile';
   private userSubject= new BehaviorSubject<User | null>(null);
   private profileSubject = new BehaviorSubject<Profile | null>(null);
 
@@ -52,6 +53,7 @@ export class AuthService {
 
         const user = await firstValueFrom(
           this.http.get<any>(this.apiUrl, { withCredentials: true }) // this.apiUrl -> e.g. https://api.example.com/api/user
+          
         );
 
         this.userSubject.next(user ?? null);
@@ -70,7 +72,7 @@ export class AuthService {
 
 
     loadProfile(): void{
-      this.http.get<Profile>(this.apiUrl + "/profile", {withCredentials: true}).subscribe
+      this.http.get<Profile>(this.apiUrlProfile + "/profile", {withCredentials: true}).subscribe
       (profile => this.profileSubject.next(profile), () => this.profileSubject.next(null));
     }
 
