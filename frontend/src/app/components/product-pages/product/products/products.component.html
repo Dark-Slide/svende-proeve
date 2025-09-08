@@ -26,16 +26,16 @@
                 </select>
                 <select [(ngModel)]="selectedColourId" (change)="filterHolder()" class="form-select mb-2" aria-label="Filter by colour">
                     <option value="">Vælg Farve</option>
-                    <option *ngFor="let colour of colours" [value]="colour.id">{{colour.name}}</option>
+                    <option *ngFor="let colour of colours" [value]="colour.name">{{colour.name}}</option>
                 </select>
                 <select [(ngModel)]="selectedTypeId" (change)="filterHolder()" class="form-select mb-2" aria-label="Filter by type">
                     <option value="">Vælg Type</option>
-                    <option *ngFor="let type of types" [value]="type.id">{{type.name}}</option>
+                    <option *ngFor="let type of types" [value]="type.name">{{type.name}}</option>
                 </select>
                 
                 <select [(ngModel)]="selectedConditionId" (change)="filterHolder()" class="form-select mb-2" aria-label="Filter by condition">
                     <option value="">Vælg Tilstand</option>
-                    <option *ngFor="let condition of conditions" [value]="condition.id">{{condition.name}}</option>
+                    <option *ngFor="let condition of conditions" [value]="condition.name">{{condition.name}}</option>
                 </select>
             </div>
                 <div class="products-grid">
