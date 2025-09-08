@@ -43,6 +43,7 @@ export class ProductsComponent implements OnInit {
   
   public SortOrder = SortOrder; 
   
+  //all items
   products: Product[] = [];
   filteredProducts: Product[] =[]
   categories: Category[] = []
@@ -80,16 +81,6 @@ export class ProductsComponent implements OnInit {
   }
 
   searchFilteredProducts(){
-    /*let filteredByProduct = this.productSelected ? this.products.filter(product => product?.id === this.productSelected!.id)
-    : [...this.products]
-
-    //Search part
-    filteredByProduct = filteredByProduct.filter(product => this.normalizeString(product.title).includes(this.normalizeString(this.searchQuery)));
-
-    //Material part
-    this.filteredProducts = this.materialSelected ? filteredByProduct.filter(product => product.material === this.materialSelected) : filteredByProduct;*/
-
-
     let filtering = this.productSelected ? this.products.filter(product => product?.id === this.productSelected!.id)
     : [...this.products];
 
@@ -125,9 +116,6 @@ export class ProductsComponent implements OnInit {
     this.sortTheProducts();
 
   }
-
-
-  
 
   sortTheProducts() {
     switch (this.sortSelected) {
