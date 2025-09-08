@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\DB;
  *
  * @property Color[]|Collection $colors
  * @property Product[]|Collection $products
+ * @property Media[]|Collection $media
  */
 #[AllowDynamicProperties] class DatabaseSeeder extends Seeder
 {
@@ -39,7 +40,6 @@ use Illuminate\Support\Facades\DB;
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
         $this->create_materials();
 
@@ -248,10 +248,8 @@ use Illuminate\Support\Facades\DB;
             Product::query()->insert($chunk->toArray());
         }
 
-        $media = Media::query()->find(1);
 
-
-        Product::query()->chunk(500, function ($products) use ($categories, $media) {
+        Product::query()->chunk(500, function ($products) use ($categories) {
 
             // Attach categories & media to products
             foreach ($products as $product) {
@@ -263,7 +261,7 @@ use Illuminate\Support\Facades\DB;
                 );
 
                 $product->media()->sync(
-                    $media
+                    $this->media->random()
                 );
 
             }
@@ -343,7 +341,6 @@ use Illuminate\Support\Facades\DB;
     }
 
     private array $descTemplates = [
-        // Brug {type}, {material}, {color}, {adjective}, {use_case}, {feature_sentence}, {cta}
         'Elegant {type} i {material}. {feature_sentence} Passer godt til {use_case}.',
         'Skabt til hverdagen - {type} i {material}. Farve: {color}. {feature_sentence} {cta}',
         'Tidløst valg: {type} i {material}, {adjective} og robust. Vist her i {color}. {feature_sentence}',
@@ -385,12 +382,20 @@ use Illuminate\Support\Facades\DB;
 
         $media = [
             ['path' => 'assets/images/DummySofa.png'],
-            ['path' => 'assets/images/DummyProfile.png'],
+            ['path' => 'assets/images/generated_image_1.png'],
+            ['path' => 'assets/images/generated_image_2.png'],
+            ['path' => 'assets/images/generated_image_3.png'],
+            ['path' => 'assets/images/generated_image_4.png'],
+            ['path' => 'assets/images/generated_image_5.png'],
         ];
 
         foreach ($media as $item) {
             Media::query()->create($item);
         }
+
+        $this->media = Media::all();
+
+        Media::query()->create(['path' => 'assets/images/DummyProfile.png']);
 
     }
 }
