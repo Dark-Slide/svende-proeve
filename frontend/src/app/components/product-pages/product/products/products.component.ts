@@ -50,7 +50,7 @@ export class ProductsComponent implements OnInit {
   colours: Colours[] = []
   types: Types[] = []
   conditions: Conditions[] = []
-  categorySelected: Category | null = null;
+  //categorySelected: Category | null = null;
   productSelected: Product | null = null;
   materialSelected: Materials | null = null;
   sortSelected: SortOrder = SortOrder.None;
@@ -74,7 +74,7 @@ export class ProductsComponent implements OnInit {
   }
 
   searchFilteredProducts(){
-    /*let filteredByProduct = this.productSelected ? this.products.filter(product => product?.id === this.productSelected!.id)
+    let filteredByProduct = this.productSelected ? this.products.filter(product => product?.id === this.productSelected!.id)
     : [...this.products]
 
     //Search part
@@ -82,23 +82,13 @@ export class ProductsComponent implements OnInit {
 
     //Material part
     let filteredByMaterial = this.materialSelected 
-    ? this.filteredProducts.filter(product => product?.materialId === this.materialSelected!.id) : filteredByProduct;
+    ? filteredByProduct.filter(product => product.material === this.materialSelected) : filteredByProduct;
 
     
-    this.materialSelected ? this.filteredProducts = filteredByMaterial :
+    this.filteredProducts = filteredByMaterial;
 
     this.filteredProducts = filteredByProduct;
-    */
-   this.filteredProducts = this.products.filter(product => {
-    const matchesCategory = this.categorySelected ? product.category?.id === this.categorySelected.id : true;
-    const matchesMaterial = this.selectedMaterialId ? (typeof product.material === 'object' ? product.material?.id === this.selectedMaterialId : product.material === this.selectedMaterialId) : true;
-    const matchesColour = this.selectedColourId ? (typeof product.colour === 'object' ? product.colour?.id === this.selectedColourId : product.colour === this.selectedColourId) : true;
-    const matchesType = this.selectedTypeId ? (typeof product.type === 'object' ? product.type?.id === this.selectedTypeId : product.type === this.selectedTypeId) : true;
-    const matchesCondition = this.selectedConditionId ? (typeof product.condition === 'object' ? product.condition?.id === this.selectedConditionId : product.condition === this.selectedConditionId) : true;
-    const matchesSearch = this.normalizeString(product.title).includes(this.normalizeString(this.searchQuery));
 
-    return matchesCategory && matchesMaterial && matchesColour && matchesType && matchesCondition && matchesSearch;
-  });
 
     this.sortTheProducts();
 
