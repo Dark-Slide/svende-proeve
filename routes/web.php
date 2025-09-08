@@ -7,14 +7,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rules\Password;
 
 Route::prefix('api')
-    //Without csrf
-    ->withoutMiddleware('Illuminate\Foundation\Http\Middleware\VerifyCsrfToken')
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate')
     ->group(base_path('routes/api.php'));
 
 
 // Reroute all non-api, non-storage, non-asset requests to SPA entry point
 Route::get('/{any}', function () {
     return file_get_contents(public_path('index.html'));
-})->where('any', '^(?!api)(?!storage)(?!.*\.(js|css|map|json|txt|png|jpg|jpeg|svg|webp|ico|woff2?|ttf|eot)$).*')
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+})->where('any', '^(?!api)(?!storage)(?!.*\.(js|css|map|json|txt|png|jpg|jpeg|svg|webp|ico|woff2?|ttf|eot)$).*');

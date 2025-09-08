@@ -9,7 +9,6 @@ use App\Models\Material;
 use App\Models\Product;
 use App\Models\Type;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -185,7 +184,6 @@ use Illuminate\Support\Facades\DB;
             Color::query()->create($color);
         }
 
-        $this->colors = Color::all();
     }
 
     private function create_products(): void
@@ -193,15 +191,15 @@ use Illuminate\Support\Facades\DB;
         $types = Type::all();
         $materials = Material::all();
         $categories = Category::all();
+        $colors = Color::all();
 
         $this->products = collect();
 
         foreach ($types as $type) {
             foreach ($materials as $material) {
-                foreach ($this->colors as $color) {
+                foreach ($colors as $color) {
+
                     $name = $this->buildProductName($type->name, $material->name, $color->name);
-
-
 
                     $product = new Product();
 
@@ -210,15 +208,20 @@ use Illuminate\Support\Facades\DB;
                     // Set price based on new/used
                     // Round the price to the nearest 0
                     if ($product->is_used) {
+
                         $basePrice = rand(3000, 15000);
+
                         $discount = rand(10, 40); // 10% to 40% discount for used
+
                         $price = $basePrice * (1 - $discount / 100);
+
                     } else {
+
                         $price = rand(5000, 20000);
+
                     }
 
                     $product->price = round($price, -2); // Round to nearest 100
-
                     $product->width = rand(150, 400);
                     $product->height = rand(70, 120);
                     $product->depth = rand(70, 200);
@@ -226,6 +229,7 @@ use Illuminate\Support\Facades\DB;
                     $product->type_id = $type->id;
                     $product->material_id = $material->id;
                     $product->color_id = $color->id;
+
                     $product->description = $this->buildDescription($type->name, $material->name, $color->name);
 
                     $this->products->push($product);
@@ -241,18 +245,22 @@ use Illuminate\Support\Facades\DB;
             Product::query()->insert($chunk->toArray());
         }
 
-        $this->products = Product::all();
 
-        // Attach categories to products
-        foreach ($this->products as $product) {
+        Product::query()->chunk(500, function ($products) use ($categories) {
 
-            $product->categories()->sync(
-                $categories->random(rand(1, min(3, $categories->count())))
-                    ->pluck('id')
-                    ->toArray()
-            );
+            // Attach categories to products
+            foreach ($products as $product) {
 
-        }
+                $product->categories()->sync(
+                    $categories->random(rand(1, min(3, $categories->count())))
+                        ->pluck('id')
+                        ->toArray()
+                );
+
+            }
+
+        });
+
     }
 
     private function buildProductName(string $type, string $material, string $color): string
@@ -262,6 +270,7 @@ use Illuminate\Support\Facades\DB;
 
     private function buildDescription(string $type, string $material, string $color): string
     {
+
         $tpl = $this->pick($this->descTemplates);
 
         $adjective = $this->pick($this->adjectives);
@@ -298,20 +307,30 @@ use Illuminate\Support\Facades\DB;
 
     private function pickMany(array $arr, int $n): array
     {
+
         $n = max(1, min($n, count($arr)));
+
         $keys = array_rand($arr, $n);
+
         if (!is_array($keys)) { $keys = [$keys]; }
+
         return array_values(array_intersect_key($arr, array_flip($keys)));
+
     }
 
     private function featuresToSentence(array $features): string
     {
+
         if (empty($features)) return '';
+
         if (count($features) === 1) {
             return 'Med ' . $features[0] . '.';
         }
+
         $last = array_pop($features);
+
         return 'Med ' . implode(', ', $features) . ' og ' . $last . '.';
+
     }
 
     private array $descTemplates = [

@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\Type;
 use App\Models\User;
+use Illuminate\Support\Collection;
 
 class GetController extends Controller
 {
@@ -17,23 +18,27 @@ class GetController extends Controller
     function frontpage()
     {
 
-        $products_featured = Product::query()
+        $products = Product::query()
+            ->select('id', 'title', 'description', 'price', 'is_used', 'width', 'height', 'depth', 'material_id', 'type_id', 'color_id')
+            ->with('material', function ($query) {
+                $query->select('id', 'name');
+            })
+            ->with('categories', function ($query) {
+                $query->select('categories.id', 'categories.name');
+            })
+            ->with('type', function ($query) {
+                $query->select('id', 'name');
+            })
+            ->with('color', function ($query) {
+                $query->select('id', 'name');
+            })
             ->where('type_id', 1)
             ->limit(3)
             ->get();
 
-        $products_private = Product::query()
-            ->where('type_id', 2)
-            ->limit(3)
-            ->get();
-
-        return response()->json([
-            'message' => 'Frontpage products fetched successfully',
-            'data' => [
-                'featured' => $products_featured->toArray(),
-                'private' => $products_private->toArray()
-            ]
-        ]);
+        return response()->json(
+            $this->transform_products_to_collection_of_objects($products)->toArray()
+        );
 
     }
 
@@ -58,38 +63,10 @@ class GetController extends Controller
             ->limit(270)
             ->get();
 
-        $collection = collect();
-
-        foreach ($products as $product) {
-
-            $object = new \stdClass();
-
-            $object->id = $product->id;
-            $object->title = $product->title;
-            $object->description = $product->description;
-            $object->price = $product->price;
-            $object->width = $product->width;
-            $object->height = $product->height;
-            $object->depth = $product->depth;
-            $object->material = $product->material->name;
-            $object->type = $product->type->name;
-            $object->colour = $product->color?->name;
-            $object->condition = $product->is_used ? 'Brugt' : 'Ny';
-
-            $collection->push($object);
-
-        }
 
         return response()->json(
-            $collection->toArray()
+            $this->transform_products_to_collection_of_objects($products)->toArray()
         );
-
-//        return response()->json([
-//            'message' => 'Products fetched successfully',
-//            'data' => [
-//                $products->toArray()
-//            ]
-//        ]);
 
     }
 
@@ -117,28 +94,9 @@ class GetController extends Controller
             return response()->json(['message' => 'Product not found'], 404);
         }
 
-        $object = new \stdClass();
-
-        $object->id = $product->id;
-        $object->title = $product->title;
-        $object->description = $product->description;
-        $object->price = $product->price;
-        $object->width = $product->width;
-        $object->height = $product->height;
-        $object->depth = $product->depth;
-        $object->material = $product->material->name;
-        $object->type = $product->type->name;
-        $object->colour = $product->color?->name;
-        $object->condition = $product->is_used ? 'Brugt' : 'Ny';
-
         return response()->json(
-            $object
+            $this->transform_product_to_object( $product )
         );
-
-//        return response()->json([
-//            'message' => 'Product fetched successfully',
-//            'data' => $product->toArray()
-//        ]);
 
     }
 
@@ -152,25 +110,16 @@ class GetController extends Controller
             $products->toArray()
         );
 
-//        return response()->json([
-//            'message' => 'Products fetched successfully',
-//            'data' => $products->toArray()
-//        ]);
     }
 
     // Orders
     function orders()
     {
-        $orders = Order::all();
 
         return response()->json(
-            $orders->toArray()
+            Order::query()->limit(20)->get()->toArray()
         );
 
-//        return response()->json([
-//            'message' => 'Orders fetched successfully',
-//            'data' => $orders->toArray()
-//        ]);
     }
 
     function order( $id )
@@ -236,10 +185,6 @@ class GetController extends Controller
             $collection->toArray()
         );
 
-//        return response()->json([
-//            'message' => 'Categories fetched successfully',
-//            'data' => $categories->toArray()
-//        ]);
     }
 
     // Materials
@@ -264,10 +209,6 @@ class GetController extends Controller
             $collection->toArray()
         );
 
-//        return response()->json([
-//            'message' => 'Materials fetched successfully',
-//            'data' => $materials->toArray()
-//        ]);
     }
 
     // Colors
@@ -292,10 +233,6 @@ class GetController extends Controller
             $collection->toArray()
         );
 
-//        return response()->json([
-//            'message' => 'Colors fetched successfully',
-//            'data' => $colors->toArray()
-//        ]);
     }
 
     // Type
@@ -320,10 +257,6 @@ class GetController extends Controller
             $collection->toArray()
         );
 
-//        return response()->json([
-//            'message' => 'Colors fetched successfully',
-//            'data' => $colors->toArray()
-//        ]);
     }
 
     // User
@@ -355,6 +288,44 @@ class GetController extends Controller
             'message' => 'User profile fetched successfully',
             'data' => $user->toArray()
         ]);
+    }
+
+
+    // Done to fix mismatch with frontend
+    private function transform_products_to_collection_of_objects(Collection $products): Collection
+    {
+
+        $collection = collect();
+
+        foreach ( $products as $product ) {
+
+            $collection->push( $this->transform_product_to_object( $product ) );
+
+        }
+
+        return $collection;
+
+    }
+
+    private function transform_product_to_object($product): \stdClass
+    {
+
+        $object = new \stdClass();
+
+        $object->id = $product->id;
+        $object->title = $product->title;
+        $object->description = $product->description;
+        $object->price = $product->price;
+        $object->width = $product->width;
+        $object->height = $product->height;
+        $object->depth = $product->depth;
+        $object->material = $product->material->name;
+        $object->type = $product->type->name;
+        $object->colour = $product->color?->name;
+        $object->condition = $product->is_used ? 'Brugt' : 'Ny';
+
+        return $object;
+
     }
 
 }
