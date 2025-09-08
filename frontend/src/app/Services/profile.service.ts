@@ -32,4 +32,8 @@ export class ProfileService {
     return this.http.delete<void>(this.apiUrl + '/' + profileId);
   }
 
+  getLoggedInProfile(): Observable<Profile> {
+    return this.http.get<Profile>(this.apiUrl + '/me');
+  }
+
 }

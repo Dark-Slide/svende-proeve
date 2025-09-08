@@ -8,6 +8,8 @@ import { Form, FormsModule } from '@angular/forms';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/Services/product.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { firstValueFrom } from 'rxjs';
+import { AuthService } from 'src/app/Services/auth.service';
 
 
 
@@ -25,6 +27,9 @@ export class ProfileComponent implements OnInit {
     profileProducts: Product[] = [];
     selectedProduct?: Product;
     profileForm: Form | undefined;
+    isOwner: boolean = false;
+
+    loggedInProfile: Profile | null = null;
 
     salesHistory: boolean = false;
     purchaseHistory: boolean = false;
@@ -34,13 +39,14 @@ export class ProfileComponent implements OnInit {
         private profileService: ProfileService,
         private activatedRoute: ActivatedRoute,
         private toastr: ToastrService,
-        private productService: ProductService
+        private productService: ProductService,
+        private authService: AuthService
     ) {}
     
     async ngOnInit() {
         
+        this.loggedInProfile = await firstValueFrom(this.authService.getProfileUser());
         this.loadProfile();
-        this.loadProducts();
     }
     
     loadProfile() {
@@ -53,27 +59,25 @@ export class ProfileComponent implements OnInit {
         })
     }
     
-    loadProducts(): void {
-        this.activatedRoute.params.subscribe(params => {
-            this.productService.getByProfileId(params['profileId']).subscribe(products => {
-                this.profileProducts = products;
-            }, error => {
-                this.toastr.error('Failed to load products for this profile');
-                console.error(error);
-            });
+    
+    deleteProduct(productId: number): void {
+        this.productService.deleteProduct(productId).subscribe(() => {
+            this.profileProducts = this.profileProducts.filter(product => product.id !== productId);
+
+            this.toastr.success('Product deleted successfully');
         });
     }
-    deleteProduct(productId: number | undefined): void {
-        if (this.selectedProduct) {
-            this.productService.deleteProduct(this.selectedProduct.id).subscribe(() => {
-                this.toastr.success('Product deleted successfully');
-                this.loadProducts(); 
-            }, error => {
-                this.toastr.error('Failed to delete product');
-                console.error(error);
-            });
+
+    loadProducts(): void { 
+        this.activatedRoute.params.subscribe(params => { 
+            this.productService.getByProfileId(params['profileId']).subscribe(products => { 
+                this.profileProducts = products; }, error => { this.toastr.error('Failed to load products for this profile'); console.error(error); 
+
+                }); 
+            }); 
         }
-    }
+          
+    
 
     showSalesHistory()
     {
@@ -86,6 +90,7 @@ export class ProfileComponent implements OnInit {
 
     showYourProducts(){
         this.allYourProducts = !this.allYourProducts;
+        this.loadProducts();
 
     }
 
