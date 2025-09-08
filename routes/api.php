@@ -129,4 +129,8 @@ Route::get('/user/session', function (Request $request) {
 // Profile
 Route::get('/profile/{id}', [GetController::class, 'profile']);
 
-Route::get('/profile/{id}/orders', [GetController::class, 'profile_by_user']);
+Route::get('/profile/{id}/orders', [GetController::class, 'orders_by_profile']);
+
+Route::get('/profile/{id}/products', [GetController::class, 'products_by_profile']);
+
+Route::get('/profile/{id}/sales', [GetController::class, 'sales_by_profile']);
