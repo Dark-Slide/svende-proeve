@@ -32,6 +32,9 @@ class GetController extends Controller
             ->with('color', function ($query) {
                 $query->select('id', 'name');
             })
+            ->with('media', function ($query) {
+                $query->select('media.id', 'media.path');
+            })
             ->where('type_id', 1)
             ->limit(3)
             ->get();
@@ -60,6 +63,9 @@ class GetController extends Controller
             ->with('color', function ($query) {
                 $query->select('id', 'name');
             })
+            ->with('media', function ($query) {
+                $query->select('media.id', 'media.path');
+            })
             ->limit(270)
             ->get();
 
@@ -86,6 +92,9 @@ class GetController extends Controller
             })
             ->with('color', function ($query) {
                 $query->select('id', 'name');
+            })
+            ->with('media', function ($query) {
+                $query->select('media.id', 'media.path');
             })
             ->where('id', $id)
             ->first();
@@ -335,8 +344,6 @@ class GetController extends Controller
     }
 
 
-
-
     // Done to fix mismatch with frontend
     private function transform_products_to_collection_of_objects(Collection $products): Collection
     {
@@ -369,6 +376,8 @@ class GetController extends Controller
         $object->type = $product->type->name;
         $object->colour = $product->color?->name;
         $object->condition = $product->is_used ? 'Brugt' : 'Ny';
+        $object->image_id = $product->media->isNotEmpty() ? $product->media->first()->id : null;
+        $object->image_url = $product->media->isNotEmpty() ? asset($product->media->first()->path) : null;
 
         return $object;
 
