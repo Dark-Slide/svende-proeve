@@ -7,6 +7,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property string|null $remember_token
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property \Illuminate\Database\Eloquent\Collection|Product[] $products
+ * @property \Illuminate\Database\Eloquent\Collection|Order[] $orders
+ * @property \Illuminate\Database\Eloquent\Collection|OrderLine[] $sales
+ * @property \Illuminate\Database\Eloquent\Collection|Media[] $media
+ */
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -59,5 +73,10 @@ class User extends Authenticatable
     public function sales()
     {
         return $this->hasManyThrough(OrderLine::class, Product::class, 'user_id', 'product_id', 'id', 'id');
+    }
+
+    public function media()
+    {
+        return $this->belongsToMany(Media::class);
     }
 }

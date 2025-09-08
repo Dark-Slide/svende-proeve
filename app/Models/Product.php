@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property Color $color
  *
  * @property \Illuminate\Database\Eloquent\Collection|Category[] $categories
+ * @property \Illuminate\Database\Eloquent\Collection|Media[] $media
+ * @property \Illuminate\Database\Eloquent\Collection|OrderLine[] $orderLines
  */
 class Product extends Model
 {
@@ -68,5 +70,10 @@ class Product extends Model
     public function color()
     {
         return $this->belongsTo(Color::class);
+    }
+
+    public function media()
+    {
+        return $this->belongsToMany(Media::class);
     }
 }
