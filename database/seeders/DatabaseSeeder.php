@@ -341,7 +341,6 @@ use Illuminate\Support\Facades\DB;
     }
 
     private array $descTemplates = [
-        // Brug {type}, {material}, {color}, {adjective}, {use_case}, {feature_sentence}, {cta}
         'Elegant {type} i {material}. {feature_sentence} Passer godt til {use_case}.',
         'Skabt til hverdagen - {type} i {material}. Farve: {color}. {feature_sentence} {cta}',
         'Tidløst valg: {type} i {material}, {adjective} og robust. Vist her i {color}. {feature_sentence}',
