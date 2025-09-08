@@ -82,8 +82,7 @@ export class ProductsComponent implements OnInit {
     //Material part
     filteredByProduct = this.selectedMaterialId ?
     filteredByProduct.filter(product => { 
-      const materialId = typeof product.material === 'object' ? product.material?.id : product.material;
-      return String(materialId) === String(this.selectedMaterialId)}) : filteredByProduct;
+       String(product.materialId) === String(this.selectedMaterialId)}) : filteredByProduct;
 
     this.filteredProducts = filteredByProduct;
 
