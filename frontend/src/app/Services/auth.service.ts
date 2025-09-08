@@ -42,7 +42,7 @@ export class AuthService {
     }
 
     async loadUser(): Promise<void> {
-      console.error('loadUser called');
+      
 
       try {
         // 1) XSRF-TOKEN
