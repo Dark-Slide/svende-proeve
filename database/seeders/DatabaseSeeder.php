@@ -6,6 +6,7 @@ use AllowDynamicProperties;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Material;
+use App\Models\Media;
 use App\Models\Product;
 use App\Models\Type;
 use App\Models\User;
@@ -47,6 +48,8 @@ use Illuminate\Support\Facades\DB;
         $this->create_categories();
 
         $this->create_colors();
+
+        $this->create_media_from_assets_folder();
 
         $this->create_products();
 
@@ -245,16 +248,22 @@ use Illuminate\Support\Facades\DB;
             Product::query()->insert($chunk->toArray());
         }
 
+        $media = Media::query()->find(1);
 
-        Product::query()->chunk(500, function ($products) use ($categories) {
 
-            // Attach categories to products
+        Product::query()->chunk(500, function ($products) use ($categories, $media) {
+
+            // Attach categories & media to products
             foreach ($products as $product) {
 
                 $product->categories()->sync(
                     $categories->random(rand(1, min(3, $categories->count())))
                         ->pluck('id')
                         ->toArray()
+                );
+
+                $product->media()->sync(
+                    $media
                 );
 
             }
@@ -370,4 +379,18 @@ use Illuminate\Support\Facades\DB;
         'Bestil gratis stofprøver.',
         'Produceret på bestilling.'
     ];
+
+    private function create_media_from_assets_folder()
+    {
+
+        $media = [
+            ['path' => public_path('assets/images/DummySofa.png')],
+            ['path' => public_path('assets/images/DummyProfile.png')],
+        ];
+
+        foreach ($media as $item) {
+            Media::query()->create($item);
+        }
+
+    }
 }
