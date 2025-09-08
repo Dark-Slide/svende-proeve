@@ -68,7 +68,7 @@ Route::post('/user/login', function (Request $request) {
 
     return response()->json(['ok' => true]);
 
-})->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+})->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate')->middleware('sanctum');
 
 Route::post('/user/logout', function (Request $request) {
 
@@ -147,7 +147,7 @@ Route::get('/user/profile', function () {
         'email' => $user->email,
     ]);
 
-})->middleware('auth:sanctum');
+});
 
 Route::get('/user/profile/{id}/orders', [GetController::class, 'orders_by_profile'])->middleware('auth:sanctum');
 
