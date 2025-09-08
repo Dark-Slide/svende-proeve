@@ -68,7 +68,8 @@ Route::post('/user/login', function (Request $request) {
 
     return response()->json(['ok' => true]);
 
-})->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate')->middleware('sanctum');
+})->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate')
+    ->middleware('auth:sanctum');
 
 Route::post('/user/logout', function (Request $request) {
 
