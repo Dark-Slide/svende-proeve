@@ -272,12 +272,13 @@ class GetController extends Controller
             'message' => 'User fetched successfully',
             'data' => $user->toArray()
         ]);
+
     }
 
     // Profile
     function profile($id)
     {
-        return 'Gert' . $id;
+
         $user = auth()->user();
 
         if ( ! $user ) {
@@ -285,9 +286,9 @@ class GetController extends Controller
         }
 
         return response()->json([
-            'message' => 'User profile fetched successfully',
-            'data' => $user->toArray()
+            $this->transform_user_to_object( $user )
         ]);
+
     }
 
 
@@ -323,6 +324,19 @@ class GetController extends Controller
         $object->type = $product->type->name;
         $object->colour = $product->color?->name;
         $object->condition = $product->is_used ? 'Brugt' : 'Ny';
+
+        return $object;
+
+    }
+
+    private function transform_user_to_object($user)
+    {
+
+        $object = new \stdClass();
+
+        $object->id = $user->id;
+        $object->name = $user->name;
+        $object->email = $user->email;
 
         return $object;
 
