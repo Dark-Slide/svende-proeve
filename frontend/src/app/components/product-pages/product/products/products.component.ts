@@ -52,6 +52,7 @@ export class ProductsComponent implements OnInit {
   conditions: Conditions[] = []
   //categorySelected: Category | null = null;
   productSelected: Product | null = null;
+  materialSelected: Materials | null = null;
   sortSelected: SortOrder = SortOrder.None;
   searchQuery: string = '';
 
@@ -80,9 +81,10 @@ export class ProductsComponent implements OnInit {
     filteredByProduct = filteredByProduct.filter(product => this.normalizeString(product.title).includes(this.normalizeString(this.searchQuery)));
 
     //Material part
-    filteredByProduct = this.selectedMaterialId ?
-    filteredByProduct.filter(product => { 
-       String(product.materialId) === String(this.selectedMaterialId)}) : filteredByProduct;
+    let filteredByMaterial = this.selectedMaterialId ? this.products.filter(product => product?.materialId === this.materialSelected!.id) : filteredByProduct;
+
+    
+    this.selectedMaterialId ? this.filteredProducts = filteredByMaterial :
 
     this.filteredProducts = filteredByProduct;
 
