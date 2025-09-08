@@ -16,8 +16,10 @@ Route::get('/products', [GetController::class, 'products']);
 
 Route::get('/products/{id}', [GetController::class, 'product']);
 
-// Get Products by category
 Route::get('/products/category/{category}', [GetController::class, 'products_by_category']);
+
+// Create Product
+Route::post('/product/create', [PostController::class, 'create_product']);
 
 // Categories
 Route::get('/categories', [GetController::class, 'categories']);
@@ -30,9 +32,6 @@ Route::get('/colours', [GetController::class, 'colors']);
 
 // Types
 Route::get('/types', [GetController::class, 'types']);
-
-// Create Product
-Route::post('/product/create', [PostController::class, 'create_product']);
 
 // Orders
 Route::get('/orders', [GetController::class, 'orders']);
@@ -131,9 +130,11 @@ Route::get('/user/session', function (Request $request) {
 });
 
 // Profile
-Route::get('/user/profile/{id}', function ($id) {
+Route::get('/user/profile', function ($id) {
 
-    $user = User::query()->find($id);
+    $user = Auth::guard('web')->user();
+
+    $user = User::query()->find($user->id);
 
     if (! $user)
         return response()->json(['message' => 'User not found'], 404);
