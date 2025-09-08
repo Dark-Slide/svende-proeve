@@ -132,8 +132,6 @@ Route::get('/user/session', function (Request $request) {
 // Profile
 Route::get('/profile', function () {
 
-    return 'here';
-
     $user = Auth::guard('web')->user();
 
     $user = User::query()->find($user->id);
@@ -147,10 +145,7 @@ Route::get('/profile', function () {
         'email' => $user->email,
     ]);
 
-})->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate')
-    ->withoutMiddleware('auth:sanctum')
-    ->withoutMiddleware('Illuminate\Session\Middleware\AuthenticateSession')
-    ->withoutMiddleware('App\Http\Middleware\VerifyCsrfToken');
+})->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
 Route::get('/profile/{id}/orders', [GetController::class, 'orders_by_profile'])->middleware('auth:sanctum');
 
