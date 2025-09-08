@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rules\Password;
 
 Route::prefix('api')
+    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate')
     ->group(base_path('routes/api.php'));
 
 

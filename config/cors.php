@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://sofa.haagendrup.dk'],
+    'allowed_origins' => ['https://sofa.haagendrup.dk', 'https://app.sofa-dealeren.test:4200',' https://app.sofa-dealeren.test'],
 
     'allowed_origins_patterns' => [],
 
