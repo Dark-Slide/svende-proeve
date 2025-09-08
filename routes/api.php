@@ -127,10 +127,10 @@ Route::get('/user/session', function (Request $request) {
 });
 
 // Profile
-Route::get('/profile/{id}', [GetController::class, 'profile']);
+Route::get('/user/profile/{id}', [GetController::class, 'profile'])->middleware('auth:sanctum');
 
-Route::get('/profile/{id}/orders', [GetController::class, 'orders_by_profile']);
+Route::get('/user/profile/{id}/orders', [GetController::class, 'orders_by_profile'])->middleware('auth:sanctum');
 
-Route::get('/profile/{id}/products', [GetController::class, 'products_by_profile']);
+Route::get('/user/profile/{id}/products', [GetController::class, 'products_by_profile'])->middleware('auth:sanctum');
 
-Route::get('/profile/{id}/sales', [GetController::class, 'sales_by_profile']);
+Route::get('/user/profile/{id}/sales', [GetController::class, 'sales_by_profile'])->middleware('auth:sanctum');
