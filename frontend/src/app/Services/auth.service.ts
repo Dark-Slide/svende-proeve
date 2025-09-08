@@ -1,11 +1,9 @@
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import {BehaviorSubject, Observable, firstValueFrom, switchMap, finalize} from "rxjs";
 import { environment } from "src/environments/environment";
 import { Profile } from "../models/profile";
 import { User } from "../models/user";
-
-
 
 
 @Injectable({
@@ -70,10 +68,11 @@ export class AuthService {
     }
 
 
+
   login(loginForm: any) {
     return this.csrf().pipe(
       switchMap(() =>
-        this.http.post<any>(this.apiUrl + "/login", loginForm, {withCredentials: true})
+        this.http.post<any>(this.apiUrl + "/login", loginForm, {withCredentials: true, headers: new HttpHeaders({ 'X-XSRF-TOKEN': this.returnXSRFToken() }),})
       )
     );
   }
@@ -81,19 +80,27 @@ export class AuthService {
   register(registerForm: any) {
     return this.csrf().pipe(
       switchMap(() =>
-        this.http.post<any>(this.apiUrl + '/register', registerForm, {withCredentials: true})
+        this.http.post<any>(this.apiUrl + '/register', registerForm, { withCredentials: true, headers: new HttpHeaders({ 'X-XSRF-TOKEN': this.returnXSRFToken() }) })
       )
     );
   }
 
   logOut(): void {
     this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true }).pipe(
-      switchMap(() => this.http.post(`${this.apiUrl}/logout`, this.userSubject, { withCredentials: true })),
+      switchMap(() =>
+        this.http.post(`${this.apiUrl}/logout`, this.userSubject, { withCredentials: true, headers: new HttpHeaders({ 'X-XSRF-TOKEN': this.returnXSRFToken() }) })
+      ),
       finalize(() => {
         this.userSubject.next(null);
         this.profileSubject.next(null);
       })
     ).subscribe({ error: err => console.error('Logout error:', err) });
+  }
+
+  returnXSRFToken(): any {
+    const name = 'XSRF-TOKEN';
+    const m = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&') + '=([^;]*)'));
+    return m ? decodeURIComponent(m[1]) : '';
   }
 
   getProfileUser(): Observable<Profile> {
