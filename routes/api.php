@@ -145,10 +145,10 @@ Route::get('/profile', function () {
         'email' => $user->email,
     ]);
 
-})->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+});
 
-Route::get('/profile/{id}/orders', [GetController::class, 'orders_by_profile'])->middleware('auth:sanctum');
+Route::get('/profile/orders', [GetController::class, 'orders_by_profile'])->middleware('auth:sanctum');
 
-Route::get('/profile/{id}/products', [GetController::class, 'products_by_profile'])->middleware('auth:sanctum');
+Route::get('/profile/products', [GetController::class, 'products_by_profile'])->middleware('auth:sanctum');
 
-Route::get('/profile/{id}/sales', [GetController::class, 'sales_by_profile'])->middleware('auth:sanctum');
+Route::get('/profile/sales', [GetController::class, 'sales_by_profile'])->middleware('auth:sanctum');
