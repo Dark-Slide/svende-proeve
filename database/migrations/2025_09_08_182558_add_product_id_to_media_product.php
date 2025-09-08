@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('media_product', function (Blueprint $table) {
 
-            $table->unsignedBigInteger('media_id')->after('id');
+            $table->unsignedBigInteger('media_id')->after('updated_at');
 
             $table->unsignedBigInteger('product_id')->after('media_id');
 

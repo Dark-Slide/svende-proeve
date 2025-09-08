@@ -104,6 +104,10 @@ Route::post('/user/register', function (Request $request) {
         'password' => $data['password'],
     ]);
 
+    $user->media()->attach(2);
+
+    $user->save();
+
     Auth::login($user);
     $request->session()->regenerate();
 
