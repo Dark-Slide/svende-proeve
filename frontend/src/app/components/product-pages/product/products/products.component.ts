@@ -50,11 +50,17 @@ export class ProductsComponent implements OnInit {
   colours: Colours[] = []
   types: Types[] = []
   conditions: Conditions[] = []
-  //categorySelected: Category | null = null;
+  //selected filters
   productSelected: Product | null = null;
+  categorySelected: Category | null = null;
   materialSelected: Materials | null = null;
-  sortSelected: SortOrder = SortOrder.None;
+  colourSelected: Colours | null = null;
+  typeSelected: Types | null = null;
+  conditionSelected: Conditions | null = null;
   searchQuery: string = '';
+  //Sorting
+  sortSelected: SortOrder = SortOrder.None;
+  
 
 
 
@@ -74,18 +80,48 @@ export class ProductsComponent implements OnInit {
   }
 
   searchFilteredProducts(){
-    let filteredByProduct = this.productSelected ? this.products.filter(product => product?.id === this.productSelected!.id)
+    /*let filteredByProduct = this.productSelected ? this.products.filter(product => product?.id === this.productSelected!.id)
     : [...this.products]
 
     //Search part
     filteredByProduct = filteredByProduct.filter(product => this.normalizeString(product.title).includes(this.normalizeString(this.searchQuery)));
 
     //Material part
-    this.filteredProducts = this.materialSelected ? filteredByProduct.filter(product => product.material === this.materialSelected) : filteredByProduct;
-
-    //this.filteredProducts = filteredByProduct;
+    this.filteredProducts = this.materialSelected ? filteredByProduct.filter(product => product.material === this.materialSelected) : filteredByProduct;*/
 
 
+    let filtering = this.productSelected ? this.products.filter(product => product?.id === this.productSelected!.id)
+    : [...this.products];
+
+    // Search part
+    if(this.searchQuery) {
+      filtering = filtering.filter(product => 
+        this.normalizeString(product.title).includes(this.normalizeString(this.searchQuery))
+      );
+    }
+
+    // Material part
+    if(this.materialSelected) {
+      filtering = filtering.filter(product => product.material === this.materialSelected);
+    }
+    
+
+    // Colour part
+    if(this.colourSelected) {
+      filtering = filtering.filter(product => product.colour === this.colourSelected);
+    }
+
+    // Type part
+    if(this.typeSelected) {
+      filtering = filtering.filter(product => product.type === this.typeSelected);
+    }
+
+    // Condition part
+    if(this.conditionSelected) {
+      filtering = filtering.filter(product => product.condition === this.conditionSelected);
+    }
+    this.filteredProducts = filtering;
+    // Sorting part
     this.sortTheProducts();
 
   }
@@ -106,62 +142,9 @@ export class ProductsComponent implements OnInit {
   }
   
 }
-filterHolder(){}
-
-
-
-//Filtering part
-selectedColourId: number | null = null;
-selectedTypeId: number | null = null;
-selectedConditionId: number | null = null;
-selectedMaterialId: number | null = null;
-
-conditionFilter() { 
-  let filteredByCondition = this.selectedConditionId ?
-  this.products.filter(product => { 
-    const conditionId = typeof product.condition === 'object' ? product.condition?.id : product.condition;
-    return String(conditionId) === String(this.selectedConditionId)}) : [...this.products];
-
-  this.filteredProducts = filteredByCondition;
-
-  this.sortTheProducts();
-}
-
-typeFilter() { 
-  let filteredByType = this.selectedTypeId ?
-  this.products.filter(product => { 
-    const typeId = typeof product.type === 'object' ? product.type?.id : product.type;
-    return String(typeId) === String(this.selectedTypeId)}) : [...this.products];
-
-  this.filteredProducts = filteredByType;
-
-  this.sortTheProducts();
-}
-
-colourFilter() { 
-  let filteredByColour = this.selectedColourId ?
-  this.products.filter(product => { 
-    const colourId = typeof product.colour === 'object' ? product.colour?.id : product.colour;
-    return String(colourId) === String(this.selectedColourId)}) : [...this.products];
-    
-  this.filteredProducts = filteredByColour;
-  this.sortTheProducts();
-}
-
-
-materialFilter() { 
-  let filteredByMaterial = this.selectedMaterialId ?
-  this.products.filter(product => { 
-    const materialId = typeof product.material === 'object' ? product.material?.id : product.material;
-    return String(materialId) === String(this.selectedMaterialId)}) : [...this.products];
-
-  this.filteredProducts = filteredByMaterial;
-
-  this.sortTheProducts();
 }
 
 
 
-}
 
 
