@@ -17,6 +17,8 @@ class PostController extends Controller
 
         $data = request()->all();
 
+        dd($data);
+
         $material = Material::query()
             ->where('id',  $data['materials'] ?? null)
             ->select('id')
