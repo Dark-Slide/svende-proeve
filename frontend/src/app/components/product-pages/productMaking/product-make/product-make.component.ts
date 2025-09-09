@@ -79,12 +79,12 @@ export class ProductMakeComponent {
       formData.append('name', this.productForm.get('name')?.value);
       formData.append('description', this.productForm.get('description')?.value);
       formData.append('price', this.productForm.get('price')?.value);
-      formData.append('categoryId', this.productForm.get('categoryId')?.value);
+      formData.append('category', this.productForm.get('category')?.value);
       formData.append('materials', this.productForm.get('materials')?.value);
       formData.append('colours', this.productForm.get('colours')?.value);
       formData.append('height', this.productForm.get('height')?.value);
       formData.append('width', this.productForm.get('width')?.value);
-      formData.append('depth', this.productForm.get('deepth')?.value);
+      formData.append('depth', this.productForm.get('depth')?.value);
       formData.append('types', this.productForm.get('types')?.value);
       formData.append('conditions', this.productForm.get('conditions')?.value);
       formData.append('imageUrl', this.productForm.get('imageUrl')?.value);

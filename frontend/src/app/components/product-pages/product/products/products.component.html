@@ -1,7 +1,7 @@
 <div class="container my-4">
     <div>
         <div>
-            <h1>Alle produkter</h1>
+            <h1>Alle Sofaer</h1>
         </div>
         <div class="row mb-4">
             <div class="search-bar">
@@ -12,7 +12,7 @@
             <button [routerLink]="['/productMaking']">Opret dit produkt</button>
                 <select class="form-select mb-2" aria-label="Filter by category">
                     <option>Vælg kategori</option>
-                    <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                    <option *ngFor="let category of categories" [value]="category.name">{{category.name}}</option>
                 </select>
                 <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by price">
                     <option [ngValue]="SortOrder.None">Vælg pris</option>
