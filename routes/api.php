@@ -167,9 +167,9 @@ Route::get('/profile/{id}', function () {
 
     $user = Auth::guard('web')->user();
 
-    $user = User::query()->find($user->id);
+    $user = User::query()->find( $user->id );
 
-    if (!  $user )
+    if ( ! $user )
         return response()->json(['message' => 'User not found'], 404);
 
     return response()->json([

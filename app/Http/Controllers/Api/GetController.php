@@ -354,9 +354,9 @@ class GetController extends Controller
 
         $orders = Order::query()->where('user_id', $user->id)->get();
 
-        return response()->json([
+        return response()->json(
             $this->transform_orders_to_collection_of_objects($orders)->toArray()
-        ]);
+        );
 
     }
 
