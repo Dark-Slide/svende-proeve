@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\GetController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\DeleteController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -24,6 +25,8 @@ Route::get('/products/category/{category}', [GetController::class, 'products_by_
 
 // Create Product
 Route::post('/products', [PostController::class, 'create_product']);
+// Delete Product
+Route::delete('/products/{id}', [DeleteController::class, 'delete_product']);
 
 // Categories
 Route::get('/categories', [GetController::class, 'categories']);
