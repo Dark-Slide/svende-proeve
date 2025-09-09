@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
             this.profileService.findProfileById(params['profileId']).subscribe(profile => {
                 this.profile = profile;
 
-                this.productService.getByProfileId(this.profile?.id).subscribe(products => this.profileProducts = products);
+                //this.productService.getByProfileId(this.profile?.id).subscribe(products => this.profileProducts = products);
             })
         })
     }
