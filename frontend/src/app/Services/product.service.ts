@@ -32,15 +32,11 @@ export class ProductService {
         return this.http.delete<void>(this.apiUrl+ '/'+ id);
     }
 
-    /*public getByProfileId(profileId: number): Observable<Product[]> {
-        return this.http.get<Product[]>(this.apiUrl + '/profile/' + profileId);
-    }*/
-
     public getByProfileId(profileId: number): Observable<Product[]> {
-        return this.http.get<{products: Product[]}>('${this.apiUrl}/profile/${profileId}').pipe(
-            map(response => response.products)
-        );
+        return this.http.get<Product[]>(this.apiUrl + '/profile/' + profileId);
     }
+
+    
 
 
 
