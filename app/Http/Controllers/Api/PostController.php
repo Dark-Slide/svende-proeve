@@ -35,7 +35,7 @@ class PostController extends Controller
 
         $product = new Product();
 
-        $product->title = $data['title'];
+        $product->title = $data['name'];
         $product->price = $data['price'];
         $product->description = $data['description'] ?? null;
         $product->height = $data['height'] ?? null;
