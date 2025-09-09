@@ -66,7 +66,6 @@ export class ProductsComponent implements OnInit {
   //Sorting
   sortSelected: SortOrder = SortOrder.None;
 
-  categorys: Category[] = [];
   
 
 
