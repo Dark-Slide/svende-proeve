@@ -45,7 +45,11 @@ export class ProductService {
       );
     }
     public updateProduct(product: Product): Observable<Product> {
-        return this.http.put<Product>(this.apiUrl+'/' + product.id, product);
+      return this.csrf().pipe(
+        switchMap(() =>
+          this.http.put<Product>(this.apiUrl + '/' + product.id, product,{ withCredentials: true, headers: new HttpHeaders({ 'X-XSRF-TOKEN': this.returnXSRFToken() }) })
+        )
+      );
     }
     public deleteProduct(id: number): Observable<void> {
       return this.csrf().pipe(
@@ -58,9 +62,5 @@ export class ProductService {
     public getByProfileId(profileId: number): Observable<Product[]> {
         return this.http.get<Product[]>(this.apiUrl + '/profile/' + profileId);
     }
-
-
-
-
 
 }
