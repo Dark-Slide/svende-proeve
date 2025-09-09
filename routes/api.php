@@ -53,6 +53,9 @@ Route::get('/user/sanctum/csrf-cookie', fn () => response()->noContent());
 Route::get('/user', fn (Request $r) => $r->user())->middleware('auth:sanctum')
     ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
 
+// Redirect user/profile to profile
+Route::get('/user/profile', fn () => redirect('/api/profile'));
+
 Route::get('/user/{id}', [GetController::class, 'user']);
 
 Route::post('/user/login', function (Request $request) {
