@@ -14,6 +14,9 @@ Route::get('/frontpage', [GetController::class, 'frontpage']);
 // Products
 Route::get('/products', [GetController::class, 'products']);
 
+// Redirect /products/profile to /profile/products
+Route::get('/products/profile', fn () => redirect('/api/profile/products'));
+
 Route::get('/products/{id}', [GetController::class, 'product']);
 
 Route::get('/products/category/{category}', [GetController::class, 'products_by_category']);
