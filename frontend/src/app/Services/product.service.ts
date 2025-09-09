@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Product } from "../models/product";
-import { Observable } from "rxjs";
+import { Observable, map } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
+
 
 @Injectable({
   providedIn: "root",
@@ -31,8 +32,14 @@ export class ProductService {
         return this.http.delete<void>(this.apiUrl+ '/'+ id);
     }
 
-    public getByProfileId(profileId: number): Observable<Product[]> {
+    /*public getByProfileId(profileId: number): Observable<Product[]> {
         return this.http.get<Product[]>(this.apiUrl + '/profile/' + profileId);
+    }*/
+
+    public getByProfileId(profileId: number): Observable<Product[]> {
+        return this.http.get<{products: Product[]}>('${this.apiUrl}/profile/${profileId}').pipe(
+            map(response => response.products)
+        );
     }
 
 
