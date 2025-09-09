@@ -17,6 +17,7 @@ import { ColourService } from 'src/app/Services/colour.service';
 import { MaterialService } from 'src/app/Services/material.service';
 import { TypeService } from 'src/app/Services/type.service';
 import { ConditionsService } from 'src/app/Services/condition.service'; 
+import { AuthService } from 'src/app/Services/auth.service';
 
 
 
@@ -39,6 +40,7 @@ export class ProductsComponent implements OnInit {
     private colourService: ColourService,
     private typeService: TypeService,
     private conditionService: ConditionsService,
+    public authService: AuthService
   ) {}
   
   public SortOrder = SortOrder; 
