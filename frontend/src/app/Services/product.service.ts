@@ -16,15 +16,15 @@ export class ProductService {
     private readonly apiUrl = environment.apiUrl + 'products';
     constructor(private http: HttpClient) {}
 
-  csrf() {
-    return this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true });
-  }
+    csrf() {
+      return this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true });
+    }
 
-  returnXSRFToken(): any {
-    const name = 'XSRF-TOKEN';
-    const m = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&') + '=([^;]*)'));
-    return m ? decodeURIComponent(m[1]) : '';
-  }
+    returnXSRFToken(): any {
+      const name = 'XSRF-TOKEN';
+      const m = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&') + '=([^;]*)'));
+      return m ? decodeURIComponent(m[1]) : '';
+    }
 
     public getProducts(): Observable<Product[]> {
         return this.http.get<Product[]>(this.apiUrl);
