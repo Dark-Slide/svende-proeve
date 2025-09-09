@@ -152,7 +152,7 @@ Route::get('/profile', function () {
         'id' => $user->id,
         'name' => $user->name,
         'email' => $user->email,
-        'media' => $media->path ?? null,
+        'image_url' => $media->path ?? null,
     ]);
 
 });
