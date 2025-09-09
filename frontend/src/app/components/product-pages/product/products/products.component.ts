@@ -65,6 +65,7 @@ export class ProductsComponent implements OnInit {
   searchQuery: string = '';
   //Sorting
   sortSelected: SortOrder = SortOrder.None;
+
   
 
 
@@ -97,8 +98,9 @@ export class ProductsComponent implements OnInit {
 
     // Category part
     if(this.categorySelected) {
-      filtering = filtering.filter(product => product.categories === this.categorySelected);
+      filtering = filtering.filter(product => product.categories?.some(cat => cat.name.toLowerCase() === this.categorySelected!.name.toLowerCase()));
     }
+    
 
     // Material part
     if(this.materialSelected) {
