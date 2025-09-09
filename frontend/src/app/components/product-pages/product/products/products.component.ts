@@ -98,8 +98,9 @@ export class ProductsComponent implements OnInit {
 
     // Category part
     if(this.categorySelected) {
-      filtering = filtering.filter(product => product.categories?.id === this.categorySelected!.id);
+      filtering = filtering.filter(product => product.categories?.some(cat => cat.name === this.categorySelected!.name));
     }
+    
 
     // Material part
     if(this.materialSelected) {
