@@ -30,7 +30,7 @@ export interface Product {
     material: Materials;
 
     categoryId: number;
-    category: Category;
+    categories: Category;
     
 
     profileId: number;

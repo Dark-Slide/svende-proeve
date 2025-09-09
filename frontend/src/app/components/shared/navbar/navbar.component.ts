@@ -22,7 +22,7 @@ export class NavbarComponent {
     user: User | null = this.authService.user;
 
     profile?: Profile| null;
-    //profile$ = this.authService.profile$;
+    
 
     
 
