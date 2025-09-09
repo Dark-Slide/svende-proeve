@@ -33,6 +33,7 @@
                     </ul>
                 </div>
                 <button (click)="showYourProducts()">{{ allYourProducts ? 'Skjul' : 'Vis'}} dine produkter</button>
+                <div *ngIf="allYourProducts">
                 <h5>Dine produkter til salg:</h5>
                 <div *ngFor="let product of profileProducts">
                     
@@ -42,6 +43,7 @@
                         <button (click)="deleteProduct(product.id)" *ngIf="isOwner">Slet produkt</button>
                         
                     </ul>
+                </div>
                 </div>
         </div>
 </div>
