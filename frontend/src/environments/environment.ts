@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-    apiUrl: 'https://sofa.haagendrup.dk/api/' // Dummy api
+    apiUrl: 'https://sofa.haagendrup.dk/api/' // Live api
 };

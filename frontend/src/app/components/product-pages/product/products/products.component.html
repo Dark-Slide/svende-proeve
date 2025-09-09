@@ -34,7 +34,7 @@
 
                 <select [(ngModel)]="conditionSelected" (change)="searchFilteredProducts()" class="form-select mb-2" aria-label="Filter by condition">
                     <option [ngValue]="null">Vælg Tilstand</option>
-                    <option *ngFor="let condition of conditions" [value]="condition.name">{{condition.name}}</option>
+                    <option *@for="let condition of conditions" [value]="condition.name">{{condition.name}}</option>
                 </select>
             </div>
                 <div class="products-grid">

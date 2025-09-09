@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
     profileProducts: Product[] = [];
     selectedProduct?: Product;
     profileForm: Form | undefined;
-    isOwner: boolean = false;
+    
 
     loggedInProfile: Profile | null = null;
 
