@@ -43,7 +43,7 @@ Route::get('/types', [GetController::class, 'types']);
 // Orders
 Route::get('/orders', [GetController::class, 'orders']);
 
-Route::get('/order/{id}', [GetController::class, 'order']);
+Route::get('/orders/{id}', [GetController::class, 'order']);
 
 Route::get('/orders/user/{user_id}', [GetController::class, 'orders_by_user']);
 
@@ -62,16 +62,17 @@ Route::get('/user', fn (Request $r) => $r->user())->middleware('auth:sanctum');
 // Redirect user/profile to profile
 Route::get('/user/profile', fn () => redirect('/api/profile'));
 
+
 Route::get('/user/{id}', [GetController::class, 'user']);
 
 Route::post('/user/login', function (Request $request) {
 
     $credentials = $request->validate(['email'=>'required|email','password'=>'required']);
 
-    if (! Auth::attempt($credentials))
+    if ( ! Auth::attempt( $credentials ) )
         return response()->json(['message' => 'Invalid credentials'], 422);
 
-    $user = Auth::guard('web')->user();
+//    $user = Auth::guard('web')->user();
 
     $request->session()->regenerate();
 
@@ -81,7 +82,7 @@ Route::post('/user/login', function (Request $request) {
 
 Route::post('/user/logout', function (Request $request) {
 
-    Auth::guard('web')->logout();
+    Auth::logout();
 
     $request->session()->invalidate();
 
@@ -89,7 +90,7 @@ Route::post('/user/logout', function (Request $request) {
 
     return response()->json(['ok' => true]);
 
-});
+})->middleware('auth:sanctum');
 
 Route::post('/user/register', function (Request $request) {
 
@@ -99,8 +100,10 @@ Route::post('/user/register', function (Request $request) {
         'confirmPassword' => ['required', Password::defaults()],
     ]);
 
-    if ($data['password'] !== $data['confirmPassword']) {
+    if ( $data['password'] !== $data['confirmPassword'] ) {
+
         return response()->json(['message' => 'Passwords do not match'], 422);
+
     }
 
     // Hash password
@@ -117,6 +120,7 @@ Route::post('/user/register', function (Request $request) {
     $user->save();
 
     Auth::login($user);
+
     $request->session()->regenerate();
 
     return response()->json([
@@ -129,11 +133,11 @@ Route::post('/user/register', function (Request $request) {
 // Profile
 Route::get('/profile', function () {
 
-    $user = Auth::guard('web')->user();
+    $auth = Auth::user();
 
-    $user = User::query()->find($user->id);
+    $user = User::query()->find( $auth->id );
 
-    if (! $user)
+    if ( ! $user )
         return response()->json(['message' => 'User not found'], 404);
 
     $media = $user->media()->first();
@@ -145,7 +149,7 @@ Route::get('/profile', function () {
         'image_url' => $media->path ?? null,
     ]);
 
-});
+})->middleware('auth:sanctum');
 
 Route::get('/profile/orders', [GetController::class, 'orders_by_profile']);
 
