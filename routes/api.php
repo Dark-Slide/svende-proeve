@@ -57,8 +57,7 @@ Route::get('/order_lines/order/{order_id}', [GetController::class, 'order_lines_
 Route::get('/user/sanctum/csrf-cookie', fn () => response()->noContent());
 
 // User
-Route::get('/user', fn (Request $r) => $r->user())->middleware('auth:sanctum')
-    ->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+Route::get('/user', fn (Request $r) => $r->user())->middleware('auth:sanctum');
 
 // Redirect user/profile to profile
 Route::get('/user/profile', fn () => redirect('/api/profile'));
@@ -90,7 +89,7 @@ Route::post('/user/logout', function (Request $request) {
 
     return response()->json(['ok' => true]);
 
-})->withoutMiddleware('Tymon\JWTAuth\Http\Middleware\Authenticate');
+});
 
 Route::post('/user/register', function (Request $request) {
 
@@ -148,11 +147,11 @@ Route::get('/profile', function () {
 
 });
 
-Route::get('/profile/orders', [GetController::class, 'orders_by_profile'])->middleware('auth:sanctum');
+Route::get('/profile/orders', [GetController::class, 'orders_by_profile']);
 
 Route::get('/profile/products', [GetController::class, 'products_by_profile']);
 
-Route::get('/profile/sales', [GetController::class, 'sales_by_profile'])->middleware('auth:sanctum');
+Route::get('/profile/sales', [GetController::class, 'sales_by_profile']);
 
 Route::get('/profile/{id}', function () {
 
