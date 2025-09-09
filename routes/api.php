@@ -147,6 +147,23 @@ Route::get('/profile', function () {
 
 });
 
+Route::get('/profile/{id}', function () {
+
+    $user = Auth::guard('web')->user();
+
+    $user = User::query()->find($user->id);
+
+    if (!  $user )
+        return response()->json(['message' => 'User not found'], 404);
+
+    return response()->json([
+        'id' => $user->id,
+        'name' => $user->name,
+        'email' => $user->email,
+    ]);
+
+});
+
 Route::get('/profile/orders', [GetController::class, 'orders_by_profile'])->middleware('auth:sanctum');
 
 Route::get('/profile/products', [GetController::class, 'products_by_profile'])->middleware('auth:sanctum');
