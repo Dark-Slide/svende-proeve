@@ -53,7 +53,7 @@ export class ProfileComponent implements OnInit {
         this.activatedRoute.params.subscribe(params => {
             this.profileService.findProfileById(params['profileId']).subscribe(profile => {
                 this.profile = profile;
-                this.isOwner = this.loggedInProfile?.id === this.profile.id;
+                
             })
         })
     }
