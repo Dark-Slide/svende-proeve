@@ -24,16 +24,16 @@
                     <option *ngFor="let material of materials" [value]="material.name">{{material.name}}</option>
                 </select>
                 <select [(ngModel)]="colourSelected" (change)="searchFilteredProducts()" class="form-select mb-2" aria-label="Filter by colour">
-                    <option value="">Vælg Farve</option>
+                    <option [ngValue]="null">Vælg Farve</option>
                     <option *ngFor="let colour of colours" [value]="colour.name">{{colour.name}}</option>
                 </select>
                 <select [(ngModel)]="typeSelected" (change)="searchFilteredProducts()" class="form-select mb-2" aria-label="Filter by type">
-                    <option value="">Vælg Type</option>
+                    <option [ngValue]="null">Vælg Type</option>
                     <option *ngFor="let type of types" [value]="type.name">{{type.name}}</option>
                 </select>
 
                 <select [(ngModel)]="conditionSelected" (change)="searchFilteredProducts()" class="form-select mb-2" aria-label="Filter by condition">
-                    <option value="">Vælg Tilstand</option>
+                    <option [ngValue]="null">Vælg Tilstand</option>
                     <option *ngFor="let condition of conditions" [value]="condition.name">{{condition.name}}</option>
                 </select>
             </div>
