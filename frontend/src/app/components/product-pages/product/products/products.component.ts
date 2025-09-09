@@ -99,14 +99,7 @@ export class ProductsComponent implements OnInit {
 
     // Category part
     if(this.categorySelected) {
-      filtering = filtering.filter(product => 
-        {let matchCategories = true;
-          if(this.categorySelected){
-            matchCategories = (product.categories || []).some(cat => cat.name === this.categorySelected!);
-          }
-          return matchCategories;
-        }
-      );
+      filtering = filtering.filter(product => (product.categories || []).some(cat => cat.name === this.categorySelected!));
     }
     
 
