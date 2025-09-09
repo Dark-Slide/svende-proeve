@@ -18,7 +18,11 @@ export class ProductService {
     public getProducts(): Observable<Product[]> {
         return this.http.get<Product[]>(this.apiUrl);
     }
-    
+
+    public getFeaturedProducts(): Observable<Product[]> {
+      return this.http.get<Product[]>(environment.apiUrl + 'frontpage');
+    }
+
     public getProductById(id: number): Observable<Product> {
         return this.http.get<Product>(this.apiUrl + '/'+ id);
     }
