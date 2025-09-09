@@ -314,7 +314,25 @@ class GetController extends Controller
 
         $user = User::query()->find( $auth->id );
 
-        $products = Product::query()->where('user_id', $user->id)->get();
+        $products = Product::query()
+            ->select('id', 'title', 'description', 'price', 'is_used', 'width', 'height', 'depth', 'material_id', 'type_id', 'color_id')
+            ->with('material', function ($query) {
+                $query->select('id', 'name');
+            })
+            ->with('categories', function ($query) {
+                $query->select('categories.id', 'categories.name');
+            })
+            ->with('type', function ($query) {
+                $query->select('id', 'name');
+            })
+            ->with('color', function ($query) {
+                $query->select('id', 'name');
+            })
+            ->with('media', function ($query) {
+                $query->select('media.id', 'media.path');
+            })
+            ->where('user_id', $user->id)
+            ->get();
 
         return response()->json([
             $this->transform_products_to_collection_of_objects($products)->toArray()
