@@ -9,7 +9,7 @@
             </div>
             <div class="layout">
             <div class="filters-sidebar">
-            <button [routerLink]="['/productMaking']">Opret dit produkt</button>
+            <button *ngIf="authService.profile$ | async as profile" [routerLink]="['/productMaking']">Opret dit produkt</button>
                 <select class="form-select mb-2" aria-label="Filter by category">
                     <option>Vælg kategori</option>
                     <option *ngFor="let category of categories" [value]="category.name">{{category.name}}</option>
