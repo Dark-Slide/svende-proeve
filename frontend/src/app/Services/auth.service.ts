@@ -20,7 +20,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   csrf() {
-    return this.http.get(`${this.apiUrlProfile}/sanctum/csrf-cookie`, { withCredentials: true });
+    return this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true });
   }
 
   public get user(): User | null
@@ -48,7 +48,7 @@ export class AuthService {
       try {
         // 1) XSRF-TOKEN
         await firstValueFrom(
-          this.http.get(`${this.apiUrlProfile}/sanctum/csrf-cookie`, { withCredentials: true })
+          this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true })
         );
         
 
@@ -82,7 +82,7 @@ export class AuthService {
   login(loginForm: any) {
     return this.csrf().pipe(
       switchMap(() =>
-        this.http.post<any>(this.apiUrlProfile + "/login", loginForm, {withCredentials: true, headers: new HttpHeaders({ 'X-XSRF-TOKEN': this.returnXSRFToken() }),})
+        this.http.post<any>(this.apiUrl + "/login", loginForm, {withCredentials: true, headers: new HttpHeaders({ 'X-XSRF-TOKEN': this.returnXSRFToken() }),})
       )
     );
   }
@@ -90,15 +90,15 @@ export class AuthService {
   register(registerForm: any) {
     return this.csrf().pipe(
       switchMap(() =>
-        this.http.post<any>(this.apiUrlProfile + '/register', registerForm, { withCredentials: true, headers: new HttpHeaders({ 'X-XSRF-TOKEN': this.returnXSRFToken() }) })
+        this.http.post<any>(this.apiUrl + '/register', registerForm, { withCredentials: true, headers: new HttpHeaders({ 'X-XSRF-TOKEN': this.returnXSRFToken() }) })
       )
     );
   }
 
   logOut(): void {
-    this.http.get(`${this.apiUrlProfile}/sanctum/csrf-cookie`, { withCredentials: true }).pipe(
+    this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true }).pipe(
       switchMap(() =>
-        this.http.post(`${this.apiUrlProfile}/logout`, this.userSubject, { withCredentials: true, headers: new HttpHeaders({ 'X-XSRF-TOKEN': this.returnXSRFToken() }) })
+        this.http.post(`${this.apiUrl}/logout`, this.userSubject, { withCredentials: true, headers: new HttpHeaders({ 'X-XSRF-TOKEN': this.returnXSRFToken() }) })
       ),
       finalize(() => {
         this.userSubject.next(null);
@@ -114,7 +114,7 @@ export class AuthService {
   }
 
   getProfileUser(): Observable<Profile> {
-    return this.http.get<Profile>(this.apiUrlProfile + "/profile", {withCredentials:true});
+    return this.http.get<Profile>(this.apiUrl + "/profile", {withCredentials:true});
   }
 
   loadProfileAlone(): void {
