@@ -416,6 +416,10 @@ class GetController extends Controller
         $object->image_id = $product->media->isNotEmpty() ? $product->media->first()->id : null;
         $object->image_url = $product->media->isNotEmpty() ? asset($product->media->first()->path) : null;
 
+        $object->categories = $product->categories->map(function ($category) {
+            return $category->name;
+        })->toArray();
+
         return $object;
 
     }
