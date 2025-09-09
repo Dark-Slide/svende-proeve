@@ -63,7 +63,7 @@ export class ProductMakeComponent {
       category: ['', Validators.required],
       materials: ['', Validators.required],
       colours: ['', Validators.required],
-      deepth: ['', [Validators.required, Validators.min(0)]],
+      depth: ['', [Validators.required, Validators.min(0)]],
       height: ['', [Validators.required, Validators.min(0)]],
       width: ['', [Validators.required, Validators.min(0)]],
       types: ['', Validators.required],
