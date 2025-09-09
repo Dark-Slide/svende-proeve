@@ -38,7 +38,7 @@
                     <div *ngFor="let product of profileProducts">
                     
                         <ul>
-                            <strong>{{product.title}}</strong>
+                            <li>{{product.title}}</li>
                             <li>{{product.price}}</li>                        
                         </ul>
                         <button (click)="deleteProduct(product.id)">Slet produkt</button>
