@@ -20,7 +20,7 @@
                     <option [ngValue]="SortOrder.PriceDesc">Højeste pris</option>
                 </select>
                 <select [(ngModel)]="materialSelected" (change)="searchFilteredProducts()" class="form-select mb-2" aria-label="Filter by material">
-                    <option value="">Vælg Materiale</option>
+                    <option [ngValue]="null">Vælg Materiale</option>
                     <option *ngFor="let material of materials" [value]="material.name">{{material.name}}</option>
                 </select>
                 <select [(ngModel)]="colourSelected" (change)="searchFilteredProducts()" class="form-select mb-2" aria-label="Filter by colour">
