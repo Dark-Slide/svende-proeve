@@ -50,10 +50,9 @@ export class ProductService {
     public deleteProduct(id: number): Observable<void> {
       return this.csrf().pipe(
         switchMap(() =>
-          this.http.post<any>(this.apiUrl + '/' + id,{ withCredentials: true, headers: new HttpHeaders({ 'X-XSRF-TOKEN': this.returnXSRFToken() }) })
+          this.http.delete<void>(this.apiUrl + '/' + id,{ withCredentials: true, headers: new HttpHeaders({ 'X-XSRF-TOKEN': this.returnXSRFToken() }) })
         )
       );
-        return this.http.delete<void>(this.apiUrl+ '/'+ id);
     }
 
     public getByProfileId(profileId: number): Observable<Product[]> {
