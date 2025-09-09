@@ -77,7 +77,7 @@ class PostController extends Controller
 
         $product->save();
 
-        return 'Created product with ID: ' . $product->id;
+        return response()->json('Created product with ID: ' . $product->id);
 
     }
 
