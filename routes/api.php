@@ -127,18 +127,6 @@ Route::post('/user/register', function (Request $request) {
 
 });
 
-Route::get('/user/session', function (Request $request) {
-
-    $user = Auth::guard('web')->user();
-
-    if (! $user ) {
-        return response()->json(['user' => null]);
-    }
-
-    return response()->json(['user' => $user]);
-
-});
-
 // Profile
 Route::get('/profile', function () {
 
