@@ -11,7 +11,7 @@
             <div class="filters-sidebar">
             <button *ngIf="profile" [routerLink]="['/productMaking']">Opret dit produkt</button>
                 <select class="form-select mb-2" [(ngModel)]="categorySelected" (change)="searchFilteredProducts()" aria-label="Filter by category">
-                    <option>Vælg kategori</option>
+                    <option [ngValue]="null">Vælg kategori</option>
                     <option *ngFor="let category of categories" [value]="category.name">{{category.name}}</option>
                 </select>
                 <select [(ngModel)]="sortSelected" (change)="sortTheProducts()" class="form-select mb-2" aria-label="Filter by price">
