@@ -57,12 +57,13 @@ export class ProductsComponent implements OnInit {
   conditions: Conditions[] = []
   //selected filters
   productSelected: Product | null = null;
-  categorySelected: Category | null = null;
+  //categorySelected: Category | null = null;
   materialSelected: Materials | null = null;
   colourSelected: Colours | null = null;
   typeSelected: Types | null = null;
   conditionSelected: Conditions | null = null;
   searchQuery: string = '';
+  categorySelected: string = '';
   //Sorting
   sortSelected: SortOrder = SortOrder.None;
 
@@ -101,7 +102,7 @@ export class ProductsComponent implements OnInit {
       filtering = filtering.filter(product => 
         {let matchCategories = true;
           if(this.categorySelected){
-            matchCategories = (product.categories || []).some(cat => cat.name === this.categorySelected!.name);
+            matchCategories = (product.categories || []).some(cat => cat.name === this.categorySelected!);
           }
           return matchCategories;
         }
