@@ -110,7 +110,7 @@ Route::post('/user/register', function (Request $request) {
         'password' => $data['password'],
     ]);
 
-    $user->media()->attach(2);
+    $user->media()->attach(7);
 
     $user->save();
 
@@ -146,10 +146,13 @@ Route::get('/profile', function () {
     if (! $user)
         return response()->json(['message' => 'User not found'], 404);
 
+    $media = $user->media()->first();
+
     return response()->json([
         'id' => $user->id,
         'name' => $user->name,
         'email' => $user->email,
+        'media' => $media->path ?? null,
     ]);
 
 });
