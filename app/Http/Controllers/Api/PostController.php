@@ -56,6 +56,8 @@ class PostController extends Controller
         if ($color)
             $product->color()->associate($color);
 
+        $product->save();
+
         // Save images if provided
         if ( isset( $data['image0'] ) ) {
             // Save image to storage images folder and get path
@@ -63,10 +65,10 @@ class PostController extends Controller
             $file = request()->file('image0');
 
             $filename = $data['imageUrl'];
-            $path = $file->storeAs('images', $filename, 'local'); // returns "images/xxxx.heic"
+            $path = $file->storeAs('images', $filename, 'public');
 
             $media = Media::query()->create([
-                'path' => $path,
+                'path' => storage_path($path),
             ]);
 
             $product->media()->attach( $media );
