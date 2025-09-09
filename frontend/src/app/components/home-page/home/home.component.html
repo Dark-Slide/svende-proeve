@@ -5,31 +5,17 @@
             <div class="product-carousel">
 
                 <div class="product-card" *ngFor="let product of featuredProducts">
-                  <div [routerLink]="['/productDetail', product.id]" >
-                    <div class="product-image">
-                    <img [src]="product.image_url || 'assets/images/DummySofa.png'" alt="Sofa 1" class="w-full h-auto rounded-lg shadow-lg">
+                    <div [routerLink]="['/productDetail', product.id]" >
+                        <div class="product-image">
+                        <img [src]="product.image_url || 'assets/images/DummySofa.png'" alt="Sofa 1" class="w-full h-auto rounded-lg shadow-lg">
+                        </div>
+                        <div>
+                          <div class="product-title">{{product.title}}</div>
+                          <div>Pris: {{product.price}}</div>
+                          <div>Beskrivelse: {{product.description}}</div>
+                          <div>Ny eller brugt: {{product.condition}}</div>
+                        </div>
                     </div>
-                    <div>
-                      <div class="product-title">{{product.title}}</div>
-                      <div>Pris: {{product.price}}</div>
-                      <div>Beskrivelse: {{product.description}}</div>
-                      <div>Ny eller brugt: {{product.condition}}</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                    <img src="assets/images/DummySofa.png" alt="Sofa 2" class="w-full h-auto rounded-lg shadow-lg">
-                    </div>
-                    <h3>Sofa Model 2</h3>
-                    <p>Pris</p>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                    <img src="assets/images/DummySofa.png" alt="Sofa 3" class="w-full h-auto rounded-lg shadow-lg">
-                    </div>
-                    <h3>Sofa Model 3</h3>
-                    <p>Pris</p>
                 </div>
             </div>
         </div>
