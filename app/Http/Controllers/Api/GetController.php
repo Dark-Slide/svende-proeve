@@ -37,7 +37,7 @@ class GetController extends Controller
                 $query->select('media.id', 'media.path');
             })
             ->where('is_used', 0)
-            ->whereNull('user_id')
+//            ->whereNull('user_id')
             ->orderBy('price', 'desc')
             ->limit(3)
             ->get();
