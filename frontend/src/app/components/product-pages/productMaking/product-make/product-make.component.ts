@@ -90,9 +90,9 @@ export class ProductMakeComponent {
       formData.append('imageUrl', this.productForm.get('imageUrl')?.value);
       this.images.forEach((image, index) => {formData.append(`image${index}`, image);
       });
-      this.productService.createProduct(formData).subscribe((response) => {
+      this.productService.createProduct(formData).subscribe(() => {
         this.toastr.success('Product created successfully!!');
-        this.router.navigate(['/products', response.id]);
+        this.router.navigate(['/products']);
       }, error => {
         this.toastr.error('Failed to create product');
       });
