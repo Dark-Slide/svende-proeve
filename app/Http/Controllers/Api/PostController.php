@@ -68,7 +68,7 @@ class PostController extends Controller
             $path = $file->storeAs('images', $filename, 'public');
 
             $media = Media::query()->create([
-                'path' => $path,
+                'path' => storage_path($path),
             ]);
 
             $product->media()->attach( $media );
