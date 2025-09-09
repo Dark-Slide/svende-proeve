@@ -44,6 +44,8 @@ export class ProductsComponent implements OnInit {
   ) {}
   
   public SortOrder = SortOrder; 
+
+  profile = this.authService.profile;
   
   //all items
   products: Product[] = [];
