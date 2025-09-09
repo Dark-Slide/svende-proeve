@@ -15,6 +15,7 @@ import { Colours } from 'src/app/models/colours';
 import { ColourService } from 'src/app/Services/colour.service';
 import { Conditions } from 'src/app/models/conditions';
 import { ConditionsService } from 'src/app/Services/condition.service';
+import { AuthService } from 'src/app/Services/auth.service';
 
 
 
@@ -47,6 +48,7 @@ export class ProductMakeComponent {
     private typeService: TypeService,
     private conditionService: ConditionsService,
     private router: Router,
+    private authService: AuthService,
     private toastr: ToastrService
   ) {
 
@@ -55,6 +57,8 @@ export class ProductMakeComponent {
     this.typeService.getAllTypes().subscribe(types => this.types = types);
     this.colourService.getAllColours().subscribe(colours => this.colours = colours);
     this.conditionService.getAllConditions().subscribe(conditions => this.conditions = conditions);
+
+    this.authService.getProfileUser().subscribe(x => this.profile = x);
 
     this.productForm = this.fb.group({
       name: ['', Validators.required],
