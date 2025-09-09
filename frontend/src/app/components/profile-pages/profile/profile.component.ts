@@ -53,7 +53,6 @@ export class ProfileComponent implements OnInit {
         this.activatedRoute.params.subscribe(params => {
             this.profileService.findProfileById(params['profileId']).subscribe(profile => {
                 this.profile = profile;
-                
             })
         })
     }
@@ -89,11 +88,9 @@ export class ProfileComponent implements OnInit {
     }
 
     showYourProducts(){
-        if(this.allYourProducts){
-            this.allYourProducts = false;
-        } else {
-            this.loadProducts
-        }
+        
+        this.allYourProducts = !this.allYourProducts;
+        this.loadProducts();
 
     }
 
