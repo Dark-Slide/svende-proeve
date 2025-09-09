@@ -73,8 +73,12 @@ export class AuthService {
 
 
     loadProfile(): void{
-      this.http.get<Profile>(this.apiUrlProfile , {withCredentials: true}).subscribe
-      (profile => this.profileSubject.next(profile), () => this.profileSubject.next(null));
+
+      this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true }).pipe(
+        switchMap(() =>
+          this.http.get<Profile>(this.apiUrlProfile,{ withCredentials: true, headers: new HttpHeaders({ 'X-XSRF-TOKEN': this.returnXSRFToken() }) })
+        )
+      ).subscribe(profile => this.profileSubject.next(profile), () => this.profileSubject.next(null));
     }
 
 
