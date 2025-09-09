@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Color;
 use App\Models\Material;
 use App\Models\Order;
 use App\Models\Product;
@@ -17,14 +18,20 @@ class PostController extends Controller
         $data = request()->all();
 
         $material = Material::query()
-            ->where('name',  $data['material'])
+            ->where('id',  $data['materials'] ?? null)
             ->select('id')
             ->first();
 
         $type = Type::query()
-            ->where('name', $data['type'])
+            ->where('id', $data['types'] ?? null)
             ->select('id')
             ->first();
+
+        $color = Color::query()
+            ->where('id', $data['colors'] ?? null)
+            ->select('id')
+            ->first();
+
 
         $product = new Product();
 
@@ -36,8 +43,15 @@ class PostController extends Controller
         $product->depth = $data['depth'] ?? null;
         $product->is_used = $data['is_used'] ?? false;
 
-        $product->material()->associate($material);
-        $product->type()->associate($type);
+
+        if ($material)
+            $product->material()->associate($material);
+
+        if ($type)
+            $product->type()->associate($type);
+
+        if ($color)
+            $product->color()->associate($color);
 
         $product->save();
 
