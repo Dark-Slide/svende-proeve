@@ -34,16 +34,16 @@
                 </div>
                 <button (click)="showYourProducts()">{{ allYourProducts ? 'Skjul' : 'Vis'}} dine produkter</button>
                 <div *ngIf="allYourProducts">
-                <h5>Dine produkter til salg:</h5>
-                <div *ngFor="let product of profileProducts">
+                    <h5>Dine produkter til salg:</h5>
+                    <div *ngFor="let product of profileProducts">
                     
-                    <ul>
-                        <li>{{product.title}}</li>
-                        <li>{{product.price}}</li>
-                        <button (click)="deleteProduct(product.id)" *ngIf="isOwner">Slet produkt</button>
+                        <ul>
+                            <strong>{{product.title}}</strong>
+                            <li>{{product.price}}</li>
+                            <button (click)="deleteProduct(product.id)" *ngIf="isOwner">Slet produkt</button>
                         
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
                 </div>
         </div>
 </div>
