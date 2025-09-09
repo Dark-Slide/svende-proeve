@@ -56,6 +56,8 @@ class PostController extends Controller
         if ($color)
             $product->color()->associate($color);
 
+        $product->save();
+
         // Save images if provided
         if ( isset( $data['image0'] ) ) {
             // Save image to storage images folder and get path
