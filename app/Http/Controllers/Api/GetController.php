@@ -37,7 +37,7 @@ class GetController extends Controller
                 $query->select('media.id', 'media.path');
             })
             ->where('type_id', 1)
-            ->orderBy('price')
+            ->orderBy('price', 'desc')
             ->limit(3)
             ->get();
 
