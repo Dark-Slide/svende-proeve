@@ -72,7 +72,7 @@ Route::post('/user/login', function (Request $request) {
     if ( ! Auth::attempt( $credentials ) )
         return response()->json(['message' => 'Invalid credentials'], 422);
 
-    $user = Auth::guard('web')->user();
+//    $user = Auth::guard('web')->user();
 
     $request->session()->regenerate();
 
@@ -82,7 +82,7 @@ Route::post('/user/login', function (Request $request) {
 
 Route::post('/user/logout', function (Request $request) {
 
-    Auth::guard('web')->logout();
+    Auth::logout();
 
     $request->session()->invalidate();
 
@@ -90,7 +90,7 @@ Route::post('/user/logout', function (Request $request) {
 
     return response()->json(['ok' => true]);
 
-});
+})->middleware('auth:sanctum');
 
 Route::post('/user/register', function (Request $request) {
 
@@ -133,9 +133,9 @@ Route::post('/user/register', function (Request $request) {
 // Profile
 Route::get('/profile', function () {
 
-    $user = Auth::guard('web')->user();
+    $auth = Auth::user();
 
-    $user = User::query()->find( $user->id );
+    $user = User::query()->find( $auth->id );
 
     if ( ! $user )
         return response()->json(['message' => 'User not found'], 404);
