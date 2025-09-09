@@ -8,7 +8,7 @@
                 <input type="text" class="form-control" placeholder="Søg efter produkter..." [(ngModel)]="searchQuery" (input)="searchFilteredProducts()" aria-label="Search"/>
             </div>
             <div class="layout">
-            <div class="filters-sidebar"> 
+            <div class="filters-sidebar">
             <button [routerLink]="['/productMaking']">Opret dit produkt</button>
                 <select class="form-select mb-2" aria-label="Filter by category">
                     <option>Vælg kategori</option>
@@ -31,7 +31,7 @@
                     <option value="">Vælg Type</option>
                     <option *ngFor="let type of types" [value]="type.name">{{type.name}}</option>
                 </select>
-                
+
                 <select [(ngModel)]="conditionSelected" (change)="searchFilteredProducts()" class="form-select mb-2" aria-label="Filter by condition">
                     <option value="">Vælg Tilstand</option>
                     <option *ngFor="let condition of conditions" [value]="condition.name">{{condition.name}}</option>
@@ -40,8 +40,8 @@
                 <div class="products-grid">
                     <div *ngFor="let product of filteredProducts">
                     <div class="product-card" [routerLink]="['/productDetail', product.id]">
-                        <div class="product-image">
-                            <img [src]="product.image_url || 'assets/images/DummySofa.png' " [alt]="product.title" class="w-full h-auto rounded-lg shadow-lg"> 
+                        <div class="product-image pb-5">
+                            <img [src]="product.image_url || 'assets/images/DummySofa.png' " [alt]="product.title" class="w-full h-auto rounded-lg shadow-lg">
                         </div>
                         <div class="product-card-details">
                             <div class="product-title">{{product.title}}</div>
