@@ -71,7 +71,7 @@ export class ProductsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(sofa => { console.log("Full products", this.products), this.products = sofa; this.searchFilteredProducts();});
+    this.productService.getProducts().subscribe(sofa => {this.products = sofa; this.searchFilteredProducts();});
     this.categoryService.getAllCategories().subscribe(cat => this.categories = cat);
     this.materialService.getAllMaterials().subscribe(mat => this.materials = mat);
     this.colourService.getAllColours().subscribe(col => this.colours = col);
@@ -98,7 +98,7 @@ export class ProductsComponent implements OnInit {
 
     // Category part
     if(this.categorySelected) {
-      filtering = filtering.filter(product => product.categories === this.categorySelected);
+      filtering = filtering.filter(product => product.categories?.id === this.categorySelected!.id);
     }
 
     // Material part
