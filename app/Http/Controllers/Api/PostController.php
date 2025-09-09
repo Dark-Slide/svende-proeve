@@ -65,7 +65,7 @@ class PostController extends Controller
             $file = request()->file('image0');
 
             $filename = $data['imageUrl'];
-            $path = $file->storeAs('images', $filename, 'local'); // returns "images/xxxx.heic"
+            $path = $file->storeAs(public_path('assets/images'), $filename, 'local');
 
             $media = Media::query()->create([
                 'path' => $path,
