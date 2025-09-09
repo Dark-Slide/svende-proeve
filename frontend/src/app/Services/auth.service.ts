@@ -50,6 +50,7 @@ export class AuthService {
         await firstValueFrom(
           this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, { withCredentials: true })
         );
+        this.loadProfileAlone();
 
         const user = await firstValueFrom(
           this.http.get<any>(this.apiUrl, { withCredentials: true }) // this.apiUrl -> e.g. https://api.example.com/api/user
@@ -117,7 +118,7 @@ export class AuthService {
   }
 
   loadProfileAlone(): void {
-    this.http.get<Profile>(this.apiUrlProfile , {withCredentials: true}).subscribe
+    this.http.get<Profile>(this.apiUrlProfile, {withCredentials: true}).subscribe
     (profile => this.profileSubject.next(profile), () => this.profileSubject.next(null));
   }
 
