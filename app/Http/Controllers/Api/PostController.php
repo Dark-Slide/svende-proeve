@@ -5,19 +5,20 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Color;
 use App\Models\Material;
+use App\Models\Media;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Type;
 use App\Models\User;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
     function create_product() {
 
         $data = request()->all();
-
-        dd($data);
 
         $material = Material::query()
             ->where('id',  $data['materials'] ?? null)
@@ -54,6 +55,23 @@ class PostController extends Controller
 
         if ($color)
             $product->color()->associate($color);
+
+        // Save images if provided
+        if ( isset( $data['image0'] ) ) {
+            // Save image to storage images folder and get path
+
+            $file = request()->file('image0');
+
+            $filename = $data['image_url'];
+            $path = $file->storeAs('images', $filename, 'local'); // returns "images/xxxx.heic"
+
+            $media = Media::query()->create([
+                'path' => $path,
+            ]);
+
+            $product->media()->attach( $media );
+
+        }
 
         $product->save();
 
