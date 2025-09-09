@@ -53,8 +53,6 @@ export class ProfileComponent implements OnInit {
         this.activatedRoute.params.subscribe(params => {
             this.profileService.findProfileById(params['profileId']).subscribe(profile => {
                 this.profile = profile;
-
-                //this.productService.getByProfileId(this.profile?.id).subscribe(products => this.profileProducts = products);
             })
         })
     }
@@ -63,6 +61,7 @@ export class ProfileComponent implements OnInit {
     deleteProduct(productId: number): void {
         this.productService.deleteProduct(productId).subscribe(() => {
             this.profileProducts = this.profileProducts.filter(product => product.id !== productId);
+            
 
             this.toastr.success('Product deleted successfully');
         });
