@@ -52,10 +52,10 @@ export class ProductMakeComponent {
 
     this.categoryService.getAllCategories().subscribe(categories => this.categories = categories);
     this.materialService.getAllMaterials().subscribe(materials => this.materials = materials);
-    this.typeService.getAllTypes().subscribe(types => this.types = types);    
+    this.typeService.getAllTypes().subscribe(types => this.types = types);
     this.colourService.getAllColours().subscribe(colours => this.colours = colours);
     this.conditionService.getAllConditions().subscribe(conditions => this.conditions = conditions);
-    
+
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -71,7 +71,7 @@ export class ProductMakeComponent {
       imageUrl: ['', Validators.required]
     });
 
-    
+
   }
   onSubmit() {
     if (this.productForm.valid && this.images.length > 0) {
@@ -84,7 +84,7 @@ export class ProductMakeComponent {
       formData.append('colours', this.productForm.get('colours')?.value);
       formData.append('height', this.productForm.get('height')?.value);
       formData.append('width', this.productForm.get('width')?.value);
-      formData.append('deepth', this.productForm.get('deepth')?.value);
+      formData.append('depth', this.productForm.get('deepth')?.value);
       formData.append('types', this.productForm.get('types')?.value);
       formData.append('conditions', this.productForm.get('conditions')?.value);
       formData.append('imageUrl', this.productForm.get('imageUrl')?.value);
