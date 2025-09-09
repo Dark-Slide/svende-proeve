@@ -154,6 +154,12 @@ Route::get('/profile', function () {
 
 });
 
+Route::get('/profile/orders', [GetController::class, 'orders_by_profile'])->middleware('auth:sanctum');
+
+Route::get('/profile/products', [GetController::class, 'products_by_profile']);
+
+Route::get('/profile/sales', [GetController::class, 'sales_by_profile'])->middleware('auth:sanctum');
+
 Route::get('/profile/{id}', function () {
 
     $user = Auth::guard('web')->user();
@@ -170,9 +176,3 @@ Route::get('/profile/{id}', function () {
     ]);
 
 });
-
-Route::get('/profile/orders', [GetController::class, 'orders_by_profile'])->middleware('auth:sanctum');
-
-Route::get('/profile/products', [GetController::class, 'products_by_profile']);
-
-Route::get('/profile/sales', [GetController::class, 'sales_by_profile'])->middleware('auth:sanctum');
