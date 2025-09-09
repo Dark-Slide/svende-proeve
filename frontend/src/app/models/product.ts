@@ -31,6 +31,7 @@ export interface Product {
 
     categoryId: number;
     categories: Category;
+    categorys: Category[]; // Added to handle multiple categories
     
 
     profileId: number;

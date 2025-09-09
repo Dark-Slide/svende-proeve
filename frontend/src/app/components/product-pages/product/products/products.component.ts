@@ -65,6 +65,8 @@ export class ProductsComponent implements OnInit {
   searchQuery: string = '';
   //Sorting
   sortSelected: SortOrder = SortOrder.None;
+
+  categorys: Category[] = [];
   
 
 
