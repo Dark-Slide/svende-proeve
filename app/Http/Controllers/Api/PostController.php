@@ -31,7 +31,7 @@ class PostController extends Controller
             ->first();
 
         $color = Color::query()
-            ->where('id', $data['colors'] ?? null)
+            ->where('id', $data['colours'] ?? null)
             ->select('id')
             ->first();
 
