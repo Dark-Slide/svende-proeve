@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
     deleteProduct(productId: number): void {
         this.productService.deleteProduct(productId).subscribe(() => {
             this.profileProducts = this.profileProducts.filter(product => product.id !== productId);
-            
+
 
             this.toastr.success('Product deleted successfully');
         });
@@ -88,8 +88,11 @@ export class ProfileComponent implements OnInit {
     }
 
     showYourProducts(){
-        this.allYourProducts = !this.allYourProducts;
-        this.loadProducts();
+        if(this.allYourProducts){
+            this.allYourProducts = false;
+        } else {
+            this.loadProducts
+        }
 
     }
 
