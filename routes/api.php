@@ -14,6 +14,10 @@ Route::get('/frontpage', [GetController::class, 'frontpage']);
 // Products
 Route::get('/products', [GetController::class, 'products']);
 
+// Redirect /products/profile to /profile/products
+Route::get('/products/profile', fn () => redirect('/api/profile/products'));
+Route::get('/products/profile/{id}', fn () => redirect('/api/profile/products'));
+
 Route::get('/products/{id}', [GetController::class, 'product']);
 
 Route::get('/products/category/{category}', [GetController::class, 'products_by_category']);
@@ -169,6 +173,6 @@ Route::get('/profile/{id}', function () {
 
 Route::get('/profile/orders', [GetController::class, 'orders_by_profile'])->middleware('auth:sanctum');
 
-Route::get('/profile/products', [GetController::class, 'products_by_profile'])->middleware('auth:sanctum');
+Route::get('/profile/products', [GetController::class, 'products_by_profile']);
 
 Route::get('/profile/sales', [GetController::class, 'sales_by_profile'])->middleware('auth:sanctum');

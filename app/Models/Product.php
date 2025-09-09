@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Material $material
  * @property Type $type
  * @property Color $color
+ * @property User $user
  *
  * @property \Illuminate\Database\Eloquent\Collection|Category[] $categories
  * @property \Illuminate\Database\Eloquent\Collection|Media[] $media
@@ -75,5 +76,12 @@ class Product extends Model
     public function media()
     {
         return $this->belongsToMany(Media::class);
+    }
+
+    public function user()
+    {
+
+        return $this->belongsTo(User::class);
+
     }
 }
