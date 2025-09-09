@@ -8,10 +8,10 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [CommonModule, HttpClientModule, RouterLink], 
+    imports: [CommonModule, HttpClientModule, RouterLink],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
-    
+
 })
 export class HomeComponent implements OnInit{
     featuredProducts: Product[] = [];
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit{
     }
 
     loadFeaturedProducts(): void {
-        this.productService.getProducts()
+        this.productService.getFeaturedProducts()
         .subscribe((products: Product[]) => {this.featuredProducts = products;},
          (error)=>{console.error('Error loading featured products', error);
 
