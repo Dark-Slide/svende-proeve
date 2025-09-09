@@ -17,7 +17,7 @@ export class ProductService {
     constructor(private http: HttpClient) {}
 
     csrf() {
-      return this.http.get(`${environment.apiUrl}/user/sanctum/csrf-cookie`, { withCredentials: true });
+      return this.http.get(`${environment.apiUrl}user/sanctum/csrf-cookie`, { withCredentials: true });
     }
 
     returnXSRFToken(): any {
