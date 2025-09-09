@@ -7,7 +7,7 @@
                 <div class="product-card" *ngFor="let product of featuredProducts">
                     <div [routerLink]="['/productDetail', product.id]" >
                         <div class="product-image">
-                        <img [src]="product.image_url || 'assets/images/DummySofa.png'" alt="Sofa 1" class="w-full h-auto rounded-lg shadow-lg">
+                        <img [src]="product.image_url || 'assets/images/DummySofa.png'" alt="Sofa 1" class="w-full h-auto max-h-[227px] rounded-lg shadow-lg">
                         </div>
                         <div>
                           <div class="product-title">{{product.title}}</div>
