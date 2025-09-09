@@ -70,7 +70,7 @@ export class ProfileComponent implements OnInit {
 
     loadProducts(): void { 
         this.activatedRoute.params.subscribe(params => { 
-            this.productService.getByProfileId(params['profileId']).subscribe(products => { 
+            this.productService.getByProfileId(params['profileId']).subscribe(products => { console.log(products);
                 this.profileProducts = products; }, error => { this.toastr.error('Failed to load products for this profile'); console.error(error); 
 
                 }); 
