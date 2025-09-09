@@ -98,7 +98,14 @@ export class ProductsComponent implements OnInit {
 
     // Category part
     if(this.categorySelected) {
-      filtering = filtering.filter(product => product.categories?.some(cat => cat.name.toLowerCase() === this.categorySelected!.name.toLowerCase()));
+      filtering = filtering.filter(product => 
+        {let matchCategories = true;
+          if(this.categorySelected){
+            matchCategories = (product.categories || []).some(cat => cat.name === this.categorySelected!.name);
+          }
+          return matchCategories;
+        }
+      );
     }
     
 
