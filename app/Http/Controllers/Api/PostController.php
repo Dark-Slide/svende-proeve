@@ -18,6 +18,8 @@ class PostController extends Controller
 {
     function create_product() {
 
+        $auth_user = request()->user();
+
         $data = request()->all();
 
         $material = Material::query()
@@ -45,6 +47,9 @@ class PostController extends Controller
         $product->width = $data['width'] ?? null;
         $product->depth = $data['depth'] ?? null;
         $product->is_used = $data['is_used'] ?? false;
+
+        if ($auth_user)
+            $product->user_id = $auth_user->id;
 
 
         if ($material)
