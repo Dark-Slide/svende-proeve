@@ -23,7 +23,7 @@ Route::get('/products/{id}', [GetController::class, 'product']);
 Route::get('/products/category/{category}', [GetController::class, 'products_by_category']);
 
 // Create Product
-Route::post('/product/create', [PostController::class, 'create_product']);
+Route::post('/products', [PostController::class, 'create_product']);
 
 // Categories
 Route::get('/categories', [GetController::class, 'categories']);
