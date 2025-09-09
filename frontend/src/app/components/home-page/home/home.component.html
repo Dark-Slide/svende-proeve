@@ -7,7 +7,9 @@
                 <div class="product-card" *ngFor="let product of featuredProducts">
                     <div [routerLink]="['/productDetail', product.id]" >
                         <div class="product-image">
-                        <img [src]="product.image_url || 'assets/images/DummySofa.png'" style="max-height: 227px" alt="Sofa 1" class="w-full h-auto rounded-lg shadow-lg">
+                          <div style="max-height: 227px; overflow: hidden; padding-bottom: 20px">
+                            <img [src]="product.image_url || 'assets/images/DummySofa.png'" style="max-height: 227px" alt="Sofa 1" class="w-full h-auto rounded-lg shadow-lg">
+                          </div>
                         </div>
                         <div>
                           <div class="product-title">{{product.title}}</div>
