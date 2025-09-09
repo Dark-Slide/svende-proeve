@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\Type;
 use App\Models\User;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class GetController extends Controller
 {
@@ -285,61 +286,78 @@ class GetController extends Controller
     }
 
     // Profile
-    function profile($id)
-    {
+//    function profile($id)
+//    {
 //
-//        $user = auth()->user();
-//
-//        if ( ! $user ) {
-//            return response()->json(['message' => 'User not authenticated'], 401);
-//        }
-//
-//        return response()->json([
-//            $this->transform_user_to_object( $user )
-//        ]);
-
-    }
-
-    function products_by_profile($id)
-    {
-//
-//        // Use authenticated user
 //        $auth = auth()->user();
+//
 //        if ( ! $auth ) {
 //            return response()->json(['message' => 'User not authenticated'], 401);
 //        }
 //
-//        $user = User::query()->find( $id );
 //
-//        $products = Product::query()->where('user_id', $user->id)->get();
 //
 //        return response()->json([
-//            $this->transform_products_to_collection_of_objects($products)->toArray()
+//            $this->transform_user_to_object( $user )
 //        ]);
+//
+//    }
+
+    function products_by_profile()
+    {
+
+        // Use authenticated user
+        $auth = Auth::guard('web')->user();
+        if ( ! $auth ) {
+            return response()->json(['message' => 'User not authenticated'], 401);
+        }
+
+        $user = User::query()->find( $auth->id );
+
+        $products = Product::query()->where('user_id', $user->id)->get();
+
+        return response()->json([
+            $this->transform_products_to_collection_of_objects($products)->toArray()
+        ]);
 
     }
 
     function orders_by_profile()
     {
-//
-//        // Use authenticated user
-//        $auth = auth()->user();
-//        if ( ! $auth ) {
-//            return response()->json(['message' => 'User not authenticated'], 401);
-//        }
-//
-//        $user = User::query()->find( $auth->id );
-//
-//        $orders = Order::query()->where('user_id', $user->id)->get();
-//
-//        return response()->json([
-//            //$this->transform_products_to_collection_of_objects($orders)->toArray()
-//        ]);
+
+        // Use authenticated user
+        $auth = Auth::guard('web')->user();
+        if ( ! $auth ) {
+            return response()->json(['message' => 'User not authenticated'], 401);
+        }
+
+        $user = User::query()->find( $auth->id );
+
+        $orders = Order::query()->where('user_id', $user->id)->get();
+
+        return response()->json([
+            $this->transform_orders_to_collection_of_objects($orders)->toArray()
+        ]);
 
     }
 
     function sales_by_profile()
     {
+
+    }
+
+    private function transform_orders_to_collection_of_objects(Collection $orders): Collection
+    {
+
+        $collection = collect();
+
+        foreach ( $orders as $order ) {
+
+            $collection->push( $this->transform_order_to_object( $order ) );
+
+        }
+
+        return $collection;
 
     }
 
@@ -391,6 +409,20 @@ class GetController extends Controller
         $object->id = $user->id;
         $object->name = $user->name;
         $object->email = $user->email;
+
+        return $object;
+
+    }
+
+    private function transform_order_to_object(mixed $order)
+    {
+
+        $object = new \stdClass();
+
+        $object->id = $order->id;
+        $object->user_id = $order->user_id;
+        $object->price = $order->price;
+        $object->status = $order->status;
 
         return $object;
 
