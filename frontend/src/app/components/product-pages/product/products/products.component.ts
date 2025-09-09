@@ -99,7 +99,7 @@ export class ProductsComponent implements OnInit {
 
     // Category part
     if(this.categorySelected) {
-      filtering = filtering.filter(product => product.categories.some(cat => cat.name === this.categorySelected!.name));
+      filtering = filtering.filter(product => product.categories.some(cat => cat.id === this.categorySelected!.id));
     }
     
 
