@@ -63,9 +63,9 @@ export class ProductMakeComponent {
       categoryId: ['', Validators.required],
       materials: ['', Validators.required],
       colours: ['', Validators.required],
-      deepth: ['', Validators.required, Validators.min(0)],
-      height: ['', Validators.required, Validators.min(0)],
-      width: ['', Validators.required, Validators.min(0)],
+      deepth: ['', [Validators.required, Validators.min(0)]],
+      height: ['', [Validators.required, Validators.min(0)]],
+      width: ['', [Validators.required, Validators.min(0)]],
       types: ['', Validators.required],
       conditions: ['', Validators.required],
       imageUrl: ['', Validators.required]
@@ -80,13 +80,13 @@ export class ProductMakeComponent {
       formData.append('description', this.productForm.get('description')?.value);
       formData.append('price', this.productForm.get('price')?.value);
       formData.append('categoryId', this.productForm.get('categoryId')?.value);
-      formData.append('materials', this.productForm.get('Materials')?.value);
-      formData.append('colours', this.productForm.get('Colours')?.value);
-      formData.append('height', this.productForm.get('Height')?.value);
-      formData.append('width', this.productForm.get('Width')?.value);
-      formData.append('deepth', this.productForm.get('Deepth')?.value);
-      formData.append('types', this.productForm.get('Types')?.value);
-      formData.append('conditions', this.productForm.get('Conditions')?.value);
+      formData.append('materials', this.productForm.get('materials')?.value);
+      formData.append('colours', this.productForm.get('colours')?.value);
+      formData.append('height', this.productForm.get('height')?.value);
+      formData.append('width', this.productForm.get('width')?.value);
+      formData.append('deepth', this.productForm.get('deepth')?.value);
+      formData.append('types', this.productForm.get('types')?.value);
+      formData.append('conditions', this.productForm.get('conditions')?.value);
       formData.append('imageUrl', this.productForm.get('imageUrl')?.value);
       this.images.forEach((image, index) => {formData.append(`image${index}`, image);
       });
