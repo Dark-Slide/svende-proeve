@@ -18,11 +18,11 @@ import { Profile } from 'src/app/models/profile';
     imports: [RouterModule, CommonModule, AppRoutingModule]
 })
 export class NavbarComponent {
-    constructor(private authService: AuthService, private toastr: ToastrService, private router: Router) {}
+    constructor(public authService: AuthService, private toastr: ToastrService, private router: Router) {}
     user: User | null = this.authService.user;
 
     profile?: Profile| null;
-    profile$ = this.authService.profile$;
+    //profile$ = this.authService.profile$;
 
     
 
