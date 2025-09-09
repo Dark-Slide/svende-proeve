@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\DeleteController;
 use App\Http\Controllers\Api\GetController;
 use App\Http\Controllers\Api\PostController;
-use App\Http\Controllers\DeleteController;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rules\Password;
 
