@@ -3,7 +3,7 @@
         <div class="row">
             <!-- Profile Image Section -->
             <div class="col-md-4 text-center p-4">
-                <img src="DummyProfile.jpg" alt="Profile Image" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
+                <img src="assets/images/DummyProfile.jpg" alt="Profile Image" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
             </div>
         </div>
         <div class="card-header text-center bg-dark text-white">
@@ -36,10 +36,10 @@
                 <div *ngIf="allYourProducts">
                     <h5>Dine produkter til salg:</h5>
                     <div *ngFor="let product of profileProducts">
-                    
+
                         <ul>
                             <li>{{product.title}}</li>
-                            <li>{{product.price}}</li>                        
+                            <li>{{product.price}}</li>
                         </ul>
                         <button (click)="deleteProduct(product.id)">Slet produkt</button>
                     </div>
